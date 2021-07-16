@@ -1,0 +1,358 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 标准数据值域记录 -->
+<mapper namespace="com.buit.his.dic.dao.DicGbsj02Dao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        DATAVALUE_ID as datavalueId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,DATAVERSION_ID as dataversionId,SERIAL_NUMBER as serialNumber,DATA_VALUE as dataValue,DATA_VALUE_REMARK as dataValueRemark,PARENT_DATAVALUE_ID as parentDatavalueId,PY_CODE as pyCode,WB_CODE as wbCode,PRIMARYDATA_ID as primarydataId,EXT_INFO as extInfo,CAN_EXT as canExt,OPERATOR_ID as operatorId, CREATE_ID as createId, STOP_FLAG as stopFlag
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_GBSJ02 (
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_ID ,
+            DATAVERSION_ID ,
+            SERIAL_NUMBER ,
+            DATA_VALUE ,
+            DATA_VALUE_REMARK ,
+            PARENT_DATAVALUE_ID ,
+            PY_CODE ,
+            WB_CODE ,
+            PRIMARYDATA_ID ,
+            EXT_INFO ,
+            CAN_EXT ,
+            OPERATOR_ID ,
+            CREATE_ID ,
+            STOP_FLAG
+        ) VALUES (
+            #{gmtCreate} ,
+            #{gmtCreate} ,
+            #{hospitalId} ,
+            #{dataversionId} ,
+            #{serialNumber} ,
+            #{dataValue} ,
+            #{dataValueRemark} ,
+            #{parentDatavalueId} ,
+            #{pyCode} ,
+            #{wbCode} ,
+            #{primarydataId} ,
+            #{extInfo} ,
+            #{canExt}  ,
+            #{operatorId} ,
+            #{createId} ,
+            #{stopFlag}
+        )
+    </insert>
+
+    <update id="updateStatus" >
+        UPDATE DIC_GBSJ02 SET
+            DATA_VERSION = DATA_VERSION+1 ,
+            GMT_MODIFY = #{gmtModify},
+            STOP_FLAG = #{stopFlag}
+        WHERE 
+            DATAVALUE_ID = #{datavalueId}
+    </update>
+
+    <update id="update" >
+        UPDATE DIC_GBSJ02 SET
+        <if test="@sqlt.Ognl@isNotEmpty(dataVersion)">
+            DATA_VERSION = #{dataVersion},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(datavalueId)">
+            DATA_VALUE = #{dataValue},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(dataValueRemark)">
+            DATA_VALUE_REMARK = #{dataValueRemark},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(pyCode)">
+            PY_CODE = #{pyCode},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(wbCode)">
+            WB_CODE = #{wbCode} ,
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(serialNumber)">
+            SERIAL_NUMBER = #{serialNumber} ,
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(operatorId)">
+            OPERATOR_ID = #{operatorId} ,
+        </if>
+        GMT_MODIFY = #{gmtModify}
+        WHERE
+        DATAVALUE_ID = #{datavalueId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_GBSJ02  where DATAVALUE_ID = #{datavalueId}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM DIC_GBSJ02 <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.dic.model.DicGbsj02">
+        SELECT <include refid="columns" />
+            FROM DIC_GBSJ02
+            WHERE
+        DATAVALUE_ID = #{datavalueId}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(datavalueId)">
+                AND DATAVALUE_ID = #{datavalueId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(dataVersion)">
+                AND DATA_VERSION = #{dataVersion}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)">
+                AND GMT_CREATE = #{gmtCreate}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(gmtModify)">
+                AND GMT_MODIFY = #{gmtModify}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+                AND HOSPITAL_ID = #{hospitalId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(dataversionId)">
+                AND DATAVERSION_ID = #{dataversionId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(serialNumber)">
+                AND SERIAL_NUMBER = #{serialNumber}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(dataValue)">
+                AND DATA_VALUE = #{dataValue}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(dataValueRemark)">
+                AND DATA_VALUE_REMARK = #{dataValueRemark}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(parentDatavalueId)">
+                AND PARENT_DATAVALUE_ID = #{parentDatavalueId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(pyCode)">
+                AND PY_CODE like '${pyCode}%'
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(wbCode)">
+                AND WB_CODE = #{wbCode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(primarydataId)">
+                AND PRIMARYDATA_ID = #{primarydataId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(extInfo)">
+                AND EXT_INFO = #{extInfo}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(canExt)">
+                AND CAN_EXT = #{canExt}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(operatorId)">
+                AND OPERATOR_ID = #{operatorId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(createId)">
+                AND CREATE_ID = #{createId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(stopFlag)">
+                AND STOP_FLAG = #{stopFlag}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(deleted)">
+                AND deleted = #{deleted}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(searchValue)">
+                AND (DATA_VALUE_REMARK LIKE CONCAT(CONCAT('%',#{searchValue}),'%')
+                or DATA_VALUE LIKE CONCAT(CONCAT('%',#{searchValue}),'%')
+                or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{searchValue})),'%')
+                or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{searchValue})),'%')
+                )
+            </if>
+
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_GBSJ02
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.dic.model.DicGbsj02">
+        SELECT <include refid="columns" />
+        FROM DIC_GBSJ02
+        <include refid="where"/>
+        
+        ORDER BY SERIAL_NUMBER
+        
+    </select>
+    <select id="findAllByEntity" resultType="com.buit.system.request.DicGbsj02Model">
+        SELECT <include refid="columns" />,
+        (select USER_NAME from SYS_USER where USER_ID = a.CREATE_ID) as createUserName
+        FROM DIC_GBSJ02 a
+        <include refid="where"/>
+
+        ORDER BY SERIAL_NUMBER
+
+    </select>
+    <select id="getValueByPrimaryDataCode" resultType="java.util.Map">
+        SELECT
+            DATA_VALUE ,
+            DATA_VALUE_REMARK
+        FROM
+            DIC_GBSJ02
+        WHERE
+            primarydata_Id = ( SELECT PRIMARYDATA_ID FROM DIC_GBSJ01 WHERE PRIMARY_DATA_CODE = #{code} )
+    </select>
+    <!--     业务sql
+    <select id="querySysPrimaryList" resultType="DicGbsj02ListResp">
+		select  a.datavalue_id        as "datavalueId",
+	            a.data_value        as "dataValue",
+                a.data_value_remark as "dataValueRemark",
+                a.serial_number     as "serialNumber"
+        from DIC_GBSJ02 a
+        where a.dataversion_id = #{dataversionId}
+        order by a.serial_number asc
+	</select>
+	
+	<select id="listByPrimaryDataId_count" resultType="long">
+        SELECT count(*) 
+        	FROM DIC_GBSJ02 a, DIC_GBSJ01 b
+        where 
+        	a.PRIMARYDATA_ID = b.PRIMARYDATA_ID 
+        	and b.PRIMARY_DATA_CODE = #{primaryDataCode}
+	        <if test="@sqlt.Ognl@isNotEmpty(queryCode)">
+	        	AND (	a.DATA_VALUE_REMARK LIKE CONCAT(CONCAT('%',UPPER(#{queryCode})),'%') 
+               			or a.DATA_VALUE LIKE CONCAT(CONCAT('%',UPPER(#{queryCode})),'%') 
+               			or a.PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryCode})),'%') 
+               			or a.WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryCode})),'%') 
+               		)
+	        </if>    
+    </select>
+
+
+    <select id="selectList" resultType="DicGbsj02ListResp">
+        SELECT
+            DATAVALUE_ID as datavalueId,
+            SERIAL_NUMBER as serialNumber,
+            DATA_VALUE as dataValue,
+            DATA_VALUE_REMARK as dataValueRemark
+        FROM DIC_GBSJ02
+        where PRIMARYDATA_ID = #{primarydataId}
+        <if test="@sqlt.Ognl@isNotEmpty(searchValue)">
+            AND (DATA_VALUE_REMARK LIKE CONCAT(CONCAT('%',#{searchValue}),'%')
+            or DATA_VALUE LIKE CONCAT(CONCAT('%',#{searchValue}),'%')
+            or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{searchValue})),'%')
+            or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{searchValue})),'%')
+            )
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+             AND HOSPITAL_ID = #{hospitalId}
+        </if>
+    </select>
+
+    <select id="pageValues" resultType="DicGbsj02PageResp">
+        SELECT
+            DATAVALUE_ID as datavalueId,
+            SERIAL_NUMBER as serialNumber,
+            DATA_VALUE as dataValue,
+            DATA_VALUE_REMARK as dataValueRemark,
+            STOP_FLAG as stopFlag
+        FROM DIC_GBSJ02
+        where PRIMARYDATA_ID = #{primarydataId}
+        AND HOSPITAL_ID = #{hospitalId}
+        <if test="@sqlt.Ognl@isNotEmpty(searchValue)">
+            AND (DATA_VALUE_REMARK LIKE CONCAT(CONCAT('%',#{searchValue}),'%')
+            or DATA_VALUE LIKE CONCAT(CONCAT('%',#{searchValue}),'%')
+            or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{searchValue})),'%')
+            or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{searchValue})),'%')
+            )
+        </if>
+    </select>
+
+    <select id="listByPrimaryDataId" resultType="DicGbsj02" parameterType="DicGbsj02QueryReq">
+        SELECT 
+        	a.DATAVALUE_ID as datavalueId,
+        	a.DATA_VERSION as dataVersion,
+        	a.GMT_CREATE as gmtCreate,
+        	a.GMT_MODIFY as gmtModify,
+        	a.HOSPITAL_ID as hospitalId,
+        	a.DATAVERSION_ID as dataversionId,
+        	a.SERIAL_NUMBER as serialNumber,
+        	a.DATA_VALUE as dataValue,
+       		a.DATA_VALUE_REMARK as dataValueRemark,
+       		a.PARENT_DATAVALUE_ID as parentDatavalueId,
+       		a.PY_CODE as pyCode,
+       		a.WB_CODE as wbCode,
+       		a.PRIMARYDATA_ID as primarydataId,
+       		a.EXT_INFO as extInfo,
+       		a.CAN_EXT as canExt
+        FROM DIC_GBSJ02 a, DIC_GBSJ01 b
+        where 
+        	a.PRIMARYDATA_ID = b.PRIMARYDATA_ID 
+        	and b.PRIMARY_DATA_CODE = #{primaryDataCode}
+            <if test="@sqlt.Ognl@isNotEmpty(queryCode)">
+                AND (a.DATA_VALUE_REMARK LIKE CONCAT(CONCAT('%',#{queryCode}),'%')
+                or a.DATA_VALUE LIKE CONCAT(CONCAT('%',#{queryCode}),'%')
+                or a.PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryCode})),'%')
+                or a.WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryCode})),'%')
+                )
+            </if>
+	        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+	            ORDER BY ${sortColumns}
+	        </if>
+    </select>
+    
+    <insert id="addOperCode">
+        INSERT INTO DIC_GBSJ02 (
+            DATAVALUE_ID ,
+            HOSPITAL_ID ,
+            DATAVERSION_ID ,
+            SERIAL_NUMBER ,
+            DATA_VALUE ,
+            DATA_VALUE_REMARK ,
+            PY_CODE ,
+            WB_CODE ,
+            PRIMARYDATA_ID ,
+            EXT_INFO ,
+            CAN_EXT 
+        ) VALUES (
+            #{datavalueId} ,
+            #{hospitalId} ,
+            #{dataversionId} ,
+            #{serialNumber} ,
+            #{dataValue} ,
+            #{dataValueRemark} ,
+            #{pyCode} ,
+            #{wbCode} ,
+            #{primarydataId} ,
+            #{extInfo} ,
+            #{canExt} 
+        )
+    </insert>
+    
+    <update id="editOperCode" >
+        UPDATE DIC_GBSJ02 SET
+            GMT_MODIFY = #{gmtModify} ,
+            SERIAL_NUMBER = #{serialNumber} ,
+            DATA_VALUE = #{dataValue} ,
+            DATA_VALUE_REMARK = #{dataValueRemark}  ,
+            DATA_VALUE_REMARK = #{dataValueRemark}
+        WHERE 
+            DATAVALUE_ID = #{datavalueId} 
+            
+    </update>
+        -->
+    <select id="queryGbzdByMainCode" resultType="DictDto">
+        select a.DATA_VALUE as code,a.DATA_VALUE_REMARK as name
+        from dic_gbsj02 a
+        inner join dic_gbsj01 b on a.PRIMARYDATA_ID=b.PRIMARYDATA_ID
+        where b.PRIMARY_DATA_CODE=#{code} and b.HOSPITAL_ID=#{jgid}
+    </select>
+     <select id="findGbzdByMainCodeAndValue" resultType="DictDto">
+        select a.DATA_VALUE as code,a.DATA_VALUE_REMARK as name
+        from dic_gbsj02 a
+        inner join dic_gbsj01 b on a.PRIMARYDATA_ID=b.PRIMARYDATA_ID
+        where b.PRIMARY_DATA_CODE=#{code} and b.HOSPITAL_ID=#{jgid} and a.DATA_VALUE=#{value}
+    </select>
+
+    <select id="getNextPrimaryDataValueId" resultType="java.lang.Integer">
+        select max(DATAVALUE_ID)+1 from dic_gbsj02
+    </select>
+</mapper>
+

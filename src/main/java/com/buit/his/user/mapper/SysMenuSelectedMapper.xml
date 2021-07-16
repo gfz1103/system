@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 系统菜单表 -->
+<mapper namespace="com.buit.his.user.dao.SysMenuSelectedDao">
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+		MENU_ID as menuId,HOSPITAL_ID as hospitalId,MENU_CODE as menuCode,MENU_NAME
+		as menuName,PARENT_MENU_ID as parentMenuId,PY_CODE as pyCode,WB_CODE as wbCode
+	</sql>
+
+	<select id="findByEntityCount" resultType="long">
+		SELECT count(*) FROM SYS_MENU
+		<include refid="where" />
+	</select>
+
+	<select id="findByEntity" resultType="SysMenuSelected">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_MENU
+		<include refid="where" />
+
+		<if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+
+	<sql id="where">
+		<where>
+			AND DISPLAY_FLAG = '0'
+			<if test="@sqlt.Ognl@isNotEmpty(parentMenuId)">
+				AND PARENT_MENU_ID = #{parentMenuId}
+			</if>
+			<if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+				AND HOSPITAL_ID = #{hospitalId}
+			</if>
+		</where>
+	</sql>
+</mapper>
+

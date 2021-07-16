@@ -1,0 +1,116 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 系统用户与用户组对照表 -->
+<mapper namespace="com.buit.his.user.dao.SysUserGroupDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        USERGROUP_ID as usergroupId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,GROUP_ID as groupId,USER_ID as userId,SERIAL_NUMBER as serialNumber
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_USER_GROUP (
+            USERGROUP_ID ,
+            HOSPITAL_ID ,
+            GROUP_ID ,
+            USER_ID ,
+            SERIAL_NUMBER 
+        ) VALUES (
+            #{usergroupId} ,
+            #{hospitalId} ,
+            #{groupId} ,
+            #{userId} ,
+            #{serialNumber} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE SYS_USER_GROUP SET
+            DATA_VERSION = #{dataVersion} ,
+            GMT_CREATE = #{gmtCreate} ,
+            GMT_MODIFY = #{gmtModify} ,
+            HOSPITAL_ID = #{hospitalId} ,
+            GROUP_ID = #{groupId} ,
+            USER_ID = #{userId} ,
+            SERIAL_NUMBER = #{serialNumber} 
+        WHERE 
+            USERGROUP_ID = #{usergroupId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_USER_GROUP WHERE
+        USERGROUP_ID = #{usergroupId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_USER_GROUP <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysUserGroup">
+        SELECT <include refid="columns" />
+            FROM SYS_USER_GROUP 
+            WHERE 
+        USERGROUP_ID = #{usergroupId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(usergroupId)"> -->
+<!--                     AND USERGROUP_ID = #{usergroupId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+<!--                     AND DATA_VERSION = #{dataVersion} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(hospitalId)"> -->
+<!--                     AND HOSPITAL_ID = #{hospitalId} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(groupId)">
+                    AND GROUP_ID = #{groupId}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(userId)">
+                    AND USER_ID = #{userId}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(serialNumber)"> -->
+<!--                     AND SERIAL_NUMBER = #{serialNumber} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_USER_GROUP 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="SysUserGroup">
+        SELECT <include refid="columns" />
+        FROM SYS_USER_GROUP 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+     <select id="getGroupDic" resultType="SysGroup">
+        SELECT g.GROUP_ID as groupId,g.GROUP_NAME  as groupName,g.ICON as icon,HOMEPAGE_URL as homepageUrl,SYSTEM_TYPE as systemType,g.group_code as groupCode
+        FROM  SYS_USER_GROUP u inner JOIN  SYS_GROUP g  ON  u.GROUP_ID =g.GROUP_ID
+        WHERE u.USER_ID = #{userId} AND u.HOSPITAL_ID = #{hospitalId} AND g.STOP_FLAG = '0'  ORDER BY g.GROUP_SEQ
+    </select>
+    <select id="checkHavaGroup" resultType="java.lang.Integer">
+        select count(1)
+        from his.sys_user_group where USER_ID = #{userId} and GROUP_ID = #{groupId} and HOSPITAL_ID = #{jgid}
+    </select>
+
+    <delete id="delByUserId">
+        DELETE FROM SYS_USER_GROUP WHERE
+        USER_ID = #{userId} 
+    </delete>
+</mapper>
+

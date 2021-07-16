@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 业务类别表 -->
+<mapper namespace="com.buit.his.user.dao.DicYwlbDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        bt_id as btId,bt_code as btCode,bt_name as btName,bt_table_name as btTableName,bt_where as btWhere,bt_sql as btSql,hospita_id as hospitaId,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_YWLB (
+            bt_id ,
+            bt_code ,
+            bt_name ,
+            bt_table_name ,
+            bt_where ,
+            bt_sql ,
+            hospita_id ,
+            GMT_CREATE ,
+            GMT_MODIFY 
+        ) VALUES (
+            #{btId} ,
+            #{btCode} ,
+            #{btName} ,
+            #{btTableName} ,
+            #{btWhere} ,
+            #{btSql} ,
+            #{hospitaId} ,
+            #{gmtCreate} ,
+            #{gmtModify} 
+        )
+    </insert>
+    
+    <update id="update" >  
+        UPDATE DIC_YWLB SET
+            bt_code = #{btCode} ,
+            bt_name = #{btName} ,
+            bt_table_name = #{btTableName} ,
+            bt_where = #{btWhere} ,
+            bt_sql = #{btSql} ,   
+            GMT_MODIFY = #{gmtModify} 
+        WHERE 
+            bt_id = #{btId} 
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_YWLB WHERE
+        bt_id = #{btId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM DIC_YWLB <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="DicYwlb">
+        SELECT <include refid="columns" />
+            FROM DIC_YWLB 
+            WHERE 
+        bt_id = #{btId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(btId)"> -->
+<!--                     AND bt_id = #{btId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(btCode)"> -->
+<!--                     AND bt_code = #{btCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(btName)"> -->
+<!--                     AND bt_name = #{btName} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(btTableName)"> -->
+<!--                     AND bt_table_name = #{btTableName} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(btWhere)"> -->
+<!--                     AND bt_where = #{btWhere} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(btSql)"> -->
+<!--                     AND bt_sql = #{btSql} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(hospitaId)">
+                    AND hospita_id = #{hospitaId}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_YWLB 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="DicYwlb">
+        SELECT <include refid="columns" />
+        FROM DIC_YWLB 
+        <include refid="where"/>
+        ORDER BY bt_code
+    </select>
+    <!--     业务sql      -->
+    <select id="queryBusinessAuth" resultType="BusinessAuth">
+       ${sql}
+    </select>
+    
+    <select id="findbtIdByUserId" resultType="Integer">
+        SELECT g.bt_id FROM sys_user_group ug LEFT JOIN sys_group g ON ug.GROUP_ID=g.GROUP_ID  WHERE ug.USER_ID =#{value}
+    </select>
+    
+    <select id="getOffice" resultType="BusinessAuth">
+        SELECT q.KSDM AS queryid,o.officename AS showname,o.lgbq as lgbq, o.lgks as lgks
+        FROM SYS_YWQXKZ q LEFT JOIN DIC_KSZD o ON o.id=q.KSDM WHERE q.YGDM=#{userId} AND q.YWLB=#{btId} order by o.PLSX
+    </select>
+    <select id="getyk" resultType="BusinessAuth">
+        SELECT q.KSDM AS queryid,o.YKMC AS showname FROM SYS_YWQXKZ q LEFT JOIN DRUGS_YKLB o ON o.YKSB=q.KSDM WHERE q.YGDM=#{userId} AND q.YWLB=#{btId} 
+    </select>
+    <select id="getyf" resultType="BusinessAuth">
+        SELECT q.KSDM AS queryid,o.YFMC AS showname FROM SYS_YWQXKZ q LEFT JOIN PHAR_YFLB o ON o.YFSB=q.KSDM WHERE q.YGDM=#{userId} AND q.YWLB=#{btId}
+    </select>
+<!--     <select id="getkf" resultType="BusinessAuth"> -->
+<!--         SELECT q.KSDM AS queryid,o.KFMC AS showname FROM SYS_YWQXKZ q LEFT JOIN WL_KFXX o ON o.KFXH=q.KSDM WHERE q.YGDM=#{userId} AND q.YWLB=#{btId}   order by o.SXH -->
+<!--     </select> -->
+    
+    <select id="getqxkz" resultType="BusinessAuth">
+        SELECT q.KSDM AS queryid,o.KSMC AS showname FROM SYS_YWQXKZ q LEFT JOIN OP_GHKS o ON o.KSDM=q.KSDM WHERE q.YGDM=#{userId} AND q.YWLB=#{btId}   order by o.PXH
+    </select>
+    <select id="getzs" resultType="BusinessAuth">
+        SELECT q.KSDM AS queryid,o.ZSMC AS showname FROM SYS_YWQXKZ q LEFT JOIN op_fwtxx o ON o.RID=q.KSDM WHERE q.YGDM=#{userId} AND q.YWLB=#{btId} 
+    </select>
+    
+</mapper>
+

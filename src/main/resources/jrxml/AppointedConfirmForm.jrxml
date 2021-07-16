@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="处方笺" language="groovy" pageWidth="420" pageHeight="580" orientation="Landscape" whenNoDataType="AllSectionsNoDetail" columnWidth="420" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="49cea9f4-a7ce-4edf-97aa-58089382bcd1">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="192"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="dataset1" uuid="70222146-2183-4957-b4bf-79a1c039d247">
+		<group name="group1"/>
+	</subDataset>
+	<parameter name="YSDM" class="java.lang.String"/>
+	<parameter name="KSDM" class="java.lang.String"/>
+	<parameter name="YYXH" class="java.lang.String"/>
+	<parameter name="ZBLB" class="java.lang.String"/>
+	<parameter name="CARDNO" class="java.lang.String"/>
+	<parameter name="BRXM" class="java.lang.String"/>
+	<parameter name="YYRQ" class="java.lang.String"/>
+	<parameter name="SFZH" class="java.lang.String"/>
+	<parameter name="FJHM" class="java.lang.String"/>
+	<variable name="total" class="java.lang.Number" calculation="Count">
+		<variableExpression><![CDATA[new Integer("1")]]></variableExpression>
+	</variable>
+	<summary>
+		<band height="580">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="95" y="28" width="223" height="31" uuid="8fd8a77c-b2ed-4390-a9c1-58f91192017c"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[上海天佑医院]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="95" y="59" width="223" height="31" uuid="c86cf4ec-ee52-4911-bf59-0a5e2645f625"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[预约凭证]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="299" width="253" height="20" uuid="8f19b2dc-3f46-4d41-82dd-d966741b1309"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[ 2.如需取消或变更预约，请提前一天拨打电话]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="185" width="50" height="20" uuid="316e2f61-ac7d-45a9-8572-bb978ee03d6e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[上下午：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="252" y="162" width="120" height="20" uuid="874b082b-7a0c-4124-8005-0e5ac8af53a8"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YSDM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="82" y="162" width="120" height="20" uuid="ed1b8ab3-3b1b-4e31-88ab-da65fbc9a036"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{KSDM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="202" y="162" width="50" height="20" uuid="6dadaf0a-1e92-4209-a224-f8c0287ec982"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[医  生：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="202" y="185" width="50" height="20" uuid="e7eb0be3-4bdd-4425-95af-d81618b185c0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[预约号：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="202" y="117" width="50" height="20" uuid="5275b24f-ac0f-42ec-89b1-86e9b51075d0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[姓  名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="139" width="50" height="20" uuid="fc3c3e9c-d262-4637-9ddb-6dba19214495"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[日  期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="252" y="185" width="120" height="20" uuid="1e791e7e-2345-4954-bdb7-af9b30151fa4"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YYXH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="116" width="50" height="20" uuid="1a0e32cc-d402-4411-84e6-ebf9d3c650e0"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[卡  号：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="217" width="82" height="21" uuid="4d45a831-5b0c-49d1-945e-5028eeeaf4ef"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[ 温馨提示：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="82" y="185" width="120" height="20" uuid="ef8cbc6b-1fab-4a07-85b3-54727f0788c1"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ZBLB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="82" y="116" width="120" height="20" uuid="84ebd488-101f-4576-af5f-17b8335a3f17"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{CARDNO}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="162" width="50" height="20" uuid="e3cf0b3b-c345-4b36-9ae2-e65dcc166952"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[科  室：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="252" y="117" width="120" height="20" uuid="b5590aad-bc43-4585-97d7-5885e2105920"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="82" y="139" width="120" height="20" uuid="e1cfa231-5ebd-4678-81d6-9e2660583a54"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YYRQ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="319" width="340" height="20" uuid="69c7d6c0-70c8-4116-81d5-6ce9bf9196fd"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[ 3.请保持联系电话通畅，如有专家变更，我们将及时通知您。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="239" width="340" height="20" uuid="0ce530c2-3726-4919-a7a2-cb654b8d4478"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[ 1.就诊日请于上午11:00，下午4:00前来院就诊，如若超过]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="259" width="340" height="20" uuid="d1ed0466-b053-4a36-81b9-284a100a6551"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[   时限，作失约处理，半年内失约三次，系统将自动锁定，]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="32" y="279" width="340" height="20" uuid="d838585d-deb6-4a37-8c04-b77d5c29f836"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[   取消该患者当年度预约资格。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="202" y="139" width="68" height="20" uuid="358ce2dd-ce8a-4aea-a5a0-2eb6e5e179f9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[身份证号：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="270" y="139" width="102" height="20" uuid="b30a1f3d-9df8-4203-8f98-5187d5034c9f"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SFZH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="285" y="299" width="87" height="20" uuid="111d4264-5bf4-4e86-8516-6fefbd7255b0"/>
+				<textElement>
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{FJHM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

@@ -1,0 +1,262 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" language="groovy" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="498b6554-f0fd-4594-ad39-673a8c6f4441">
+	<property name="ireport.zoom" value="1.3310000000000117"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="Table Dataset 1" uuid="a0287e9d-99cd-40e5-ad1e-0c86918d132a"/>
+	<parameter name="kssj" class="java.lang.String"/>
+	<parameter name="jssj" class="java.lang.String"/>
+	<parameter name="ypmc" class="java.lang.String"/>
+	<parameter name="hjje" class="java.lang.String"/>
+	<parameter name="ypmc}+&quot;开单医生明细" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select  * from MS_MZXX where ROWNUM = 1]]>
+	</queryString>
+	<field name="MZXH" class="java.math.BigDecimal"/>
+	<field name="JGID" class="java.lang.String"/>
+	<field name="FPHM" class="java.lang.String"/>
+	<field name="SFRQ" class="java.sql.Timestamp"/>
+	<field name="BRID" class="java.math.BigDecimal"/>
+	<field name="BRXM" class="java.lang.String"/>
+	<field name="BRXB" class="java.math.BigDecimal"/>
+	<field name="BRXZ" class="java.math.BigDecimal"/>
+	<field name="FYZH" class="java.lang.String"/>
+	<field name="DWXH" class="java.math.BigDecimal"/>
+	<field name="XJJE" class="java.math.BigDecimal"/>
+	<field name="ZPJE" class="java.math.BigDecimal"/>
+	<field name="ZHJE" class="java.math.BigDecimal"/>
+	<field name="HBWC" class="java.math.BigDecimal"/>
+	<field name="QTYS" class="java.math.BigDecimal"/>
+	<field name="ZJJE" class="java.math.BigDecimal"/>
+	<field name="ZFJE" class="java.math.BigDecimal"/>
+	<field name="ZHLB" class="java.math.BigDecimal"/>
+	<field name="ZFPB" class="java.math.BigDecimal"/>
+	<field name="THPB" class="java.math.BigDecimal"/>
+	<field name="FPGL" class="java.lang.String"/>
+	<field name="MZGL" class="java.math.BigDecimal"/>
+	<field name="MZLB" class="java.math.BigDecimal"/>
+	<field name="GHGL" class="java.math.BigDecimal"/>
+	<field name="CZGH" class="java.lang.String"/>
+	<field name="JZRQ" class="java.sql.Timestamp"/>
+	<field name="HZRQ" class="java.sql.Timestamp"/>
+	<field name="SFFS" class="java.math.BigDecimal"/>
+	<field name="HBBZ" class="java.math.BigDecimal"/>
+	<field name="XNFP" class="java.lang.String"/>
+	<field name="JKJE" class="java.math.BigDecimal"/>
+	<field name="TZJE" class="java.math.BigDecimal"/>
+	<field name="ND" class="java.lang.String"/>
+	<field name="JSLSH" class="java.lang.String"/>
+	<field name="JSDH" class="java.lang.String"/>
+	<field name="CBXZ" class="java.lang.String"/>
+	<field name="HZJE" class="java.math.BigDecimal"/>
+	<field name="JJZFJE" class="java.math.BigDecimal"/>
+	<field name="FYZE" class="java.math.BigDecimal"/>
+	<field name="MZJZJE" class="java.math.BigDecimal"/>
+	<field name="FFFS" class="java.math.BigDecimal"/>
+	<field name="YDCZSF" class="java.lang.String"/>
+	<field name="YDCZFPBD" class="java.lang.String"/>
+	<field name="FPZS" class="java.math.BigDecimal"/>
+	<variable name="sum" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.Integer"/>
+	<pageHeader>
+		<band height="47">
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="25" width="802" height="20" uuid="42c44881-5878-43f7-a50e-fdd638e445ba"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA["时间："+$P{kssj}+"--"+$P{jssj}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="5" width="802" height="20" uuid="829a4db5-3e09-4e55-a7c4-8834913f5935"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ypmc}+"开单医生明细"]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="231" y="0" width="100" height="20" uuid="cb0c80df-4dcf-4204-891d-ef3f566657a5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[医生姓名]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="331" y="0" width="75" height="20" uuid="74507a58-326c-4eaa-85b3-08a1c0f43caa"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[发药数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="406" y="0" width="66" height="20" uuid="3c5e40bf-ec2a-44b0-bc69-4f06b32219f5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[发药金额]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="472" y="0" width="133" height="20" uuid="0ad56191-ca9c-4d83-ac49-d4a7bc81b47d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[上月发药数量]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21">
+			<textField>
+				<reportElement style="myBaseStyleName" x="231" y="0" width="100" height="20" uuid="a42f49e5-ca80-48e3-8083-e680c8437580"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MZXH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="406" y="0" width="66" height="20" uuid="62b7bb25-1843-4342-a5c6-35ccd72af035"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MZXH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="331" y="0" width="75" height="20" uuid="63511859-45fe-4310-8b0e-96437fdde059"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MZXH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="472" y="0" width="133" height="20" uuid="9b7e06be-c8a9-4bf0-b6c9-4617090dfb73"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{MZXH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="50">
+			<textField>
+				<reportElement style="myBaseStyleName" x="331" y="0" width="274" height="20" uuid="31019358-5b3d-4849-aea6-4eb7412b373e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{hjje}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="231" y="0" width="100" height="20" uuid="cb0c80df-4dcf-4204-891d-ef3f566657a5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[合计金额]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

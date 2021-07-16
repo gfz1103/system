@@ -1,0 +1,297 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 公用_付款方式 |  用于门诊及住院付款方式设定 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.PubFkfsDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        FKFS as fkfs,FKMC as fkmc,SYLX as sylx,FKLB as fklb,HMCD as hmcd,FKJD as fkjd,HBWC as hbwc,MRBZ as mrbz,ZFBZ as
+        zfbz,KJFS as kjfs,SRFS as srfs,BZXX as bzxx,ZJJSSY as zjjssy, zygb, mzgb
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO PUB_FKFS (
+            FKFS ,
+            FKMC ,
+        SYLX ,
+        FKLB ,
+        HMCD ,
+        FKJD ,
+        HBWC ,
+        MRBZ ,
+        ZFBZ ,
+        KJFS ,
+        SRFS ,
+        BZXX ,
+        ZJJSSY,
+        ZYGB,
+        MZGB
+        ) VALUES (
+        #{fkfs} ,
+        #{fkmc} ,
+        #{sylx} ,
+        #{fklb} ,
+        #{hmcd} ,
+        #{fkjd} ,
+        #{hbwc} ,
+        #{mrbz} ,
+        #{zfbz} ,
+        #{kjfs} ,
+        #{srfs} ,
+        #{bzxx} ,
+        #{zjjssy} ,
+        #{zygb} ,
+        #{mzgb}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE PUB_FKFS SET
+            FKMC = #{fkmc},
+        SYLX = #{sylx},
+        FKLB = #{fklb},
+        HMCD = #{hmcd},
+        FKJD = #{fkjd},
+        HBWC = #{hbwc},
+        MRBZ = #{mrbz},
+        ZFBZ = #{zfbz},
+        KJFS = #{kjfs},
+        SRFS = #{srfs},
+        BZXX = #{bzxx},
+        ZJJSSY = #{zjjssy},
+        ZYGB = #{zygb},
+        MZGB = #{mzgb}
+        WHERE
+        FKFS = #{fkfs}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM PUB_FKFS WHERE
+        FKFS = #{fkfs} 
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM PUB_FKFS
+        <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.PubFkfs">
+        SELECT
+        <include refid="columns"/>
+        FROM PUB_FKFS
+        WHERE
+        FKFS = #{fkfs}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(fkfs)">
+                AND FKFS = #{fkfs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fkmc)">
+                AND FKMC = #{fkmc}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(sylx)">
+                AND SYLX = #{sylx}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fklb)">
+                AND FKLB = #{fklb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hmcd)">
+                AND HMCD = #{hmcd}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fkjd)">
+                AND FKJD = #{fkjd}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hbwc)">
+                AND HBWC = #{hbwc}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(mrbz)">
+                AND MRBZ = #{mrbz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zfbz)">
+                AND ZFBZ = #{zfbz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(kjfs)">
+                AND KJFS = #{kjfs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(srfs)">
+                AND SRFS = #{srfs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bzxx)">
+                AND BZXX = #{bzxx}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zjjssy)">
+                AND ZJJSSY = #{zjjssy}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM PUB_FKFS
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.PubFkfs">
+        SELECT
+        <include refid="columns"/>
+        FROM PUB_FKFS
+        <include refid="where"/>
+
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+
+    <!-- 根据条件查询付款方式信息 -->
+    <select id="getPubFkfsInfo" parameterType="Map" resultType="java.util.Map">
+        select FKFS as FKFS,FKJD as FKJD,SRFS as SRFS,FKMC as FKMC ,FKLB as FKLB from PUB_FKFS
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(MRBZ)">
+                AND MRBZ = #{MRBZ}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(SYLX)">
+                AND SYLX = #{SYLX}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(HBWC)">
+                AND HBWC = #{HBWC}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(FKFS)">
+                AND FKFS = #{FKFS}
+            </if>
+
+        </where>
+    </select>
+    <!--获取增值税的付款方式信息-->
+    <select id="getZzsFkfs" resultType="java.util.Map">
+    select FKFS as fkfs,FKMC as fkmc  from PUB_FKFS where  SYLX=2 AND  FKFS =  #{zzsFkfs}
+    </select>
+    <!--查询住院默认付款方式-->
+    <select id="findZyfkfs" resultType="com.buit.his.sys.centermaintenance.model.PubFkfs">
+        SELECT
+        <include refid="columns"/>
+        FROM PUB_FKFS
+        where SYLX='2' and MRBZ='1'
+    </select>
+    <!--作废/取消作废-->
+    <update id="updateZfbz">
+        update PUB_FKFS set ZFBZ = #{zfbz}
+        where FKFS = #{fkfs}
+    </update>
+    <!--设置默认标志-->
+    <update id="setMrbz">
+        update PUB_FKFS set MRBZ = #{mrbz}
+        where SYLX = #{sylx}
+        <if test="@sqlt.Ognl@isNotEmpty(fkfs)">
+            AND FKFS = #{fkfs}
+        </if>
+    </update>
+    <!--还原默认标志-->
+    <update id="reductionMrbz">
+        update PUB_FKFS set MRBZ = 0
+        where SYLX = #{sylx}
+    </update>
+
+    <!--设置货币误差-->
+    <update id="setHbwc">
+        update PUB_FKFS set HBWC = #{hbwc}
+        where SYLX = #{sylx}
+        <if test="@sqlt.Ognl@isNotEmpty(fkfs)">
+            AND FKFS = #{fkfs}
+        </if>
+    </update>
+    <!-- 还原货币误差 -->
+    <update id="reductionHbwc">
+        update PUB_FKFS set HBWC = 0
+        where SYLX = #{sylx}
+    </update>
+    
+    <select id="doQueryFkfs" parameterType="Map" resultType="java.util.Map">
+    	SELECT
+			c.FKFS AS FKFS,
+			sum( c.FKJE ) AS FKJE,
+			d.FKMC AS FKMC 
+		FROM
+			(
+			SELECT
+				a.FKFS AS FKFS,
+				a.FKJE AS FKJE 
+			FROM
+				OP_FKXX a,
+				OP_MZXX b 
+			WHERE
+				a.MZXH = b.MZXH 
+				AND b.JGID = #{jgid} 
+				AND b.JZRQ IS NULL 
+				AND b.MZLB = #{mzlb} 
+				AND b.CZGH = #{czgh} 
+			UNION ALL
+			SELECT
+				a.FKFS AS FKFS,(- 1 * a.FKJE 
+				) AS FKJE 
+			FROM
+				OP_FKXX a,
+				OP_ZFFP b 
+			WHERE
+				a.MZXH = b.MZXH 
+				AND b.JGID = #{jgid} 
+				AND b.JZRQ IS NULL 
+				AND b.MZLB = #{mzlb} 
+				AND b.CZGH = #{czgh} 
+			UNION ALL
+			SELECT
+				a.FKFS AS FKFS,
+				if( b.ZKBZ=1, 0, a.FKJE ) AS FKJE 
+			FROM
+				OP_GH_FKXX a,
+				OP_GHMX b 
+			WHERE
+				a.SBXH = b.SBXH 
+				AND b.JGID = #{jgid} 
+				AND b.JZRQ IS NULL 
+				AND b.MZLB = #{mzlb} 
+				AND b.CZGH = #{czgh} 
+				AND b.JZHM NOT LIKE 'MGH%' 
+			UNION ALL
+			SELECT
+				a.FKFS AS FKFS,
+				if( b.ZKBZ=1, 0, a.FKJE ) AS FKJE 
+			FROM
+				OP_GH_FKXX a,
+				OP_GHMX_ZK b 
+			WHERE
+				a.SBXH = b.GHSB 
+				AND b.JGID = #{jgid} 
+				AND b.JZRQ IS NULL 
+				AND b.MZLB = #{mzlb} 
+				AND b.CZGH = #{czgh} 
+				AND b.JZHM NOT LIKE 'MGH%' 
+			UNION ALL
+			SELECT
+				a.FKFS AS FKFS,(- 1 * a.FKJE 
+				) AS FKJE 
+			FROM
+				OP_GH_FKXX a,
+				OP_THMX b 
+			WHERE
+				a.SBXH = b.SBXH 
+				AND b.JGID = #{jgid} 
+				AND b.JZRQ IS NULL 
+				AND b.MZLB = #{mzlb} 
+				AND b.CZGH = #{czgh} 
+			) c
+			LEFT OUTER JOIN PUB_FKFS d ON c.FKFS = d.FKFS 
+		GROUP BY
+			c.FKFS,
+			d.FKMC 
+		ORDER BY
+			c.FKFS
+    </select>
+    
+    <!-- 查询自增 -->
+    <select id="queryFkfsNextPk" resultType="java.lang.Integer">
+        select max(fkfs) + 1
+        from pub_fkfs
+    </select>
+</mapper>
+

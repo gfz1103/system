@@ -1,0 +1,177 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 标识数据内容表 -->
+<mapper namespace="com.buit.his.dic.dao.SysFlagDataValueDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        FLAGDATAVALUE_ID as flagDataValueId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,FLAGDATA_ID as flagDataId,SERIAL_NUMBER as serialNumber,FLAGDATA_VALUE as flagDataValue,FLAGDATA_VALUE_REMARK as flagDataValueRemark,PY_CODE as pyCode,WB_CODE as wbCode,STOP_FLAG as stopFlag
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_FLAG_DATA_VALUE (
+            FLAGDATAVALUE_ID ,
+            DATA_VERSION ,
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            FLAGDATA_ID ,
+            SERIAL_NUMBER ,
+            FLAGDATA_VALUE ,
+            FLAGDATA_VALUE_REMARK ,
+            <!--  PARENT_FLAGDATAVALUE_ID ,-->
+            PY_CODE ,
+            WB_CODE,
+            STOP_FLAG  
+        ) VALUES (
+            #{flagDataValueId} ,
+            #{dataVersion} ,
+            #{gmtCreate} ,
+            #{gmtCreate} ,
+            #{flagDataId} ,
+            #{serialNumber} ,
+            #{flagDataValue} ,
+            #{flagDataValueRemark} ,
+            <!--  #{parentFlagdatavalueId} ,-->
+            #{pyCode} ,
+            #{wbCode} ,
+            #{stopFlag}
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE SYS_FLAG_DATA_VALUE
+        <trim prefix="SET" suffixOverrides=",">
+            <if test="@sqlt.Ognl@isNotEmpty(serialNumber)">
+                SERIAL_NUMBER = #{serialNumber} ,
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(flagDataValue)">
+                FLAGDATA_VALUE = #{flagDataValue} ,
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(flagDataValueRemark)">
+                FLAGDATA_VALUE_REMARK = #{flagDataValueRemark} ,
+            </if>
+        </trim>
+        ,GMT_MODIFY = #{gmtModify},DATA_VERSION = DATA_VERSION + 1 
+        WHERE
+        FLAGDATAVALUE_ID = #{flagDataValueId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_FLAG_DATA_VALUE WHERE
+        FLAGDATAVALUE_ID = #{flagDataValueId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_FLAG_DATA_VALUE <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysFlagDataValue">
+        SELECT <include refid="columns" />
+            FROM SYS_FLAG_DATA_VALUE 
+            WHERE 
+        FLAGDATAVALUE_ID = #{flagDataValueId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(flagDataValueId)"> -->
+<!--                     AND FLAGDATAVALUE_ID = #{flagDataValueId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+<!--                     AND DATA_VERSION = #{dataVersion} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+                <if test="@sqlt.Ognl@isNotEmpty(flagDataId)">
+                     AND FLAGDATA_ID = #{flagDataId}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(condition)">
+		        	AND (FLAGDATA_VALUE = #{condition}
+		        	OR FLAGDATA_VALUE_REMARK LIKE CONCAT(CONCAT('%',#{condition}),'%'))
+		        </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(serialNumber)"> -->
+<!--                     AND SERIAL_NUMBER = #{serialNumber} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(flagDataValue)"> -->
+<!--                     AND FLAGDATA_VALUE = #{flagDataValue} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(flagDataValueRemark)"> -->
+<!--                     AND FLAGDATA_VALUE_REMARK = #{flagDataValueRemark} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(parentFlagdatavalueId)"> -->
+<!--                     AND PARENT_FLAGDATAVALUE_ID = #{parentFlagdatavalueId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(pyCode)"> -->
+<!--                     AND PY_CODE = #{pyCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(wbCode)"> -->
+<!--                     AND WB_CODE = #{wbCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(stopFlag)"> -->
+<!--                     AND STOP_FLAG = #{stopFlag} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_FLAG_DATA_VALUE 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="SysFlagDataValue">
+        SELECT <include refid="columns" />
+        FROM SYS_FLAG_DATA_VALUE 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <!-- 字典从记录启用/停用 -->
+    <update id="editEnable" parameterType="java.lang.Integer">
+		UPDATE SYS_FLAG_DATA_VALUE SET
+		<if test="@sqlt.Ognl@isNotEmpty(stopFlag)">
+			STOP_FLAG = #{stopFlag}
+		</if>
+		WHERE FLAGDATAVALUE_ID = #{flagDataValueId} 
+	</update>
+	<!-- 根据字典编码查询数量 -->
+	<select id="findEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_FLAG_DATA_VALUE 
+        <where>
+        	<if test="@sqlt.Ognl@isNotEmpty(flagDataCode)">
+            	AND FLAGDATA_VALUE = #{flagDataCode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(flagDataValueId)">
+            	AND FLAGDATAVALUE_ID != #{flagDataValueId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(flagDataId)">
+                AND FLAGDATA_ID = #{flagDataId}
+            </if>
+        </where>
+    </select>
+    <select id="queryFlagValueByDataId" resultType="DictDto">
+        select a.FLAGDATA_VALUE as code,a.FLAGDATA_VALUE_REMARK as name
+        from sys_flag_data_value a
+        inner join sys_flag_data b on a.FLAGDATA_ID=b.FLAGDATA_ID
+        where b.FLAGDATA_CODE=#{dataId}
+    </select>
+    <select id="findFlagValueByDataIdAndValueCode" resultType="DictDto">
+        select a.FLAGDATA_VALUE as code,a.FLAGDATA_VALUE_REMARK as name
+        from sys_flag_data_value a
+        inner join sys_flag_data b on a.FLAGDATA_ID=b.FLAGDATA_ID
+        where b.FLAGDATA_CODE=#{dataId} and a.FLAGDATA_VALUE=#{code}
+    </select>
+    <select id="queryFlagValueByDataCode" resultType="com.buit.system.response.DictDto">
+        select a.FLAGDATA_VALUE as code,a.FLAGDATA_VALUE_REMARK as name
+        from sys_flag_data_value a
+        inner join sys_flag_data b on a.FLAGDATA_ID=b.FLAGDATA_ID
+        where b.FLAGDATA_CODE=#{dataCode}
+    </select>
+</mapper>
+

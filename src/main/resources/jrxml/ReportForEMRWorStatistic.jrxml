@@ -1,0 +1,420 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="SearchForCountWorks" language="groovy" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="498b6554-f0fd-4594-ad39-673a8c6f4441">
+	<property name="ireport.zoom" value="0.9090909090909105"/>
+	<property name="ireport.x" value="6"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="now" class="java.lang.String"/>
+	<parameter name="begindate" class="java.lang.String"/>
+	<parameter name="enddate" class="java.lang.String"/>
+	<parameter name="czy" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select '' as ysdm, 0 as zrs, 0 as dzbls, 0 as ydy, 0 as wdy FROM dual]]>
+	</queryString>
+	<field name="YSDM" class="java.lang.String"/>
+	<field name="ZRS" class="java.math.BigDecimal"/>
+	<field name="DZBLS" class="java.math.BigDecimal"/>
+	<field name="YDY" class="java.math.BigDecimal"/>
+	<field name="WDY" class="java.math.BigDecimal"/>
+	<variable name="sum" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.Integer"/>
+	<variable name="rowno" class="java.lang.Integer" calculation="Count">
+		<variableExpression><![CDATA[$V{rowno}.valueOf(1)]]></variableExpression>
+	</variable>
+	<variable name="ZRS_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{ZRS}]]></variableExpression>
+	</variable>
+	<variable name="DZBLS_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{DZBLS}]]></variableExpression>
+	</variable>
+	<variable name="YDY_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{YDY}]]></variableExpression>
+	</variable>
+	<variable name="WDY_1" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{WDY}]]></variableExpression>
+	</variable>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="802" height="69" uuid="ae22ec8e-865e-4f0e-be0a-8393ab188571"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="24" isBold="true" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[电子病历工作量查询]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="90" y="1" width="86" height="50" uuid="ae22ec8e-865e-4f0e-be0a-8393ab188571"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[就诊医生]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="176" y="1" width="99" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[就诊人次]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="38" y="1" width="52" height="50" uuid="ae22ec8e-865e-4f0e-be0a-8393ab188571"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[序号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="275" y="1" width="99" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[电子病历数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="374" y="1" width="80" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[已打印]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="454" y="1" width="80" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[未打印]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="534" y="1" width="80" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[电子病历数
+/就诊人数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="614" y="1" width="80" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[病历打印数
+/总病历数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="694" y="1" width="80" height="50" uuid="c056187b-ff82-4b53-b3f3-edc576cd5f12"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[病历未打印数
+/总病历数]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="90" y="0" width="86" height="20" uuid="476bef81-0fe6-42bf-ac90-2631e95e4712"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YSDM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="176" y="0" width="99" height="20" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ZRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="275" y="0" width="99" height="20" uuid="887980f1-fe3c-422a-b09c-e29dc2ee348e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{DZBLS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="374" y="0" width="80" height="20" uuid="3bf24226-9d2a-4e3b-94e8-d6f02c35e88b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YDY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="454" y="0" width="80" height="20" uuid="eae60cb1-40d7-415d-8c34-18ccb299962f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WDY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="38" y="0" width="52" height="20" uuid="23337c6f-a307-409a-822e-9e4d4d6126db"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{rowno}+1]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="534" y="0" width="80" height="20" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal(($F{ZRS} == null || $F{ZRS}==0 ?  0 : (($F{YDY})+($F{WDY}))/($F{ZRS}) )*100).setScale(2,BigDecimal.ROUND_HALF_UP) + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="614" y="0" width="80" height="20" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal(((($F{YDY})+($F{WDY}))== 0 ?  0 : ($F{YDY})/(($F{YDY})+($F{WDY})) )*100).setScale(2,BigDecimal.ROUND_HALF_UP) + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="694" y="0" width="80" height="20" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal(((($F{YDY})+($F{WDY}))== 0 ?  0 : ($F{WDY})/(($F{YDY})+($F{WDY})) )*100).setScale(2,BigDecimal.ROUND_HALF_UP) + "%"]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="45" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="38" y="0" width="138" height="21" uuid="ae22ec8e-865e-4f0e-be0a-8393ab188571"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isStrikeThrough="false"/>
+				</textElement>
+				<text><![CDATA[合计]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="176" y="0" width="99" height="21" uuid="33d483f8-aa42-4dda-bae9-534ece09d156"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{ZRS_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="275" y="0" width="99" height="21" uuid="a200fdd7-5a15-432f-967a-ae249dd7b16f"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{DZBLS_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="374" y="0" width="80" height="21" uuid="c3af2a99-92a3-43fe-8611-27259ea1e643"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{YDY_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="454" y="0" width="80" height="21" uuid="8d766a18-e8b8-4a22-9483-f4c3ff95e3aa"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{WDY_1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="534" y="0" width="80" height="21" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal(($V{ZRS_1} == null || $V{ZRS_1}==0 ?  0 : (($V{WDY_1})+($V{YDY_1}))/($V{ZRS_1}) )*100).setScale(2,BigDecimal.ROUND_HALF_UP) + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="614" y="0" width="80" height="21" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal(((($V{YDY_1})+($V{WDY_1}))== 0 ?  0 : ($V{YDY_1})/(($V{YDY_1})+($V{WDY_1})) )*100).setScale(2,BigDecimal.ROUND_HALF_UP) + "%"]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="694" y="0" width="80" height="21" uuid="adea05ac-ee4e-4d4c-ba82-68d3017e9682"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[new BigDecimal(((($V{YDY_1})+($V{WDY_1}))== 0 ?  0 : ($V{WDY_1})/(($V{YDY_1})+($V{WDY_1})) )*100).setScale(2,BigDecimal.ROUND_HALF_UP) + "%"]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+	<noData>
+		<band height="22">
+			<staticText>
+				<reportElement x="40" y="0" width="119" height="22" uuid="b1a99038-d81e-45a6-8f13-d1524a76ab07"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="12"/>
+				</textElement>
+				<text><![CDATA[当前查询没有数据]]></text>
+			</staticText>
+		</band>
+	</noData>
+</jasperReport>

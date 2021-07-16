@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 公用_公用权限控制 -->
+<mapper namespace="com.buit.his.user.dao.SysYwqxkzDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        YGDM as ygdm,YWLB as ywlb,KSDM as ksdm,JGID as jgid,MRBZ as mrbz
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_YWQXKZ (
+            YGDM ,
+            YWLB ,
+            KSDM ,
+            JGID ,
+            MRBZ ,
+            `WRITE`
+        ) VALUES (
+            #{ygdm} ,
+            #{ywlb} ,
+            #{ksdm} ,
+            #{jgid} ,
+            #{mrbz} ,
+            #{write}
+        )
+    </insert>
+
+<!-- 更新默认属性 -->
+    <update id="update" >
+       UPDATE SYS_YWQXKZ SET
+           MRBZ = #{mrbz}
+       WHERE
+           YGDM = #{ygdm}  AND
+           YWLB = #{ywlb}  AND
+           JGID = #{jgid}
+           <if test="@sqlt.Ognl@isNotEmpty(ksdm)">
+               AND KSDM = #{ksdm}
+           </if>
+    </update>
+
+<!--     <update id="updateStatus" > -->
+<!--        UPDATE SYS_YWQXKZ SET-->
+<!--            JGID = #{jgid} ,-->
+<!--            MRBZ = #{mrbz} -->
+<!--        WHERE-->
+<!--            YGDM = #{ygdm}  AND -->
+<!--            YWLB = #{ywlb}  AND -->
+<!--            KSDM = #{ksdm} -->
+<!--     </update> -->
+<!--     <update id="editUserDrugstore"> -->
+<!--                 UPDATE SYS_YWQXKZ SET -->
+<!--                     MRBZ = #{mrbz} -->
+<!--                 WHERE -->
+<!--                     YGDM = #{ygdm}  AND -->
+<!--                     YWLB = #{ywlb}  AND -->
+<!--                     KSDM = #{ksdm}  AND -->
+<!--                     JGID = #{jgid} -->
+<!--     </update> -->
+<!--     <update id="initUserDrugstore"> -->
+<!--                 UPDATE SYS_YWQXKZ SET -->
+<!--                     MRBZ = #{mrbz} -->
+<!--                 WHERE -->
+<!--                     YGDM = #{ygdm}  AND -->
+<!--                     YWLB = #{ywlb}  AND -->
+<!--                     JGID = #{jgid} -->
+<!--     </update> -->
+
+
+    <delete id="deleteById">
+        DELETE FROM SYS_YWQXKZ WHERE
+        YGDM = #{ygdm}  AND 
+        YWLB = #{ywlb}  
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_YWQXKZ <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysYwqxkz">
+        SELECT <include refid="columns" />
+            FROM SYS_YWQXKZ 
+            WHERE 
+        YGDM = #{ygdm}  AND 
+        YWLB = #{ywlb}  AND 
+        KSDM = #{ksdm} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+               <if test="@sqlt.Ognl@isNotEmpty(ygdm)">
+                    AND YGDM = #{ygdm}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(ywlb)">
+                    AND YWLB = #{ywlb}
+               </if>
+                <if test="@sqlt.Ognl@isNotEmpty(ksdm)"> 
+                     AND KSDM = #{ksdm} 
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(jgid)"> 
+                     AND JGID = #{jgid}
+                </if> 
+<!--                <if test="@sqlt.Ognl@isNotEmpty(mrbz)"> -->
+<!--                     AND MRBZ = #{mrbz} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_YWQXKZ 
+        <include refid="where"/>    
+    </select>
+
+    <select id="findByEntity" resultType="SysYwqxkz">
+        SELECT <include refid="columns" />
+        FROM SYS_YWQXKZ 
+        <include refid="where"/>
+    </select>
+    <!--     业务sql      -->
+    
+    <select id="findqx" resultType="com.buit.his.user.response.SysYwqxkzDetailResp">
+        SELECT *
+        FROM SYS_YWQXKZ
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(ygdm)">
+                AND YGDM = #{ygdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ywlb)">
+                AND YWLB = #{ywlb}
+            </if>
+        </where>
+    </select>
+    
+     <select id="getmorenAuthority" resultType="Integer">
+     	SELECT KSDM 
+     	FROM SYS_YWQXKZ 
+     	where 
+     		MRBZ=1  AND        
+           YGDM = #{ygdm}  AND
+           YWLB = #{ywlb}  AND
+           JGID = #{jgid}
+     </select>
+    <select id="getWriteAuthority" resultType="java.lang.Integer">
+        select sum(num)
+        from
+            (select count(1) as num
+             from sys_ywqxkz
+             where YGDM = #{ygdm} and ksdm = #{ksdm} and `WRITE` = 1 and YWLB = 6 and jgid = #{jgid}
+             union all
+             select count(1) as num
+             from sys_ywqxkz
+             where YGDM = #{ygdm} and ksdm = #{bqdm} and `WRITE` = 1 and YWLB = 1 and jgid = #{jgid})
+             as wirteCount
+    </select>
+</mapper>
+

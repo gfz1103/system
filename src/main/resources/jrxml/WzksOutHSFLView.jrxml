@@ -1,0 +1,496 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="WzksOutHSFLView" language="groovy" pageWidth="750" pageHeight="842" columnWidth="710" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="0" isIgnorePagination="true" uuid="2cfd5afb-1058-4080-96f6-3e8dd335a950">
+	<property name="ireport.zoom" value="1.2100000000000002"/>
+	<property name="ireport.x" value="16"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="starttime" class="java.lang.String"/>
+	<parameter name="endtime" class="java.lang.String"/>
+	<parameter name="TOTAL" class="java.lang.String"/>
+	<parameter name="TOTAL1" class="java.lang.String"/>
+	<parameter name="TOTAL2" class="java.lang.String"/>
+	<parameter name="TOTAL3" class="java.lang.String"/>
+	<parameter name="TOTAL4" class="java.lang.String"/>
+	<parameter name="TOTAL5" class="java.lang.String"/>
+	<parameter name="TOTAL6" class="java.lang.String"/>
+	<parameter name="TOTAL7" class="java.lang.String"/>
+	<parameter name="TOTAL8" class="java.lang.String"/>
+	<field name="field1" class="java.lang.String"/>
+	<field name="HJJE99" class="java.lang.String"/>
+	<field name="KSMC" class="java.lang.String"/>
+	<field name="HSFL" class="java.lang.String"/>
+	<field name="HJJE1" class="java.lang.String"/>
+	<field name="HJJE2" class="java.lang.String"/>
+	<field name="HJJE3" class="java.lang.String"/>
+	<field name="HJJE4" class="java.lang.String"/>
+	<field name="HJJE5" class="java.lang.String"/>
+	<field name="HJJE6" class="java.lang.String"/>
+	<field name="HJJE7" class="java.lang.String"/>
+	<field name="HJJE8" class="java.lang.String"/>
+	<title>
+		<band height="50">
+			<textField>
+				<reportElement style="myBaseStyleName" x="250" y="30" width="105" height="20" uuid="7bd946cd-a3c4-4e4d-a7d7-4b4289eb90c2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{starttime}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="427" y="30" width="134" height="20" uuid="e931dd9c-fe21-41d8-aabe-2a0f6ca562c5"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{endtime}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="-13" y="0" width="723" height="30" uuid="1195b365-c58b-40a9-a1f4-6adc84c4476b"/>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="20" isBold="true"/>
+				</textElement>
+				<text><![CDATA[科室汇总出库单]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="184" y="30" width="66" height="20" uuid="c5ac162d-b695-484e-80e7-275bf71c49cd"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[出库时间从：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="362" y="30" width="65" height="20" uuid="70f995c8-bde2-4c56-bd66-084eb02e1cba"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[到：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="-13" y="30" width="179" height="20" uuid="660bae60-489b-4066-a2f4-d3adcf1abece"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[单位：天佑综合医院(上海)有限公司]]></text>
+			</staticText>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="-13" y="0" width="74" height="20" uuid="4e5ee03e-eeeb-42e6-8d18-166228fdcae4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[核算分类]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="61" y="0" width="75" height="20" uuid="ba349f67-104d-4bf0-a05f-bfc4b1663631"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[核算科室]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="608" y="0" width="71" height="20" uuid="8ffe8d91-b013-4e7a-a383-b61a1942cff2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[合计]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="136" y="0" width="59" height="20" uuid="0c08d922-d19f-4020-8ddf-f099af799caf"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[办公用品]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="195" y="0" width="59" height="20" uuid="1353001c-d78c-4050-9b9d-525e950e6454"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[维修材料]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="254" y="0" width="59" height="20" uuid="81bbbad0-255c-4435-8f6b-7d1b22663085"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[固定资产]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="313" y="0" width="59" height="20" uuid="6e03453d-3e0d-47cf-9f44-fc5cfd112a54"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[检验试剂]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="372" y="0" width="59" height="20" uuid="68cb35f4-b37d-484f-81d3-a9bcea965b98"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[医疗耗材]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="490" y="0" width="59" height="20" uuid="ce38ace9-54f8-4d51-b733-679980ce56cb"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[其他]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="431" y="0" width="59" height="20" uuid="3cd26c8a-7f12-452b-ad08-3c0e74f06b26"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[高值耗材]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="549" y="0" width="59" height="20" uuid="93607e9e-0766-4b2e-8f2a-2853c00359ee"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[器械工具]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="608" y="0" width="71" height="20" uuid="5dd046c6-1949-44c0-943e-e1adb4895d3e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE99}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="61" y="0" width="75" height="20" uuid="b0ee6ef1-abdd-4b1c-98d3-9f2e61905b9a"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{KSMC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="-13" y="0" width="74" height="20" uuid="1df067aa-0d1e-4e3c-a236-d158a5b030de"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HSFL}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="136" y="0" width="59" height="20" uuid="60e2bce8-d2e3-4f0c-bb71-8454c2f463f2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="195" y="0" width="59" height="20" uuid="08324095-1814-498f-b1ca-4c9cd21251a1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="254" y="0" width="59" height="20" uuid="391fd956-6615-4573-b4f9-8dab98b2a3b8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="313" y="0" width="59" height="20" uuid="f27c8709-2326-463c-8a76-f3a8a08622c8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE4}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="372" y="0" width="59" height="20" uuid="b40a5e25-e08e-4c32-89d5-9daa883bda15"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="490" y="0" width="59" height="20" uuid="14a80b19-6f04-4e42-b7f2-67b3f85cba36"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE6}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="431" y="0" width="59" height="20" uuid="b697df1e-1f15-49e3-b790-b51bdaa80f44"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE7}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="549" y="0" width="59" height="20" uuid="88a363a7-a78c-405c-b9d7-47eef9bf46e5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HJJE8}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="-13" y="0" width="149" height="20" uuid="c9ae0f39-26ba-4b9f-b043-f4693d245ea2"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center">
+					<font fontName="宋体" size="16"/>
+				</textElement>
+				<text><![CDATA[总计]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="608" y="0" width="71" height="20" uuid="6c11e5ea-aa1c-49aa-9788-ca6e96786248"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="136" y="0" width="59" height="20" uuid="67640561-e6d2-4a35-a8ac-3f3012de0ad3"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="195" y="0" width="59" height="20" uuid="a8599084-45cb-4b98-8991-e0d703c09310"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL2}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="254" y="0" width="59" height="20" uuid="e2440b04-145d-499a-a193-6cd63cb63cbc"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL3}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="313" y="0" width="59" height="20" uuid="04bb77bb-d780-4c7c-bad1-73bb5a95211a"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="372" y="0" width="59" height="20" uuid="af6d2699-9ca4-446d-b91d-b58122cf2448"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL5}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="490" y="0" width="59" height="20" uuid="8ef51f86-0e30-41bd-9189-a3a1997154ba"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL6}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="431" y="0" width="59" height="20" uuid="d266a1ee-21d2-40bb-99a1-1f3e4015d67e"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL7}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="549" y="0" width="59" height="20" uuid="7019efb4-7336-4a14-9fd6-662f992b3dca"/>
+				<box>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TOTAL8}]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

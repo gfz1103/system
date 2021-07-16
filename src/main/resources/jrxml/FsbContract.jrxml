@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HospMediRecord" language="groovy" pageWidth="550" pageHeight="700" columnWidth="550" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="4a1c2a44-f63f-43ab-9168-84327e5c3d07">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="241"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="dataset1" uuid="17ef4317-788d-4ef2-a036-e8cd100bd931"/>
+	<parameter name="BRXM" class="java.lang.String"/>
+	<parameter name="YLJG" class="java.lang.String"/>
+	<parameter name="ZRYS_text" class="java.lang.String"/>
+	<parameter name="b" class="java.lang.String"/>
+	<parameter name="a" class="java.lang.String"/>
+	<variable name="index" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[new Integer("1")]]></variableExpression>
+	</variable>
+	<title>
+		<band height="88" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="67" width="89" height="20" uuid="4860748a-465e-4305-80f7-fbe6f699d8d4"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者(家属代)]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="168" y="67" width="74" height="20" uuid="c3f98064-e7b4-4ea4-908b-4b59370d5728"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="28" width="550" height="20" uuid="b01d0059-8205-4f26-bdbe-0d2640784ec4"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="16" isBold="true"/>
+				</textElement>
+				<text><![CDATA[家庭病床服务协议书]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="244" y="67" width="53" height="20" uuid="700499dc-6983-4ab5-9f07-94a571078f8d"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[同意接受]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="297" y="67" width="166" height="20" uuid="360f3a14-4b9b-47fd-b366-23173e6e2c10"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YLJG}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="463" y="67" width="28" height="21" uuid="64bde0db-9960-4a58-8dd8-3a1159e5883d"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[社区]]></text>
+			</staticText>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="534">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="2" width="435" height="20" uuid="e303056f-af43-41a7-a2e4-d72a8dc5d07a"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[健康服务中心提供的家庭病床服务，并已了解建床标准及撤床标准及条件。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="251" y="23" width="231" height="19" uuid="193d7761-8307-49a8-9d96-8c7a37789084"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[责任医师讲解的疾病情况。]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="190" y="22" width="61" height="20" uuid="a0fe9ada-fd13-4f65-8ef9-235050fe0c3d"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ZRYS_text}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="78" y="22" width="112" height="20" uuid="a0de586f-5e0e-46cf-b94e-3e5d61a96c6f"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者(家属代)已了解]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="78" y="42" width="413" height="20" uuid="615527bf-bc54-4e50-bbe6-7a3b7fd18a8a"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者(家属代)已了解日常注意事项，理解了病情变化时家庭医疗、康复的局限]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="62" width="435" height="20" uuid="8f73d2a3-0ebc-41b2-8418-c10a7b9db27a"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[性，全力配合医务人员的医疗、护理和看护服务。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="82" width="413" height="20" uuid="7f8db492-2676-4ff0-9abd-e4ef7660dcb2"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者(家属代)已了解因服务地点和设备局限性，家庭病床服务可能存在的潜在风险，对于因家庭病床治疗的局限性，病情发展以及社区健康服务中心技术力量所限等客观原因导致的后果，]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="102" width="436" height="20" uuid="025e73cd-2ce2-4fb7-aa38-887b5cb5de37"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[风险，对于因家庭病床治疗的局限性，病情发展以及社区健康服务中心技术力量所限等客观原因导致的后果，]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="122" width="151" height="20" uuid="b1bdc83e-383a-4419-a4ef-88a7ad8d5bad"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[限等客观原因导致的后果，]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="207" y="122" width="59" height="20" uuid="deca9b3c-6196-422e-97f1-ea2c41bdb489"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="266" y="122" width="225" height="20" uuid="8886013a-8549-4248-9874-4a8f76cdd87f"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（患者或家属）将承担责任，并承担相应]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="142" width="225" height="20" uuid="7696b1d2-e653-4844-9c7d-cfb21dcc3861"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[的抢救及后续的治疗费用。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="162" width="413" height="20" uuid="365a74f5-25f9-490b-b1d1-6c0692b58a7f"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者(家属代)已了解有关收费项目及收费标准，同意及时支付。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="182" width="413" height="20" uuid="f4bee5a5-0ce0-40f4-b21f-b9ff1dbd77de"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者(家属代)已得到以下资料，同意医务人员讲述的注意事项。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="202" width="413" height="20" uuid="06f71732-d716-482a-a819-c25529d1fb88"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[1.家庭病床建床同意知情书；]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="222" width="413" height="20" uuid="3e376c8b-2fd2-4bc9-9804-f6a5e2686e8b"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[2.其他资料；]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="242" width="435" height="20" uuid="ccd5abc8-42fd-4466-9bd3-32764f8b9b7a"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（注：当患者本人不识字或不具备行为能力时，由其家属代签）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="79" y="287" width="413" height="20" uuid="8c6ed5cb-6a05-4e78-84c6-60d1e5c129b4"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[本协议书一式三份，患者、社康中心、医院社管中心各执一份。签字盖章后]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="307" width="413" height="20" uuid="456981c2-8b5a-44f9-882a-3250c16131c8"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[生效。]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="251" y="359" width="62" height="20" uuid="cbe9b876-500b-4538-887f-1e187f2fc611"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{b}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="179" y="359" width="72" height="20" uuid="f907d25e-cb64-4e75-84af-4bbd5ca63c22"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[或家属签名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="121" y="359" width="58" height="20" uuid="2e06bdfb-4ed1-4ba1-bd89-78e24f1d0965"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{a}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="56" y="359" width="65" height="20" uuid="bbbf35e9-b8d5-4283-a378-bf99d7131f14"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者签名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="313" y="359" width="72" height="20" uuid="cf5d6010-6eaa-4e77-afad-a4ec61c52dc5"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[与患者关系：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="385" y="359" width="46" height="20" uuid="d747543b-115c-426d-85ea-388ff4b417f6"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{b}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="228" y="409" width="98" height="20" uuid="6fdc1758-c19b-45e2-b126-898ee2043865"/>
+				<box>
+					<bottomPen lineWidth="1.0"/>
+				</box>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{b}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="326" y="409" width="165" height="20" uuid="ca52c521-25de-47f2-88e4-eb2694d07e8e"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[社区健康服务中心（盖章）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="361" y="451" width="19" height="20" uuid="ad52759d-a8e9-4663-b8ba-04821cb0977f"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[年]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="412" y="451" width="19" height="20" uuid="85c903e8-056e-4d58-a0fe-bf2071e0c86a"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[月]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="463" y="451" width="19" height="20" uuid="e705e3d3-e8b4-414b-92e0-9f502ff92e4c"/>
+				<textElement verticalAlignment="Bottom">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[日]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<pageFooter>
+		<band/>
+	</pageFooter>
+</jasperReport>

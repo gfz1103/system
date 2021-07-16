@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 公用_疾病编码库 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicSsbmDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,ssmc,icd_code as icdCode,ssdj,pydm,zfbz
+    </sql>
+
+    <update id="replace">
+        replace into dic_ssbm(id,ssmc,pydm,icd_code,ssdj,zfbz)
+        values(#{id},#{ssmc},#{pydm},#{icdCode},#{ssdj},0)
+    </update>
+
+    <select id="query" resultType="com.buit.his.sys.centermaintenance.model.DicSsbm">
+        select <include refid="columns"/>
+        from dic_ssbm
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(pydm)"> (pydm like concat('%',#{pydm},'%') or ssmc like concat('%',#{pydm},'%'))</if>
+        </where>
+    </select>
+
+    <delete id="deleteById">
+        delete from dic_ssbm where id=#{id}
+    </delete>
+
+    <update id="enable">
+        update dic_ssbm set zfbz=1-zfbz where id=#{id}
+    </update>
+
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DicSsbm">
+        select <include refid="columns"/>
+        from dic_ssbm
+        where id=#{id}
+    </select>
+</mapper>
+

@@ -1,0 +1,277 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FamilySickBedDispensingDetails" language="groovy" pageWidth="218" pageHeight="243" columnWidth="218" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="0d4ac8c0-9590-4505-b8ec-01a71665a410">
+	<property name="ireport.zoom" value="3.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="28"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="dataset1" uuid="a1320624-2e4a-4216-9296-c760ac8ac8f4">
+		<group name="group1"/>
+	</subDataset>
+	<parameter name="TITLE" class="java.lang.String"/>
+	<parameter name="BQ" class="java.lang.String"/>
+	<parameter name="SJ" class="java.lang.String"/>
+	<parameter name="MYHS" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[SELECT
+		c.zyhm as zyhm,
+		c.BRXM AS BRXM,
+		c.ZYHM AS ZYHM,
+		b.YPMC AS YPMC,
+		A .YPGG AS YPGG,
+		A .YFDW AS YPDW,
+		D .YCJL AS JL,
+		E .PCMC AS YF,
+		SUM (A .LSJE) AS JE,
+		SUM (A .YPSL) AS ZSL
+	FROM
+		YF_JCFYMX A,
+		YK_TYPK b,
+		JC_BRRY c,
+		JC_BRYZ D,
+		GY_SYPC E
+	WHERE
+		A .YPXH = b.YPXH
+	AND A .ZYH = c.ZYH
+	AND A .YZXH = D .JLXH
+	AND D .SYPC = E .PCBM
+	GROUP BY
+		A .YPXH,
+		A .YPCD,
+		c.BRXM,
+		b.YPMC,
+c.ZYHM,
+		A .YPGG,
+		A .YFDW,
+		D .YCJL,
+		E .PCMC,
+		D .KSSJ]]>
+	</queryString>
+	<field name="BRCH" class="java.lang.String"/>
+	<field name="BRXM" class="java.lang.String"/>
+	<field name="YPMC" class="java.lang.String"/>
+	<field name="YPGG" class="java.lang.String"/>
+	<field name="YPDW" class="java.lang.String"/>
+	<field name="JE" class="java.lang.Double"/>
+	<field name="ZSL" class="java.lang.Double"/>
+	<field name="JL" class="java.lang.String"/>
+	<field name="YF" class="java.lang.String"/>
+	<field name="KSSJ" class="java.lang.String"/>
+	<field name="ZYHM" class="java.lang.String"/>
+	<field name="ZJE" class="java.lang.String"/>
+	<field name="SUM_JE" class="java.lang.String"/>
+	<variable name="index" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[new Integer("1")]]></variableExpression>
+	</variable>
+	<title>
+		<band height="29" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="218" height="29" forecolor="#000000" uuid="fd70eb43-f474-405d-886c-926381c0517d"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="20">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="55" height="20" forecolor="#000000" uuid="6436ec0e-00ef-411b-8c83-e4c7a37eef57"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[病人姓名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="105" y="0" width="44" height="20" forecolor="#000000" uuid="4f9f5b36-3e64-487b-8116-007fa6d36f6c"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<text><![CDATA[家床号码:]]></text>
+			</staticText>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="55" y="0" width="50" height="20" forecolor="#000000" uuid="6c8a83ac-5d50-450a-b085-4b1735efbad6"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRXM}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="149" y="0" width="69" height="20" forecolor="#000000" uuid="6c8a83ac-5d50-450a-b085-4b1735efbad6"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ZYHM}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="40">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="149" y="20" width="67" height="20" forecolor="#000000" uuid="fa9e8430-9e51-4ccc-879b-5acb31a67a32"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JE}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="71" y="20" width="57" height="20" forecolor="#000000" uuid="844c1232-2829-4a50-90ab-83f6f366ef9b"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="0" y="0" width="98" height="20" forecolor="#000000" uuid="77d38fe7-8ccf-48c7-96b8-5e107ddc6f8f"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YPMC}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="98" y="0" width="28" height="20" forecolor="#000000" uuid="6c8a83ac-5d50-450a-b085-4b1735efbad6"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YPGG}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="126" y="0" width="43" height="20" forecolor="#000000" uuid="6c8a83ac-5d50-450a-b085-4b1735efbad6"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ZSL}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="169" y="0" width="49" height="20" forecolor="#000000" uuid="d1653cca-52ae-4989-886d-be381de4d73d"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YPDW}]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="0" y="20" width="69" height="20" forecolor="#000000" uuid="6c8a83ac-5d50-450a-b085-4b1735efbad6"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YF}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="20">
+			<textField pattern="" isBlankWhenNull="true">
+				<reportElement style="myBaseStyleName" x="109" y="0" width="109" height="20" forecolor="#000000" uuid="fa9e8430-9e51-4ccc-879b-5acb31a67a32"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{SUM_JE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="109" height="20" forecolor="#000000" uuid="4f9f5b36-3e64-487b-8116-007fa6d36f6c"/>
+				<box>
+					<pen lineColor="#FFFFFF"/>
+					<topPen lineColor="#FFFFFF"/>
+					<leftPen lineColor="#FFFFFF"/>
+					<bottomPen lineColor="#FFFFFF"/>
+					<rightPen lineColor="#FFFFFF"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[总金额：]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

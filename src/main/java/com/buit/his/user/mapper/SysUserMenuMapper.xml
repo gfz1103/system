@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 用户快捷菜单 -->
+<mapper namespace="com.buit.his.user.dao.SysUserMenuDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        USERMENU_ID as usermenuId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,USER_ID as userId,MENU_ID as menuId,SERIAL_NUMBER as serialNumber
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_USER_MENU (
+            USERMENU_ID ,
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_ID ,
+            USER_ID ,
+            MENU_ID ,
+            SERIAL_NUMBER,GROUP_ID 
+        ) VALUES (
+            #{usermenuId} ,
+            #{gmtCreate} ,
+            #{gmtCreate} ,
+            #{hospitalId} ,
+            #{userId} ,
+            #{menuId} ,
+            #{serialNumber},#{groupId} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE SYS_USER_MENU SET
+            DATA_VERSION = #{dataVersion} ,
+            GMT_CREATE = #{gmtCreate} ,
+            GMT_MODIFY = #{gmtModify} ,
+            HOSPITAL_ID = #{hospitalId} ,
+            USER_ID = #{userId} ,
+            MENU_ID = #{menuId} ,
+            SERIAL_NUMBER = #{serialNumber} 
+        WHERE 
+            USERMENU_ID = #{usermenuId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_USER_MENU WHERE
+        USERMENU_ID = #{usermenuId} 
+    </delete>
+    <delete id="deleteByGroupId">
+        DELETE FROM sys_user_menu u WHERE u.GROUP_ID =#{groupId} AND  NOT EXISTS ( SELECT g.GROUPMENU_ID FROM sys_group_menu g WHERE g.MENU_ID=u.MENU_ID AND g.GROUP_ID=#{groupId})
+
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_USER_MENU <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysUserMenu">
+        SELECT <include refid="columns" />
+            FROM SYS_USER_MENU 
+            WHERE 
+        USERMENU_ID = #{usermenuId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(usermenuId)"> -->
+<!--                     AND USERMENU_ID = #{usermenuId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+<!--                     AND DATA_VERSION = #{dataVersion} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(hospitalId)"> -->
+<!--                     AND HOSPITAL_ID = #{hospitalId} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(userId)">
+                    AND USER_ID = #{userId}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(menuId)">
+                    AND MENU_ID = #{menuId}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(groupId)">
+                    AND GROUP_ID = #{groupId}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(serialNumber)"> -->
+<!--                     AND SERIAL_NUMBER = #{serialNumber} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_USER_MENU 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="SysUserMenu">
+        SELECT <include refid="columns" />
+        FROM SYS_USER_MENU 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <select id="getAllMenu" resultType="SysMenu">
+        SELECT m.MENU_ID as menuId,m.MENU_CODE as menuCode,m.FATHER_ROUTE_NAME as fatherRouteName,m.MENU_NAME as menuName,m.MENU_NAME1 as menuName1,
+			m.MENU_NAME2 as menuName2,
+			m.MENU_NAME3 as menuName3,
+			m.MENU_NAME4 as menuName4,m.PARENT_MENU_ID as parentMenuId,m.MODEL_ID as modelId,m.BASIC_MENU_FLAG as basicMenuFlag,m.MODEL_TYPE_FLAG as modelTypeFlag,m.MENU_SORT as menuSort,m.MENU_ICON as menuIcon,m.DISPLAY_FLAG as displayFlag,m.PY_CODE as pyCode,m.WB_CODE as wbCode,m.MENU_LEVEL as menuLevel,m.SYS_TYPE as sysType,m.MENU_URL as menuUrl,m.MENU_STYLE as menuStyle,m.ACTION_TYPE as actionType,m.ROUTE_NAME as routeName,m.REPORT_ID as reportId
+        FROM SYS_USER_MENU u left join SYS_MENU m on u.MENU_ID=m.MENU_ID
+        where USER_ID = #{userId} and GROUP_ID = #{groupId}
+    </select>
+</mapper>
+

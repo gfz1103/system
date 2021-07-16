@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 住院_药品用法_附加计费 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.ImDicYpyfFjjfDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID as id,YPYF as ypyf,FYXH as fyxh,JFFS as jffs,JFSL as jfsl,PCBM as pcbm,JGID as jgid
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO IM_DIC_YPYF_FJJF (
+            ID ,
+            YPYF ,
+            FYXH ,
+            JFFS ,
+            JFSL ,
+            PCBM ,
+            JGID 
+        ) VALUES (
+            #{id} ,
+            #{ypyf} ,
+            #{fyxh} ,
+            #{jffs} ,
+            #{jfsl} ,
+            #{pcbm} ,
+            #{jgid} 
+        )
+    </insert>
+    
+    <update id="update" >
+   		UPDATE IM_DIC_YPYF_FJJF SET
+            YPYF = #{ypyf} ,
+            FYXH = #{fyxh} ,
+            JFFS = #{jffs} ,
+            JFSL = #{jfsl} ,
+            PCBM = #{pcbm} ,
+            JGID = #{jgid} 
+        WHERE 
+            ID = #{id}     
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM IM_DIC_YPYF_FJJF WHERE
+        ID = #{id} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM IM_DIC_YPYF_FJJF <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="ImDicYpyfFjjf">
+        SELECT <include refid="columns" />
+            FROM IM_DIC_YPYF_FJJF 
+            WHERE 
+        ID = #{id} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(id)"> -->
+<!--                     AND ID = #{id} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(ypyf)">
+                    AND YPYF = #{ypyf}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(fyxh)"> -->
+<!--                     AND FYXH = #{fyxh} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(jffs)">
+                    AND JFFS = #{jffs}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(jfsl)">
+                    AND JFSL = #{jfsl}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(pcbm)">
+                    AND PCBM = #{pcbm}
+               </if>
+               <if test="@sqlt.Ognl@isNotEmpty(jgid)">
+                    AND JGID = #{jgid}
+               </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM IM_DIC_YPYF_FJJF 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="ImDicYpyfFjjf">
+        SELECT <include refid="columns" />
+        FROM IM_DIC_YPYF_FJJF 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

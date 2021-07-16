@@ -1,0 +1,704 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="ConsultationManageList" language="groovy" pageWidth="780" pageHeight="840" columnWidth="780" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="f6cda4c6-6166-4952-a6b7-ff45fb3ed06c">
+	<property name="ireport.zoom" value="0.75"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="209"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="Year" class="java.lang.String"/>
+	<parameter name="Month" class="java.lang.String"/>
+	<parameter name="Day" class="java.lang.String"/>
+	<parameter name="BRXM" class="java.lang.String"/>
+	<parameter name="SQDH" class="java.lang.String"/>
+	<parameter name="BRXB" class="java.lang.String"/>
+	<parameter name="BRNL" class="java.lang.String"/>
+	<parameter name="BRCH" class="java.lang.String"/>
+	<parameter name="ZYHM" class="java.lang.String"/>
+	<parameter name="DQZD" class="java.lang.String"/>
+	<parameter name="SQKS" class="java.lang.String"/>
+	<parameter name="SQYS" class="java.lang.String"/>
+	<parameter name="HZMD" class="java.lang.String"/>
+	<parameter name="HZBQ" class="java.lang.String"/>
+	<parameter name="HZYear" class="java.lang.String"/>
+	<parameter name="HZMonth" class="java.lang.String"/>
+	<parameter name="HZDay" class="java.lang.String"/>
+	<parameter name="YQDX" class="java.lang.String"/>
+	<parameter name="JJBZ1" class="java.lang.String"/>
+	<parameter name="JJBZ2" class="java.lang.String"/>
+	<parameter name="JJBZ3" class="java.lang.String"/>
+	<parameter name="NYQHZYS" class="java.lang.String"/>
+	<parameter name="BRBQ" class="java.lang.String"/>
+	<parameter name="SQSJ" class="java.lang.String"/>
+	<parameter name="HZYYMC" class="java.lang.String"/>
+	<parameter name="BQZL" class="java.lang.String"/>
+	<parameter name="NYQHZKS" class="java.lang.String"/>
+	<parameter name="RYRQ" class="java.lang.String"/>
+	<parameter name="ZGYSQM" class="java.lang.String"/>
+	<parameter name="KZRYS" class="java.lang.String"/>
+	<parameter name="HZYSQM" class="java.lang.String"/>
+	<parameter name="HZSJ" class="java.lang.String"/>
+	<parameter name="HZYJ" class="java.lang.String"/>
+	<parameter name="HZKSMC" class="java.lang.String"/>
+	<parameter name="SQSJ2" class="java.lang.String"/>
+	<pageHeader>
+		<band height="800">
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="387" y="67" width="45" height="20" uuid="bdaf216a-3a68-4a74-b40f-c92e613a7886"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[年龄：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="114" width="210" height="20" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[拟邀请会诊医院及科室名称：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="91" width="120" height="20" uuid="a9067b2c-a342-4df8-b499-12e70f8978df"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[申请会诊科室：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="388" y="91" width="53" height="20" uuid="7885ebd8-3d58-4ff2-a8f6-bd0740383ec3"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[床号：]]></text>
+			</staticText>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="59" width="670" height="2" uuid="7399105a-a701-4f41-929f-a363252b8ae7"/>
+			</line>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="301" width="655" height="25" uuid="bd8bf072-e415-455e-8371-0e5b452221fb"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HZMD}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="524" y="91" width="74" height="20" uuid="3a581a21-706e-42d0-bfe1-c6ac876fcec1"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[住院号码：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="595" y="114" width="91" height="20" uuid="b87fbd3e-4831-4a27-846d-e04cd204fd39"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NYQHZYS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="314" y="67" width="71" height="20" uuid="4bc7ce3e-7705-4c00-a531-9d26b02a2cf0"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="314" y="91" width="63" height="20" uuid="d0b83b5a-7a44-4a8f-84c7-b6f78a86c23d"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRBQ}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement style="myBaseStyleName" positionType="Float" x="711" y="59" width="2" height="712" uuid="5449abea-98bd-4c8a-9349-bb78a91c7b03"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="434" y="67" width="50" height="20" uuid="d0b83b5a-7a44-4a8f-84c7-b6f78a86c23d"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRNL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="129" y="67" width="106" height="20" uuid="4bc7ce3e-7705-4c00-a531-9d26b02a2cf0"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="362" y="459" width="136" height="20" uuid="d54e2376-280b-4ddb-bad8-b877ff102744"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[会诊科室名称：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="51" y="375" width="120" height="19" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[签名日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="283" y="375" width="120" height="19" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[签名日期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="173" y="375" width="100" height="19" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SQSJ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="473" y="375" width="138" height="19" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SQSJ}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement style="myBaseStyleName" x="39" y="59" width="2" height="712" uuid="5449abea-98bd-4c8a-9349-bb78a91c7b03"/>
+				<graphicElement>
+					<pen lineWidth="1.25" lineStyle="Solid"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="280" width="670" height="1" uuid="7ac18cf0-d709-4356-a9aa-1743c0f8dae4"/>
+			</line>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="441" y="91" width="59" height="20" uuid="c0d862de-0e34-4e3e-8873-3e633f4feb70"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRCH}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="136" width="670" height="1" uuid="c832ad10-c860-4408-901b-3408e6a1ba8d"/>
+			</line>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="486" y="67" width="32" height="20" uuid="6e2dd9a8-9223-4d35-958b-3c4be6d3133c"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[岁]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="600" y="91" width="86" height="20" uuid="5a4ab035-ed39-46bd-80bd-8dbb1571067b"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ZYHM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="172" y="459" width="177" height="20" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HZYYMC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="281" width="156" height="20" uuid="e2faa785-60bf-4b27-a630-3bc1a71f3f27"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[会诊目的：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="441" y="114" width="129" height="20" uuid="d54e2376-280b-4ddb-bad8-b877ff102744"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[拟邀请医师姓名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="159" width="643" height="117" uuid="4e7ca237-6974-4ac7-9106-38d86fc4c6c2"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BQZL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="253" y="67" width="50" height="20" uuid="2b885613-ca3c-43e1-ae7f-6c07c2d51854"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[性别：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="253" y="20" width="238" height="27" uuid="166a6b8b-3ce4-4b44-8b1d-ac970ab7b05e"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[上海天佑医院会诊申请单]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="261" y="114" width="175" height="20" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{NYQHZKS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="67" width="76" height="20" uuid="8fffd106-c3fc-443f-a0ce-f78807ef73af"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[患者姓名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="600" y="67" width="86" height="20" uuid="7476922a-6658-4cd0-9997-a2acdf5498ef"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RYRQ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="524" y="67" width="76" height="20" uuid="1fe231b7-8d93-467e-b79f-7a3dce57b25c"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[入院时间：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="172" y="91" width="63" height="20" uuid="d0b83b5a-7a44-4a8f-84c7-b6f78a86c23d"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SQKS}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="253" y="91" width="48" height="20" uuid="85dcd0fe-3343-4537-b742-85b7dfe53bd9"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[病区：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="173" y="348" width="100" height="20" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ZGYSQM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="139" width="159" height="20" uuid="6e3959bd-39ee-44db-8b50-65285b62cc73"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[患者病情及诊疗情况：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="283" y="348" width="189" height="20" uuid="d54e2376-280b-4ddb-bad8-b877ff102744"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[主治以上医师/科主任签名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="473" y="348" width="86" height="20" uuid="b87fbd3e-4831-4a27-846d-e04cd204fd39"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{KZRYS}]]></textFieldExpression>
+			</textField>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="730" width="670" height="1" uuid="780cd612-2507-4ef3-b47b-6a3ed3e314cc"/>
+			</line>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="771" width="670" height="2" uuid="780cd612-2507-4ef3-b47b-6a3ed3e314cc"/>
+			</line>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="44" y="775" width="451" height="23" uuid="166a6b8b-3ce4-4b44-8b1d-ac970ab7b05e"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[注：院内急会诊10分钟完成，普通会诊24小时内完成]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="354" y="740" width="120" height="20" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Right">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[会诊时间：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="51" y="348" width="120" height="20" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[主管医师签名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="173" y="740" width="176" height="20" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HZYSQM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="484" y="740" width="126" height="20" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HZSJ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="496" width="187" height="20" uuid="6e3959bd-39ee-44db-8b50-65285b62cc73"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[会诊科室医师意见及建议：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="516" width="643" height="207" uuid="4e7ca237-6974-4ac7-9106-38d86fc4c6c2"/>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HZYJ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="459" width="120" height="20" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[会诊医院名称：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="508" y="459" width="90" height="20" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{HZKSMC}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="416" width="109" height="20" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[申请会诊时间：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="48" y="740" width="120" height="20" uuid="d7041d6f-bc43-40cd-bcca-a0b84a2f25cd"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[会诊医师签名：]]></text>
+			</staticText>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="490" width="670" height="2" uuid="7399105a-a701-4f41-929f-a363252b8ae7"/>
+			</line>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="405" width="670" height="2" uuid="7399105a-a701-4f41-929f-a363252b8ae7"/>
+			</line>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="445" width="670" height="2" uuid="7399105a-a701-4f41-929f-a363252b8ae7"/>
+				<graphicElement>
+					<pen lineWidth="2.0" lineStyle="Double"/>
+				</graphicElement>
+			</line>
+			<line>
+				<reportElement style="myBaseStyleName" x="41" y="337" width="670" height="2" uuid="7399105a-a701-4f41-929f-a363252b8ae7"/>
+			</line>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="158" y="416" width="254" height="19" uuid="22b8aeef-012e-45a9-a2e4-76ae8591d326"/>
+				<box bottomPadding="0">
+					<pen lineStyle="Solid"/>
+					<topPen lineStyle="Solid"/>
+					<leftPen lineStyle="Solid"/>
+					<bottomPen lineStyle="Solid"/>
+					<rightPen lineStyle="Solid"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="12" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SQSJ2}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+</jasperReport>

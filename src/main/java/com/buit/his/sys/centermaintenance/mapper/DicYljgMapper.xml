@@ -1,0 +1,342 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 医疗卫生机构索引表 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicYljgDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        HOSPITAL_ID as hospitalId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_CODE as hospitalCode,PARENT_HOSPITAL_ID as parentHospitalId,ORGANIZATION_CODE as organizationCode,HOSPITAL_NAME as hospitalName,SECOND_HOSPITAL_NAME as secondHospitalName,AFFILIATED_NAME as affiliatedName,SECOND_NAME as secondName,TELEPHONE as telephone,COUNTRY_ID as countryId,PROVINCE_ID as provinceId,CITY_ID as cityId,COUNTY_ID as countyId,TOWNSHIP_ADDR as townshipAddr,VILLAGE_ADDR as villageAddr,ADDR_NUMBER as addrNumber,PHONE_NUMBER as phoneNumber,CHARGE_NAME as chargeName,CHARGE_TELEPHONE as chargeTelephone,CHARGE_RECORD_NUMBER as chargeRecordNumber,CHARGE_MOBILE_NUMBER as chargeMobileNumber,EMAIL as email,HOSPITAL_CLASS_ID as hospitalClassId,HOSPITAL_GRADE_ID as hospitalGradeId,SETUP_DATE as setupDate,REVOKE_DATE as revokeDate,REGIST_ID as registId,ORGANIZATION_TYPE as organizationType,WEBSITE as website,APPROVED_BED as approvedBed,APPROVED_PREPARATION as approvedPreparation, STOP_FLAG as stopFlag, BEGIN_DATE as beginDate,END_DATE as endDate,PY_CODE as pyCode,WB_CODE as wbCode,LOGO as logo,PAGELOGO1 as pageLogo1,PAGELOGO2 as pageLogo2,PAGELOGO3 as pageLogo3,PAGELOGO4 as pageLogo4,PAGELOGO5 as pageLogo5
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_YLJG (
+            HOSPITAL_ID ,
+            DATA_VERSION ,
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_CODE ,
+            PARENT_HOSPITAL_ID ,
+            ORGANIZATION_CODE ,
+            HOSPITAL_NAME ,
+            SECOND_HOSPITAL_NAME ,
+            AFFILIATED_NAME ,
+            SECOND_NAME ,
+            TELEPHONE ,
+            COUNTRY_ID ,
+            PROVINCE_ID ,
+            CITY_ID ,
+            COUNTY_ID ,
+            TOWNSHIP_ADDR ,
+            VILLAGE_ADDR ,
+            ADDR_NUMBER ,
+            PHONE_NUMBER ,
+            CHARGE_NAME ,
+            CHARGE_TELEPHONE ,
+            CHARGE_RECORD_NUMBER ,
+            CHARGE_MOBILE_NUMBER ,
+            EMAIL ,
+            HOSPITAL_CLASS_ID ,
+            HOSPITAL_GRADE_ID ,
+            SETUP_DATE ,
+            REVOKE_DATE ,
+            REGIST_ID ,
+            ORGANIZATION_TYPE ,
+            WEBSITE ,
+            APPROVED_BED ,
+            APPROVED_PREPARATION ,
+            STOP_FLAG ,
+            BEGIN_DATE ,
+            END_DATE ,
+            PY_CODE ,
+            WB_CODE,
+            LOGO,
+            PGAELOGO1,
+            PGAELOGO2,
+            PGAELOGO3,
+            PGAELOGO4,
+            PGAELOGO5
+        ) VALUES (
+            #{hospitalId} ,
+            #{dataVersion} ,
+            #{gmtCreate} ,
+            #{gmtModify} ,
+            #{hospitalCode} ,
+            #{parentHospitalId} ,
+            #{organizationCode} ,
+            #{hospitalName} ,
+            #{secondHospitalName} ,
+            #{affiliatedName} ,
+            #{secondName} ,
+            #{telephone} ,
+            #{countryId} ,
+            #{provinceId} ,
+            #{cityId} ,
+            #{countyId} ,
+            #{townshipAddr} ,
+            #{villageAddr} ,
+            #{addrNumber} ,
+            #{phoneNumber} ,
+            #{chargeName} ,
+            #{chargeTelephone} ,
+            #{chargeRecordNumber} ,
+            #{chargeMobileNumber} ,
+            #{email} ,
+            #{hospitalClassId} ,
+            #{hospitalGradeId} ,
+            #{setupDate} ,
+            #{revokeDate} ,
+            #{registId} ,
+            #{organizationType} ,
+            #{website} ,
+            #{approvedBed} ,
+            #{approvedPreparation} ,
+            #{stopFlag} ,
+            #{beginDate} ,
+            #{endDate} ,
+            #{pyCode} ,
+            #{wbCode},
+            #{logo},
+            #{pageLogo1},
+            #{pageLogo2},
+            #{pageLogo3},
+            #{pageLogo4},
+            #{pageLogo5}
+        )
+    </insert>
+
+    <update id="update" >
+        UPDATE DIC_YLJG SET
+            DATA_VERSION = #{dataVersion} ,
+            GMT_CREATE = #{gmtCreate} ,
+            GMT_MODIFY = #{gmtModify} ,
+            HOSPITAL_CODE = #{hospitalCode} ,
+            PARENT_HOSPITAL_ID = #{parentHospitalId} ,
+            ORGANIZATION_CODE = #{organizationCode} ,
+            HOSPITAL_NAME = #{hospitalName} ,
+            SECOND_HOSPITAL_NAME = #{secondHospitalName} ,
+            AFFILIATED_NAME = #{affiliatedName} ,
+            SECOND_NAME = #{secondName} ,
+            TELEPHONE = #{telephone} ,
+            COUNTRY_ID = #{countryId} ,
+            PROVINCE_ID = #{provinceId} ,
+            CITY_ID = #{cityId} ,
+            COUNTY_ID = #{countyId} ,
+            TOWNSHIP_ADDR = #{townshipAddr} ,
+            VILLAGE_ADDR = #{villageAddr} ,
+            ADDR_NUMBER = #{addrNumber} ,
+            PHONE_NUMBER = #{phoneNumber} ,
+            CHARGE_NAME = #{chargeName} ,
+            CHARGE_TELEPHONE = #{chargeTelephone} ,
+            CHARGE_RECORD_NUMBER = #{chargeRecordNumber} ,
+            CHARGE_MOBILE_NUMBER = #{chargeMobileNumber} ,
+            EMAIL = #{email} ,
+            HOSPITAL_CLASS_ID = #{hospitalClassId} ,
+            HOSPITAL_GRADE_ID = #{hospitalGradeId} ,
+            SETUP_DATE = #{setupDate} ,
+            REVOKE_DATE = #{revokeDate} ,
+            REGIST_ID = #{registId} ,
+            ORGANIZATION_TYPE = #{organizationType} ,
+            WEBSITE = #{website} ,
+            APPROVED_BED = #{approvedBed} ,
+            APPROVED_PREPARATION = #{approvedPreparation} ,
+            STOP_FLAG = #{stopFlag},
+            BEGIN_DATE = #{beginDate} ,
+            END_DATE = #{endDate} ,
+            PY_CODE = #{pyCode} ,
+            WB_CODE = #{wbCode},
+             LOGO=#{logo},
+             PAGELOGO1 = #{pageLogo1},
+             PAGELOGO2 = #{pageLogo2},
+             PAGELOGO3 = #{pageLogo3},
+             PAGELOGO4 = #{pageLogo4},
+             PAGELOGO5 = #{pageLogo5}
+        WHERE
+            HOSPITAL_ID = #{hospitalId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_YLJG WHERE
+        HOSPITAL_ID = #{hospitalId}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM DIC_YLJG <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DicYljg">
+        SELECT <include refid="columns" />
+            FROM DIC_YLJG
+            WHERE
+        HOSPITAL_ID = #{hospitalId}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+                AND HOSPITAL_ID = #{hospitalId}
+            </if>
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+            <!--                     AND DATA_VERSION = #{dataVersion} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+            <!--                     AND GMT_CREATE = #{gmtCreate} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+            <!--                     AND GMT_MODIFY = #{gmtModify} -->
+            <!--                </if> -->
+            <if test="@sqlt.Ognl@isNotEmpty(hospitalCode)">
+                 AND HOSPITAL_CODE = #{hospitalCode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(parentHospitalId)">
+                 AND PARENT_HOSPITAL_ID = #{parentHospitalId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(organizationCode)">
+                 AND ORGANIZATION_CODE = #{organizationCode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hospitalName)">
+                 AND HOSPITAL_NAME = #{hospitalName}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(secondHospitalName)">
+                 AND SECOND_HOSPITAL_NAME = #{secondHospitalName}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(affiliatedName)">
+                 AND AFFILIATED_NAME = #{affiliatedName}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(secondName)">
+                 AND SECOND_NAME = #{secondName}
+            </if>
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(telephone)"> -->
+            <!--                     AND TELEPHONE = #{telephone} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(countryId)"> -->
+            <!--                     AND COUNTRY_ID = #{countryId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(provinceId)"> -->
+            <!--                     AND PROVINCE_ID = #{provinceId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(cityId)"> -->
+            <!--                     AND CITY_ID = #{cityId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(countyId)"> -->
+            <!--                     AND COUNTY_ID = #{countyId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(townshipAddr)"> -->
+            <!--                     AND TOWNSHIP_ADDR = #{townshipAddr} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(villageAddr)"> -->
+            <!--                     AND VILLAGE_ADDR = #{villageAddr} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(addrNumber)"> -->
+            <!--                     AND ADDR_NUMBER = #{addrNumber} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(phoneNumber)"> -->
+            <!--                     AND PHONE_NUMBER = #{phoneNumber} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(chargeName)"> -->
+            <!--                     AND CHARGE_NAME = #{chargeName} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(chargeTelephone)"> -->
+            <!--                     AND CHARGE_TELEPHONE = #{chargeTelephone} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(chargeRecordNumber)"> -->
+            <!--                     AND CHARGE_RECORD_NUMBER = #{chargeRecordNumber} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(chargeMobileNumber)"> -->
+            <!--                     AND CHARGE_MOBILE_NUMBER = #{chargeMobileNumber} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(email)"> -->
+            <!--                     AND EMAIL = #{email} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(hospitalClassId)"> -->
+            <!--                     AND HOSPITAL_CLASS_ID = #{hospitalClassId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(hospitalGradeId)"> -->
+            <!--                     AND HOSPITAL_GRADE_ID = #{hospitalGradeId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(setupDate)"> -->
+            <!--                     AND SETUP_DATE = #{setupDate} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(revokeDate)"> -->
+            <!--                     AND REVOKE_DATE = #{revokeDate} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(registId)"> -->
+            <!--                     AND REGIST_ID = #{registId} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(organizationType)"> -->
+            <!--                     AND ORGANIZATION_TYPE = #{organizationType} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(website)"> -->
+            <!--                     AND WEBSITE = #{website} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(approvedBed)"> -->
+            <!--                     AND APPROVED_BED = #{approvedBed} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(approvedPreparation)"> -->
+            <!--                     AND APPROVED_PREPARATION = #{approvedPreparation} -->
+            <!--                </if> -->
+            <if test="@sqlt.Ognl@isNotEmpty(stopFlag)">
+                 AND STOP_FLAG = #{stopFlag}
+            </if>
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(beginDate)"> -->
+            <!--                     AND BEGIN_DATE = #{beginDate} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(endDate)"> -->
+            <!--                     AND END_DATE = #{endDate} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(pyCode)"> -->
+            <!--                     AND PY_CODE = #{pyCode} -->
+            <!--                </if> -->
+            <!--                <if test="@sqlt.Ognl@isNotEmpty(wbCode)"> -->
+            <!--                     AND WB_CODE = #{wbCode} -->
+            <!--                </if> -->
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_YLJG
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DicYljg">
+        SELECT <include refid="columns" />
+        FROM DIC_YLJG
+        <include refid="where"/>
+
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+
+    <select id="queryByJgid" resultType="DicYljgOut">
+        SELECT <include refid="columns" />
+        FROM DIC_YLJG
+        where HOSPITAL_ID in(
+        <foreach collection="list" item="v" separator=",">
+            #{v}
+        </foreach>
+        )
+    </select>
+
+    <!--查询机构列表-->
+    <select id="queryList" resultType="com.buit.his.sys.centermaintenance.response.DicYljgResp">
+        select <include refid="columns" />
+        from DIC_YLJG
+        <if test="@sqlt.Ognl@isNotEmpty(pyCode)">
+            where PY_CODE like '${pyCode}'
+        </if>
+    </select>
+
+    <!--机构停用-->
+    <update id="stopYljg">
+        update DIC_YLJG set STOP_FLAG = '1',END_DATE = #{endDate}
+        where hospital_id = #{hospitalId}
+    </update>
+
+    <select id="getAllYljg" resultType="com.buit.system.response.DicYljgOut">
+        select <include refid="columns" />
+        from DIC_YLJG
+        WHERE PARENT_HOSPITAL_ID != 0 AND STOP_FLAG = 0
+    </select>
+</mapper>
+

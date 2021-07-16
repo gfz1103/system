@@ -1,0 +1,453 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.PubCshywjDao">
+
+
+    <select id="queryList" resultType="PubCshywjResp">
+    select groupid,1 as officeid,groupname as officename,1 as init from pub_cshywj where groupid in (select groupid from PUB_CSH  )
+  union
+  select groupid,0 as officeid,groupname as officename,0 as init from pub_cshywj where groupid not in (select groupid from PUB_CSH  )
+    </select>
+
+    <select id="queryYfCshList" resultType="java.util.HashMap">
+         select  b.groupid,b.officeid,a.YFMC as officename,a.jgid,b.init from PHAR_YFLB a , PUB_CSH b where a.YFSB=b.officeid and b.groupid=#{groupid}
+           union
+         select  #{groupid} as groupid,yfsb as officeid,YFMC as officename,jgid,0 as init from PHAR_YFLB where yfsb not in (select officeid from PUB_CSH where groupid=#{groupid}  )
+    </select>
+
+    <select id="queryYkCshList" resultType="java.util.HashMap">
+   select  b.groupid,b.officeid,a.YKMC as officename,a.jgid,b.init from DRUGS_YKLB a , PUB_CSH b where a.YKSB=b.officeid and b.groupid=#{groupid}
+  union
+  select  #{groupid} as groupid,YKSB as officeid,YKMC as officename,jgid,0 as init from DRUGS_YKLB where YKSB not in (select officeid from PUB_CSH where groupid=#{groupid}  )
+    </select>
+
+    <insert id="insertPubCsh">
+        INSERT INTO Pub_Csh (
+            GROUPID ,
+            OFFICEID ,
+            JGID ,
+            INIT
+        ) VALUES (
+            #{groupid} ,
+            #{officeid} ,
+            #{jgid} ,
+            1
+        )
+    </insert>
+
+    <select id="count" resultType="long">
+        SELECT count(*) FROM PUB_CSH
+        WHERE
+            JGID = #{jgid} AND
+            GROUPID = #{groupid} AND
+            OFFICEID = #{officeid}
+    </select>
+
+    <select id="countBq" resultType="long">
+        SELECT count(*) FROM NIS_TJ02 a,NIS_TJ01 b
+        WHERE
+            a.TJXH = b.TJXH AND
+            b.JGID = #{jgid} AND
+           b.TJYF = #{officeid}
+    </select>
+
+    <delete id="delOpThmxByJgid">
+        DELETE FROM Op_Thmx WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpYyghByJgid">
+        DELETE FROM Op_Yygh WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpGhFkxxByJgid">
+        DELETE FROM Op_gh_fkxx
+    </delete>
+    <delete id="delOpGhmxByJgid">
+        DELETE FROM Op_ghmx WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpYjcf02ByJgid">
+        DELETE FROM Op_yjcf02 WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpYjcf01ByJgid">
+        DELETE FROM Op_yjcf01 WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpCf02ByJgid">
+        DELETE FROM Op_cf02 WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpCf01ByJgid">
+        DELETE FROM Op_cf01 WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpSfmxByJgid">
+        DELETE FROM Op_sfmx WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpZffpByJgid">
+        DELETE FROM Op_zffp WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpMzxxByJgid">
+        DELETE FROM Op_mzxx WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpFkxxByJgid">
+        DELETE FROM Op_fkxx WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpKspbByJgid">
+        DELETE FROM Op_kspb WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delOpYspbByJgid">
+        DELETE FROM Op_yspb WHERE
+        jgid = #{jgid}
+    </delete>
+    <delete id="delMpi_card">
+        DELETE FROM Mpi_card WHERE
+        createunit = #{jgid}
+    </delete>
+    <delete id="delMpi_brda">
+        DELETE FROM Mpi_brda WHERE
+        jdjg = #{jgid}
+    </delete>
+    <delete id="delOpzydj">
+        DELETE FROM OP_ZYDJ
+    </delete>
+    <delete id="delOpGrmx">
+        DELETE FROM op_grmx WHERE
+        JGID = #{jgid}
+    </delete>
+    <delete id="delOpGhrbfkmx">
+        DELETE FROM Op_Ghrb_fkmx WHERE
+        JGID = #{jgid}
+    </delete>
+    <delete id="delOpGhrb">
+        DELETE FROM Op_Ghrb WHERE
+        JGID = #{jgid}
+    </delete>
+    <delete id="delOpRbmx">
+        DELETE FROM Op_Rbmx WHERE
+        JGID = #{jgid}
+    </delete>
+    <delete id="delOpXzmx">
+        DELETE FROM Op_Xzmx WHERE
+        JGID = #{jgid}
+    </delete>
+    <delete id="delOpSfrbfkmx">
+        DELETE FROM Op_Sfrb_fkmx WHERE
+        JGID = #{jgid}
+    </delete>
+    <delete id="delOpHzrb">
+        DELETE FROM Op_Hzrb WHERE
+        JGID = #{jgid}
+    </delete>
+    <update id="updateOpGhksByJgid" >
+    	update Op_ghks set YGRS = 0 where JGID = #{jgid}
+    </update>
+
+    <delete id="delDrugsSwyjByXtsb">
+        DELETE FROM Drugs_Swyj WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsYjjgByXtsb">
+        DELETE FROM Drugs_yjjg WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsJzjlByXtsb">
+        DELETE FROM Drugs_jzjl WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsRk02ByXtsb">
+        DELETE FROM Drugs_rk02 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsRk01ByXtsb">
+        DELETE FROM Drugs_rk01 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsCk02ByXtsb">
+        DELETE FROM Drugs_ck02 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsCk01ByXtsb">
+        DELETE FROM Drugs_ck01 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsTjjlByXtsb">
+        DELETE FROM Drugs_tjjl WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsTj02ByXtsb">
+        DELETE FROM Drugs_tj02 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsTj01ByXtsb">
+        DELETE FROM Drugs_tj01 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsPd02ByXtsb">
+        DELETE FROM Drugs_pd02 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsPd01ByXtsb">
+        DELETE FROM Drugs_pd01 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsPz02ByXtsb">
+        DELETE FROM Drugs_pz02 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsPz01ByXtsb">
+        DELETE FROM Drugs_pz01 WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsKcflByXtsb">
+        DELETE FROM Drugs_kcfl WHERE
+        jgid = #{jgid} and xtsb = #{xtsb}
+    </delete>
+    <delete id="delDrugsKcmxByXtsb">
+        DELETE FROM Drugs_kcmx WHERE
+        jgid = #{jgid} and ypxh in (select ypxh from drugs_ypxx where jgid=#{jgid} and  yksb = #{xtsb})
+    </delete>
+    <delete id="delDrugsKcmxlsByXtsb">
+        DELETE FROM Drugs_kcmx_ls WHERE
+        jgid = #{jgid} and ypxh in (select ypxh from drugs_ypxx where jgid=#{jgid} and  yksb = #{xtsb})
+    </delete>
+    <delete id="delDrugsYpxxByXtsb">
+        DELETE FROM Drugs_Ypxx WHERE
+        jgid = #{jgid} and yksb = #{xtsb}
+    </delete>
+    <update id="updateDrugsCdxxByXtsb" >
+    	update Drugs_Cdxx a set KCSL = 0,LSJE = 0,PFJE=0,JHJE=0  where a.JGID = #{jgid} and a.ypxh in (
+    	    SELECT YPXH FROM Drugs_YPXX b WHERE b.JGID = #{jgid} AND YKSB = #{xtsb} AND b.YPXH = a.YPXH
+    	)
+    </update>
+    <update id="updateDrugsRkfsByXtsb" >
+    	update Drugs_Rkfs  set RKDH = #{djhm}, YSDH =#{djhm}  where JGID = #{jgid} and XTSB = #{xtsb}
+    </update>
+    <update id="updateDrugsCkfsByXtsb" >
+    	update Drugs_Ckfs  set CKDH = #{djhm}  where JGID = #{jgid} and XTSB = #{xtsb}
+    </update>
+    <update id="updateDrugsYklbByXtsb" >
+    	update Drugs_Yklb  set SYBZ = 1  where JGID = #{jgid} and YKSB = #{xtsb}
+    </update>
+
+    <delete id="delPharRk02ByYfsb">
+        DELETE FROM Phar_Rk02 WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharRk01ByYfsb">
+        DELETE FROM Phar_Rk01 WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharCk02ByYfsb">
+        DELETE FROM Phar_Ck02 WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharCk01ByYfsb">
+        DELETE FROM Phar_Ck01 WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharTjjlByYfsb">
+        DELETE FROM Phar_Tjjl WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharMzfymxByYfsb">
+        DELETE FROM Phar_mzfymx WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharKcmxByYfsb">
+        DELETE FROM Phar_kcmx WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharKcmxlsByYfsb">
+        DELETE FROM Phar_kcmx_ls WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharRbmxByYfsb">
+        DELETE FROM Phar_rbmx WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharYfrbByYfsb">
+        DELETE FROM Phar_yfrb WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharYjjgByYfsb">
+        DELETE FROM Phar_yjjg WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharJzjlByYfsb">
+        DELETE FROM Phar_jzjl WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharZyfymxByYfsb">
+        DELETE FROM Phar_zyfymx WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharFyjlByYfsb">
+        DELETE FROM Phar_fyjl WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharDb02ByYfsb">
+        DELETE FROM Phar_db02 WHERE
+        jgid = #{jgid} and sqyf = #{yfsb}
+    </delete>
+    <delete id="delPharDb01ByYfsb">
+        DELETE FROM Phar_db01 WHERE
+        jgid = #{jgid} and sqyf = #{yfsb}
+    </delete>
+    <delete id="delPharYk02grlrByYfsb">
+        DELETE FROM Phar_yk02_grlr WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharYk02ByYfsb">
+        DELETE FROM Phar_yk02 WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharYk01ByYfsb">
+        DELETE FROM Phar_yk01 WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <delete id="delPharKcdjByYfsb">
+        DELETE FROM Phar_kcdj WHERE
+        jgid = #{jgid} and yfsb = #{yfsb}
+    </delete>
+    <update id="updatePharRkfsByXtsb" >
+    	update Phar_Rkfs  set RKDH = #{djhm}  where JGID = #{jgid} and YFSB = #{yfsb}
+    </update>
+    <update id="updatePharCkfsByXtsb" >
+    	update Phar_Ckfs  set CKDH = #{djhm}  where JGID = #{jgid} and YFSB = #{yfsb}
+    </update>
+    <delete id="delNisTj02ByYfsb">
+        DELETE FROM Nis_Tj02  WHERE TJXH in (
+              SELECT TJXH FROM nis_tj01 a WHERE a.JGID = #{jgid} and a.TJYF =#{yfsb} AND a.TJXH = TJXH)
+    </delete>
+    <delete id="delNisTj01ByYfsb">
+        DELETE FROM Nis_Tj01 WHERE JGID = #{jgid} and TJYF =#{yfsb}
+    </delete>
+    <delete id="delPharypxx">
+        DELETE FROM phar_ypxx WHERE JGID = #{jgid} and yfsb =#{yfsb}
+    </delete>
+
+    <!--  诊疗 -->
+    <delete id="delZlJlxjzjByJgid">
+        DELETE FROM zl_jlxjzj WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlLbByJgid">
+        DELETE FROM zl_lb WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlSqdmxByJgid">
+        DELETE FROM zl_sqdmx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlSqdxmzlnrByJgid">
+        DELETE FROM zl_sqdxmzlnr WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlSqdyyzxByJgid">
+        DELETE FROM zl_sqdyyzx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlSqdzbByJgid">
+        DELETE FROM zl_sqdzb WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlSqdzdByJgid">
+        DELETE FROM zl_sqdzd WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlXmByJgid">
+        DELETE FROM zl_xm WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlXmldsfxmByJgid">
+        DELETE FROM zl_xmldsfxm WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delZlXmzljhByJgid">
+        DELETE FROM zl_xmzljh WHERE JGID = #{jgid}
+    </delete>
+
+    <delete id="delCisHzyzByJgid">
+        DELETE FROM Cis_Hzyz WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delNisTymxByJgid">
+        DELETE FROM Nis_Tymx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delCiszyhzsqByJgid">
+        DELETE FROM Cis_zy_hzsq WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delCiszyhzyjByJgid">
+        DELETE FROM Cis_zy_hzyj WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delCiszyhzyqdxByJgid">
+        DELETE FROM Cis_zy_hzyqdx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delCisBxsqdzdByJgid">
+        DELETE FROM Cis_bxsqdzd WHERE YLJGD = #{jgid}
+    </delete>
+    <delete id="delCisBxsqdByJgid">
+        DELETE FROM Cis_bxsqd WHERE YLJGD = #{jgid}
+    </delete>
+
+    <delete id="delImSrhzByJgid">
+        DELETE FROM Im_Srhz WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImFeefyhzByJgid">
+        DELETE FROM Im_Fee_fyhz WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImJzhzByJgid">
+        DELETE FROM Im_jzhz WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImZfpjByJgid">
+        DELETE FROM Im_zfpj WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImJzxxByJgid">
+        DELETE FROM Im_jzxx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImJszfByJgid">
+        DELETE FROM Im_jszf WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImJsmxByJgid">
+        DELETE FROM Im_jsmx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImFkxxByJgid">
+        DELETE FROM Im_fkxx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImZyjsByJgid">
+        DELETE FROM Im_zyjs WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImFeefymxByJgid">
+        DELETE FROM Im_fee_fymx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImFeefymxjsByJgid">
+        DELETE FROM Im_fee_fymx_js WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImJkzfByJgid">
+        DELETE FROM Im_jkzf WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImTbkkByJgid">
+        DELETE FROM Im_tbkk WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImHcmxByJgid">
+        DELETE FROM Im_hcmx WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImRyzdByJgid">
+        DELETE FROM Im_ryzd WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImHzryByJgid">
+        DELETE FROM Im_hzry WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImCwtjByJgid">
+        DELETE FROM Im_cwtj WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImRcjlByJgid">
+        DELETE FROM Im_rcjl WHERE JGID = #{jgid}
+    </delete>
+    <delete id="delImcwsz">
+        DELETE FROM im_cwsz WHERE JGID = #{jgid}
+    </delete>
+    <update id="updateImCwszByJgid" >
+    	update Im_Cwsz  set ZYH = 0 where JGID = #{jgid}
+    </update>
+
+</mapper>
+

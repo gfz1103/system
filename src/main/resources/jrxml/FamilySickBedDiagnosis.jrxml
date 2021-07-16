@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="HospitalPharmacyMedicineBR" language="groovy" pageWidth="670" pageHeight="842" columnWidth="670" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="53d31447-e5c1-494a-b139-2eb70d422cb0">
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="TITLE" class="java.lang.String"/>
+	<parameter name="TJSJFW" class="java.lang.String"/>
+	<field name="ZDMC" class="java.lang.String"/>
+	<field name="HZRS" class="java.lang.String"/>
+	<field name="HZRS1" class="java.lang.String"/>
+	<field name="ZDMC1" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="71" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="13" y="0" width="640" height="40" uuid="a0d85bcc-9630-49d6-beda-b51db9b60c5e"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="22" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TITLE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="13" y="46" width="640" height="25" uuid="eb2ba74c-94ce-4510-a72c-d6a63667b156"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{TJSJFW}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="30">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="573" y="0" width="80" height="30" uuid="be842451-9db0-4e42-96d9-708577ab6142"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者人数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="333" y="0" width="240" height="30" uuid="13075fc1-ca2a-4fb6-960e-c902c4d7bf87"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[诊断]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="13" y="0" width="240" height="30" uuid="e3254b5d-ce40-4b26-9505-0e365c9f97b3"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[诊断名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="253" y="0" width="80" height="30" uuid="4e4060a1-3a78-4dc2-97d9-878d6d4d5f5c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[患者人数]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="25" splitType="Stretch">
+			<break>
+				<reportElement style="myBaseStyleName" isPrintRepeatedValues="false" x="0" y="24" width="0" height="1" isRemoveLineWhenBlank="true" uuid="1d34cd0d-8522-40c4-8a24-e50681ccb516">
+					<printWhenExpression><![CDATA[new Boolean($V{COLUMN_COUNT}.intValue()%32==0)]]></printWhenExpression>
+				</reportElement>
+			</break>
+			<textField>
+				<reportElement style="myBaseStyleName" stretchType="RelativeToBandHeight" x="13" y="0" width="240" height="25" isPrintWhenDetailOverflows="true" uuid="4d0a3171-4653-4d85-822a-f618bd2c4ea2"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ZDMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" stretchType="RelativeToBandHeight" x="253" y="0" width="80" height="25" isPrintWhenDetailOverflows="true" uuid="1b7a8192-15cb-45b0-8563-a2cdcebed535"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HZRS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" stretchType="RelativeToBandHeight" x="573" y="0" width="80" height="25" isPrintWhenDetailOverflows="true" uuid="760432ac-0993-48d1-8380-837ce0c433de"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{HZRS1}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" stretchType="RelativeToBandHeight" x="333" y="0" width="240" height="25" isPrintWhenDetailOverflows="true" uuid="5e7174a7-41a1-400a-af90-1ed9f66453f1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ZDMC1}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<pageFooter>
+		<band height="45" splitType="Stretch"/>
+	</pageFooter>
+</jasperReport>

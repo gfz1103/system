@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 公用_系统参数 -->
+<mapper namespace="com.buit.his.param.dao.SysXtcsDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        JGID as jgid,CSMC as csmc,CSZ as csz,MRZ as mrz,BZ as bz,XXSM as xxsm,SSLB as sslb,XTSB as xtsb
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_XTCS (
+            JGID ,
+            CSMC ,
+            CSZ ,
+            MRZ ,
+            BZ ,
+            XXSM ,
+            SSLB ,
+            XTSB 
+        ) VALUES (
+            #{jgid} ,
+            #{csmc} ,
+            #{csz} ,
+            #{mrz} ,
+            #{bz} ,
+            #{xxsm} ,
+            #{sslb} ,
+            #{xtsb} 
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE SYS_XTCS SET
+            CSZ = #{csz} ,
+            MRZ = #{mrz} ,
+            BZ = #{bz} ,
+            XXSM = #{xxsm} ,
+            SSLB = #{sslb} ,
+            XTSB = #{xtsb} 
+        WHERE 
+            JGID = #{jgid}  AND 
+            CSMC = #{csmc}            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_XTCS WHERE
+        JGID = #{jgid}  AND 
+        CSMC = #{csmc} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_XTCS <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysXtcs">
+        SELECT <include refid="columns" />
+            FROM SYS_XTCS 
+            WHERE 
+        JGID = #{jgid}  AND 
+        CSMC = #{csmc} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+                <if test="@sqlt.Ognl@isNotEmpty(jgid)">
+                     AND JGID = #{jgid}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(csmc)">
+                     AND CSMC like CONCAT(CONCAT('%',#{csmc}),'%')
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(csz)">
+                     AND CSZ = #{csz}
+                </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(mrz)"> -->
+<!--                     AND MRZ = #{mrz} -->
+<!--                </if> -->
+                <if test="@sqlt.Ognl@isNotEmpty(bz)"> 
+                     AND BZ = #{bz}
+                </if> 
+<!--                <if test="@sqlt.Ognl@isNotEmpty(xxsm)"> -->
+<!--                     AND XXSM = #{xxsm} -->
+<!--                </if> -->
+                <if test="@sqlt.Ognl@isNotEmpty(sslb)"> 
+                     AND SSLB like CONCAT(CONCAT('%',#{sslb}),'%')
+                </if> 
+<!--                <if test="@sqlt.Ognl@isNotEmpty(xtsb)"> -->
+<!--                     AND XTSB = #{xtsb} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_XTCS 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="SysXtcs">
+        SELECT <include refid="columns" />
+        FROM SYS_XTCS 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <select id="load" resultType="SysXtcs">
+        select CSMC as csmc,CSZ as csz
+        from SYS_XTCS
+        where jgid = #{jgid}
+        and ( csmc = CONCAT(#{csmc},'_CY') or csmc =  CONCAT(#{csmc},'_ZY') or csmc = CONCAT(#{csmc},'_XY'))
+    </select>
+
+    <update id="updateCsz" >
+        UPDATE SYS_XTCS 
+        <trim prefix="SET" suffixOverrides=",">
+			<if test="@sqlt.Ognl@isNotEmpty(csz)">
+				CSZ = #{csz},
+			</if>
+		</trim>
+		<where>
+			<if test="@sqlt.Ognl@isNotEmpty(jgid)">
+				AND JGID = #{jgid}
+			</if>
+			<if test="@sqlt.Ognl@isNotEmpty(csmc)">
+				AND CSMC = #{csmc}
+			</if>
+		</where>
+    </update>
+
+
+    <select id="findByJgIdAndCsmc"  resultType="SysXtcs">
+        select <include refid="columns" />
+        from SYS_XTCS
+        WHERE
+        JGID = #{jgId}  AND
+        CSMC = #{csmc}
+    </select>
+
+    <delete id="deleteByJGIdAndCsmc">
+        DELETE FROM SYS_XTCS WHERE
+        JGID = #{jgId}  AND
+        CSMC = #{csmc}
+    </delete>
+    
+    <!-- 获取挂号系统参数：当前挂号日期和当前值班类型 -->
+    <select id="getGhSysParams" resultType="java.lang.String">
+		SELECT CSZ FROM SYS_XTCS
+		<where>
+			<if test="@sqlt.Ognl@isNotEmpty(jgid)">
+				AND JGID = #{jgid}
+			</if>
+			<if test="@sqlt.Ognl@isNotEmpty(csmc)">
+				AND CSMC = #{csmc}
+			</if>
+		</where>
+	</select>
+    <!--住院参数 住院号码加一操作-->
+    <update id="updateZyParam">
+        update  SYS_XTCS set CSZ=#{csz} where JGID=#{jgid} and CSMC=#{csmc}
+    </update>
+    
+    <!-- 参数名称模糊查询 -->
+    <select id="getXtcsByCsmc"  parameterType="Map" resultType="java.util.Map">
+        select CSMC as CSMC,CSZ as CSZ from SYS_XTCS where JGID=#{JGID} and CSMC like CONCAT(CONCAT(#{CSMC}),'%')
+    </select>
+
+
+</mapper>
+

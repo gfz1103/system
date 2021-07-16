@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- open api信息 -->
+<mapper namespace="com.buit.his.sys.openapi.dao.SysOpenApiDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID as id,ACCESS_KEY as accessKey,ACCESS_SECRET_MD5 as accessSecretMd5,ROLES as roles,ZT as zt,`DESC` as `desc`,C_TIME as ctime
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_OPEN_API (
+            ID ,
+            ACCESS_KEY ,
+            ACCESS_SECRET_MD5 ,
+            ROLES ,
+            ZT ,
+            `DESC` ,
+            C_TIME 
+        ) VALUES (
+            #{id} ,
+            #{accessKey} ,
+            #{accessSecretMd5} ,
+            #{roles} ,
+            #{zt} ,
+            #{desc} ,
+            #{ctime} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE SYS_OPEN_API SET
+            ACCESS_KEY = #{accessKey} ,
+            ACCESS_SECRET_MD5 = #{accessSecretMd5} ,
+            ROLES = #{roles} ,
+            ZT = #{zt} ,
+            `DESC` = #{desc} ,
+            C_TIME = #{ctime} 
+        WHERE 
+            ID = #{id} 
+            -->            
+    </update>
+
+    <delete id="deleteById"></delete>
+    
+    <delete id="removeByEntity"></delete>
+    
+    <select id="getById" resultType="com.buit.his.sys.openapi.model.SysOpenApi">
+        SELECT <include refid="columns" />
+            FROM SYS_OPEN_API 
+            WHERE 
+        ID = #{id} 
+    </select>
+        
+    <select id="findByEntityCount" resultType="long"></select>
+    <select id="findByEntity" resultType="com.buit.his.sys.openapi.model.SysOpenApi"></select>
+    <select id="selectBy" resultType="com.buit.his.sys.openapi.model.SysOpenApi">
+        SELECT <include refid="columns" />
+        FROM SYS_OPEN_API
+        WHERE
+        ACCESS_KEY = #{accessKey}
+        AND ACCESS_SECRET_MD5 = #{accessSecretMd5}
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

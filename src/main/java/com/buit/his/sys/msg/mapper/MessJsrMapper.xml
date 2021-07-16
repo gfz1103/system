@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 消息推送-接收人 -->
+<mapper namespace="com.buit.his.sys.msg.dao.MessJsrDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        mess_js_id as messJsId,mess_id as messId,ks_ID as ksId,user_ID as userId
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO MESS_JSR (
+            mess_js_id ,
+            mess_id ,
+            ks_ID ,
+            user_ID 
+        ) VALUES (
+            #{messJsId} ,
+            #{messId} ,
+            #{ksId} ,
+            #{userId} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE MESS_JSR SET
+            mess_id = #{messId} ,
+            ks_ID = #{ksId} ,
+            user_ID = #{userId} 
+        WHERE 
+            mess_js_id = #{messJsId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM MESS_JSR WHERE
+        mess_js_id = #{messJsId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM MESS_JSR <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="MessJsr">
+        SELECT <include refid="columns" />
+            FROM MESS_JSR 
+            WHERE 
+        mess_js_id = #{messJsId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messJsId)"> -->
+<!--                     AND mess_js_id = #{messJsId} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(messId)">
+                    AND mess_id = #{messId}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(ksId)"> -->
+<!--                     AND ks_ID = #{ksId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(userId)"> -->
+<!--                     AND user_ID = #{userId} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM MESS_JSR 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="MessJsr">
+        SELECT <include refid="columns" />
+        FROM MESS_JSR 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

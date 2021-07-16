@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 疾病治则关联 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DiccJbzzglDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        GLBS as glbs,JBBS as jbbs,ZHBS as zhbs,ZZBS as zzbs,BBXX as bbxx
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DICC_JBZZGL (
+            GLBS ,
+            JBBS ,
+            ZHBS ,
+            ZZBS ,
+            BBXX 
+        ) VALUES (
+            #{glbs} ,
+            #{jbbs} ,
+            #{zhbs} ,
+            #{zzbs} ,
+            #{bbxx} 
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE DICC_JBZZGL
+            <set>
+                <if test="@sqlt.Ognl@isNotEmpty(jbbs)">
+                    JBBS = #{jbbs},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(zhbs)">
+                    ZHBS = #{zhbs},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(zzbs)">
+                    ZZBS = #{zzbs},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(bbxx)">
+                    BBXX = #{bbxx},
+                </if>
+            </set>
+        WHERE
+            GLBS = #{glbs} 
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DICC_JBZZGL WHERE
+        GLBS = #{glbs} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM DICC_JBZZGL <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DiccJbzzgl">
+        SELECT <include refid="columns" />
+            FROM DICC_JBZZGL 
+            WHERE 
+        GLBS = #{glbs} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+            <if test="@sqlt.Ognl@isNotEmpty(glbs)">
+                 AND GLBS = #{glbs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbbs)">
+                 AND JBBS = #{jbbs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zhbs)">
+                 AND ZHBS = #{zhbs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zzbs)">
+                 AND ZZBS = #{zzbs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bbxx)">
+                 AND BBXX = #{bbxx}
+            </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DICC_JBZZGL 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DiccJbzzgl">
+        SELECT <include refid="columns" />
+        FROM DICC_JBZZGL 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+
+    <!--疾病治则关联-->
+    <select id="queryList" resultType="com.buit.his.sys.centermaintenance.response.DiccJbzzglResp">
+        select
+            a.GLBS glbs,
+            b.ZHMC zhmc,
+            a.JBBS jbbs,
+            a.ZHBS zhbs,
+            a.ZZBS zzbs,
+            a.BBXX bbxx
+        from DICC_JBZZGL a
+        left join DIC_ZYZH b on a.ZHBS = b.ZHBS
+        where a.jbbs = #{jbbs}
+    </select>
+</mapper>
+

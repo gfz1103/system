@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 用户组菜单授权表 -->
+<mapper namespace="com.buit.his.user.dao.SysGroupMenuDao">
+
+	<!-- 用于select查询公用抽取的列 -->
+	<sql id="columns">
+		GROUPMENU_ID as groupmenuId,DATA_VERSION as dataVersion,GMT_CREATE as
+		gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,GROUP_ID
+		as groupId,MENU_ID as menuId
+	</sql>
+
+	<insert id="insert">
+		INSERT INTO SYS_GROUP_MENU (
+		GROUPMENU_ID ,
+		DATA_VERSION ,
+		GMT_CREATE ,
+		GMT_MODIFY ,
+		HOSPITAL_ID ,
+		GROUP_ID ,
+		MENU_ID
+		) VALUES (
+		#{groupmenuId} ,
+		#{dataVersion} ,
+		#{gmtCreate} ,
+		#{gmtModify} ,
+		#{hospitalId} ,
+		#{groupId} ,
+		#{menuId}
+		)
+	</insert>
+
+	<update id="update"><!-- UPDATE SYS_GROUP_MENU SET DATA_VERSION = 
+			#{dataVersion} , GMT_CREATE = #{gmtCreate} , GMT_MODIFY = #{gmtModify} , 
+			HOSPITAL_ID = #{hospitalId} , GROUP_ID = #{groupId} , MENU_ID = #{menuId} 
+			WHERE GROUPMENU_ID = #{groupmenuId} -->
+	</update>
+
+	<delete id="deleteById">
+		DELETE FROM SYS_GROUP_MENU WHERE
+		GROUPMENU_ID = #{groupmenuId}
+	</delete>
+
+	<delete id="removeByEntity">
+		DELETE FROM SYS_GROUP_MENU
+		<include refid="where" />
+	</delete>
+
+	<select id="getById" resultType="SysGroupMenu">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_GROUP_MENU
+		WHERE
+		GROUPMENU_ID = #{groupmenuId}
+	</select>
+
+	<sql id="where">
+		<where>
+			<if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+				AND HOSPITAL_ID = #{hospitalId}
+			</if>
+			<if test="@sqlt.Ognl@isNotEmpty(groupId)">
+				AND GROUP_ID = #{groupId}
+			</if>
+			<if test="@sqlt.Ognl@isNotEmpty(menuId)">
+				AND MENU_ID = #{menuId}
+			</if>
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(groupmenuId)"> -->
+			<!-- AND GROUPMENU_ID = #{groupmenuId} -->
+			<!-- </if> -->
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+			<!-- AND DATA_VERSION = #{dataVersion} -->
+			<!-- </if> -->
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+			<!-- AND GMT_CREATE = #{gmtCreate} -->
+			<!-- </if> -->
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+			<!-- AND GMT_MODIFY = #{gmtModify} -->
+			<!-- </if> -->
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(hospitalId)"> -->
+			<!-- AND HOSPITAL_ID = #{hospitalId} -->
+			<!-- </if> -->
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(groupId)"> -->
+			<!-- AND GROUP_ID = #{groupId} -->
+			<!-- </if> -->
+			<!-- <if test="@sqlt.Ognl@isNotEmpty(menuId)"> -->
+			<!-- AND MENU_ID = #{menuId} -->
+			<!-- </if> -->
+		</where>
+	</sql>
+
+	<select id="findByEntityCount" resultType="long">
+		SELECT count(*) FROM SYS_GROUP_MENU
+		<include refid="where" />
+	</select>
+
+	<select id="findByEntity" resultType="SysGroupMenu">
+		SELECT
+		<include refid="columns" />
+		FROM SYS_GROUP_MENU
+		<include refid="where" />
+
+		<if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+			ORDER BY ${sortColumns}
+		</if>
+	</select>
+	<!-- 业务sql -->
+</mapper>
+

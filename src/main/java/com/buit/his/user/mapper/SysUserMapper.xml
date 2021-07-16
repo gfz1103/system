@@ -1,0 +1,377 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 系统用户表 -->
+<mapper namespace="com.buit.his.user.dao.SysUserDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        USER_ID as userId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,LOGIN_NAME as loginName,PERSON_ID as personId,USER_NAME as userName,DEPT_ID as deptId,LOCK_FLAG as lockFlag,USER_TYPES as userTypes,END_DATE as endDate,USER_LINE as userLine,IMAGE as image,PY_CODE as pyCode,WB_CODE as wbCode,LAST_LOGIN_TIME as lastLoginTime,LOGIN_COUNT as loginCount,GUIDE_PAGE_LIST as guidePageList,CHANG_PASSWD as changPasswd,LAST_LOGIN_IP as lastLoginIp, LAST_CHANGE_PWD_TIME as lastChangePwdTime
+    </sql>
+
+    <insert id="insert" keyColumn="USER_ID" keyProperty="userId" useGeneratedKeys="true">
+        INSERT INTO SYS_USER (
+            USER_ID ,
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_ID ,
+            LOGIN_NAME ,
+            PERSON_ID ,
+            USER_PWD ,
+            USER_NAME ,
+            DEPT_ID ,
+            LOCK_FLAG ,
+            USER_TYPES ,
+            END_DATE ,
+            USER_LINE ,
+            IMAGE ,
+            PY_CODE ,
+            WB_CODE ,
+            LOGIN_COUNT ,
+            GUIDE_PAGE_LIST,
+            CHANG_PASSWD,
+            LAST_CHANGE_PWD_TIME
+        ) VALUES (
+            #{userId} ,
+            #{gmtCreate} ,
+            #{gmtCreate} ,
+            #{hospitalId} ,
+            #{loginName} ,
+            #{personId} ,
+            #{userPwd} ,
+            #{userName} ,
+            #{deptId} ,
+            0 ,
+            0 ,
+            #{endDate} ,
+            0 ,
+            #{image} ,
+            #{pyCode} ,
+            #{wbCode} ,
+            0 ,
+            #{guidePageList},
+            1,
+            #{lastChangePwdTime}
+        )
+    </insert>
+
+    <update id="update" >  <!--     修改密码 -->
+        UPDATE SYS_USER SET
+            USER_PWD = #{userPwd} ,CHANG_PASSWD=#{changPasswd}, LAST_CHANGE_PWD_TIME = #{lastChangePwdTime}
+        WHERE
+            USER_ID = #{userId}
+    </update>
+
+    <update id="updateInfo" >
+        UPDATE SYS_USER SET
+            DATA_VERSION = DATA_VERSION+1,
+            USER_NAME = #{userName},
+            DEPT_ID = #{deptId},
+            GMT_MODIFY = #{gmtModify}
+        WHERE
+            PERSON_ID = #{personId}
+    </update>
+
+
+    <update id="addLoginCount" >  <!--  登录成功后 修改登录次数 -->
+        UPDATE SYS_USER SET
+            LOGIN_COUNT = LOGIN_COUNT+1,
+            LAST_LOGIN_TIME= #{lastLoginTime}
+        WHERE
+            USER_ID = #{userId}
+    </update>
+    <update id="lockUser" >  <!--  锁定用户 -->
+        UPDATE SYS_USER SET
+            LOCK_FLAG = 1
+        WHERE
+            USER_ID = #{value}
+    </update>
+
+    <update id="unlockUser" >  <!--  解锁用户 -->
+        UPDATE SYS_USER SET
+            LOCK_FLAG = 0
+        WHERE
+            USER_ID = #{value}
+    </update>
+
+    <update id="lockUserByPerson" >  <!--  锁定用户 -->
+        UPDATE SYS_USER SET
+            LOCK_FLAG = 1
+        WHERE
+            PERSON_ID = #{value}
+    </update>
+
+    <update id="unlockUserByPerson" >  <!--  解锁用户 -->
+        UPDATE SYS_USER SET
+            LOCK_FLAG = 0
+        WHERE
+            PERSON_ID = #{value}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_USER WHERE
+        USER_ID = #{userId}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM SYS_USER <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="SysUser">
+        SELECT <include refid="columns" />
+            FROM SYS_USER
+            WHERE
+        USER_ID = #{userId}
+    </select>
+
+    <sql id="where">
+        <where>
+                <if test="@sqlt.Ognl@isNotEmpty(userId)">
+                     AND USER_ID = #{userId}
+                </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+<!--                     AND DATA_VERSION = #{dataVersion} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+	               <if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+	                    AND HOSPITAL_ID = #{hospitalId}
+	               </if>
+	               <if test="@sqlt.Ognl@isNotEmpty(loginName)">
+	                    AND LOGIN_NAME = #{loginName}
+	               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(personId)"> -->
+<!--                     AND PERSON_ID = #{personId} -->
+<!--                </if> -->
+	               <if test="@sqlt.Ognl@isNotEmpty(userName)">
+                       AND (
+                            USER_NAME like concat(concat('%',#{userName}),'%')
+                           or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{userName})),'%')
+                           or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{userName})),'%')
+                       )
+	               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(deptId)"> -->
+<!--                     AND DEPT_ID = #{deptId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(lockFlag)"> -->
+<!--                     AND LOCK_FLAG = #{lockFlag} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(userTypes)"> -->
+<!--                     AND USER_TYPES = #{userTypes} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(endDate)"> -->
+<!--                     AND END_DATE = #{endDate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(userLine)"> -->
+<!--                     AND USER_LINE = #{userLine} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(image)"> -->
+<!--                     AND IMAGE = #{image} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(pyCode)"> -->
+<!--                     AND PY_CODE = #{pyCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(wbCode)"> -->
+<!--                     AND WB_CODE = #{wbCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(lastLoginTime)"> -->
+<!--                     AND LAST_LOGIN_TIME = #{lastLoginTime} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(loginCount)"> -->
+<!--                     AND LOGIN_COUNT = #{loginCount} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(guidePageList)"> -->
+<!--                     AND GUIDE_PAGE_LIST = #{guidePageList} -->
+<!--                </if> -->
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_USER
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="SysUser">
+        SELECT <include refid="columns" />
+        FROM SYS_USER
+        <include refid="where"/>
+
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <select id="loginQuery" resultType="SysUser">
+        SELECT USER_ID as userId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,
+               HOSPITAL_ID as hospitalId,LOGIN_NAME as loginName,PERSON_ID as personId,USER_PWD as userPwd,
+               USER_NAME as userName,DEPT_ID as deptId,LOCK_FLAG as lockFlag,USER_TYPES as userTypes,END_DATE as endDate,USER_LINE as userLine,IMAGE as image,PY_CODE as pyCode,WB_CODE as wbCode,LAST_LOGIN_TIME as lastLoginTime,LOGIN_COUNT as loginCount,GUIDE_PAGE_LIST as guidePageList,CHANG_PASSWD as changPasswd
+        FROM SYS_USER
+        where LOGIN_NAME = #{loginName}
+    </select>
+    <!--     业务sql      -->
+<!--     根据GroupId查询已授权用户列表 -->
+    <select id="haveListByGroupId" resultType="com.buit.his.user.response.SysUserAddResp">
+        SELECT USER_ID as userId,USER_NAME as userName,DEPT_ID as deptId,PY_CODE as pyCode,WB_CODE as wbCode
+        FROM SYS_USER
+        where exists (select SYS_USER_GROUP.USERGROUP_ID from SYS_USER_GROUP where SYS_USER_GROUP.GROUP_ID =#{groupId} and SYS_USER_GROUP.USER_ID = SYS_USER.USER_ID)
+		and SYS_USER.HOSPITAL_ID = #{hospitalId}
+		<if test="@sqlt.Ognl@isNotEmpty(queryName)">
+              AND
+              	( USER_NAME LIKE CONCAT(CONCAT('%',UPPER(#{queryName})),'%')
+					or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryName})),'%')
+					or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryName})),'%')
+				)
+         </if>
+        ORDER BY GMT_MODIFY desc
+    </select>
+<!--     根据GroupId查询未授权用户列表 -->
+    <select id="noListByGroupId" resultType="SysUserAddResp">
+        SELECT USER_ID as userId,USER_NAME as userName,DEPT_ID as deptId,PY_CODE as pyCode,WB_CODE as wbCode
+        FROM SYS_USER
+        where not exists (select SYS_USER_GROUP.USERGROUP_ID from SYS_USER_GROUP where SYS_USER_GROUP.GROUP_ID =#{groupId} and SYS_USER_GROUP.USER_ID = SYS_USER.USER_ID)
+		and SYS_USER.HOSPITAL_ID = #{hospitalId}
+		<if test="@sqlt.Ognl@isNotEmpty(queryName)">
+              AND
+              	( USER_NAME LIKE CONCAT(CONCAT('%',UPPER(#{queryName})),'%')
+					or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryName})),'%')
+					or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{queryName})),'%')
+				)
+         </if>
+        ORDER BY GMT_MODIFY desc
+    </select>
+    <select id="getallUser" resultType="com.buit.his.user.response.SysUserAddResp">
+        SELECT USER_ID as userId,USER_NAME as userName,DEPT_ID as deptId,PY_CODE as pyCode,WB_CODE as wbCode
+        FROM SYS_USER
+        <include refid="where"/>
+    </select>
+
+
+    <select id="getPwd" resultType="SysUser">
+        SELECT USER_ID as userId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,LOGIN_NAME as loginName,PERSON_ID as personId,USER_NAME as userName,DEPT_ID as deptId,LOCK_FLAG as lockFlag,USER_TYPES as userTypes,END_DATE as endDate,USER_LINE as userLine,IMAGE as image,PY_CODE as pyCode,WB_CODE as wbCode,LAST_LOGIN_TIME as lastLoginTime,LOGIN_COUNT as loginCount,GUIDE_PAGE_LIST as guidePageList,CHANG_PASSWD as changPasswd,USER_PWD as userPwd
+        FROM SYS_USER where
+        USER_ID = #{value}
+    </select>
+
+<!--     <select id="getReport" resultType="Map"> -->
+<!--     <![CDATA[ -->
+<!--         	SELECT	 -->
+<!-- 				AA.KSMC AS KSMC, -->
+<!-- 				SUM(AA.JZRC) AS GHRC, -->
+<!-- 				SUM(AA.GHJE) AS GHJE, -->
+<!-- 				SUM(AA.ZLJE) AS ZLJE, -->
+<!-- 				SUM(AA.BLJE) AS BLJE, -->
+<!-- 				SUM(AA.ZJJE) AS ZJJE, -->
+<!-- 				(SUM(AA.GHJE) + SUM(AA.ZLJE) + SUM(AA.BLJE) + SUM(AA.ZJJE)) AS HJJE -->
+<!-- 				FROM -->
+<!-- 				(	 -->
+<!-- 				SELECT -->
+<!-- 				B.KSMC, -->
+<!-- 				COUNT(*) AS JZRC, -->
+<!-- 				SUM(A.GHJE) AS GHJE, -->
+<!-- 				SUM(A.ZLJE) AS ZLJE, -->
+<!-- 				SUM(A.BLJE) AS BLJE, -->
+<!-- 				SUM(A.ZJFY) AS ZJJE -->
+<!-- 				FROM -->
+<!-- 					OP_GHMX A, -->
+<!-- 					OP_GHKS B -->
+<!-- 				WHERE	 -->
+<!-- 					A.GHSJ >=  #{startTime} -->
+<!-- 				AND A.GHSJ <=  #{endTime} -->
+<!-- 				AND A.KSDM = B.KSDM and instr(A.JZHM,'MGH')=0 -->
+<!-- 				GROUP BY -->
+<!-- 					B.KSMC -->
+<!-- 				UNION ALL -->
+<!-- 				SELECT -->
+<!-- 				B.KSMC, -->
+<!-- 				-COUNT(*) AS JZRC, -->
+<!-- 				-SUM(A.GHJE) AS GHJE, -->
+<!-- 				-SUM(A.ZLJE) AS ZLJE, -->
+<!-- 				-SUM(A.BLJE) AS BLJE, -->
+<!-- 				-SUM(A.ZJFY) AS ZJJE -->
+<!-- 				FROM -->
+<!-- 					OP_GHMX A, -->
+<!-- 					OP_THMX T, -->
+<!-- 					OP_GHKS B -->
+<!-- 				WHERE -->
+<!-- 					A.SBXH = T.SBXH -->
+<!-- 				AND T.THRQ >= #{startTime} -->
+<!-- 				AND  T.THRQ <= #{endTime} -->
+<!-- 					AND A.KSDM = B.KSDM and instr(A.JZHM,'MGH')=0 -->
+<!-- 					GROUP BY -->
+<!-- 						B.KSMC -->
+<!-- 				) AA -->
+<!-- 				GROUP BY -->
+<!-- 				AA.KSMC -->
+<!-- 				ORDER BY -->
+<!-- 				AA.KSMC  -->
+
+<!-- 	]]> -->
+<!--     </select> -->
+    <!--获取岗位用户列表字典-->
+    <select id="findGroupUserDic" resultType="com.buit.his.user.response.DicResp">
+    SELECT
+        su.USER_ID AS dicId,
+        su.USER_NAME AS dicName
+        FROM
+        sys_user su
+        INNER JOIN sys_user_group sum ON su.USER_ID = sum.USER_ID
+        WHERE
+        sum.GROUP_ID = #{groupId} and sum.HOSPITAL_ID=#{hospitalId}
+    </select>
+    <select id="queryLoginDoctor" resultType="com.buit.his.user.response.SysUserResp">
+        SELECT
+            sys_user.USER_ID as userId,
+            sys_user.USER_NAME as userName
+        FROM
+            sys_user,
+            op_yspb
+        WHERE
+            sys_user.USER_ID = op_yspb.YSDM
+            AND DATE_FORMAT( now(), '%Y-%m-%d' ) = DATE_FORMAT( op_yspb.GZRQ, '%Y-%m-%d' )
+            AND ksdm = #{ksid}
+    </select>
+    <select id="queryByKjyw" resultType="com.buit.system.response.SysUserByKjywResp">
+        SELECT
+            per.ORGANIZCODE as jgid,
+            per.PERSONID as personalid,
+            per.PERSONNAME as personname,
+            LOGIN_NAME as loginname
+        from hr_personnel per,
+             sys_user suser
+        WHERE per.PERSONID = suser.PERSON_ID
+            AND per.ANTIBIOTICRIGHT = '1'
+            AND per.ORGANIZCODE = #{jgid}
+            AND ANTIBIOTICLEVEL LIKE concat('%',#{kjywdj},'%')
+    </select>
+    <update id="updateLoginErrorFlag">  <!--     修改登录锁定标识 -->
+        UPDATE SYS_USER SET
+        LOGIN_ERROR_FLAG = #{loginErrorFlag}
+        WHERE
+        USER_ID = #{userId}
+    </update>
+
+    <select id="errorUser" resultType="com.buit.his.user.response.SysUserResp">
+        select
+        USER_ID as userId,
+        USER_NAME as userName,
+        DEPT_ID as deptId,
+        PY_CODE as pyCode,
+        WB_CODE as wbCode,
+        LOGIN_NAME loginName,
+        LOGIN_ERROR_FLAG loginErrorFlag,
+        '密码错误次数超过十次' reason,
+        PERSON_ID     personId
+        from
+        sys_user
+        where HOSPITAL_ID=#{hospitalId} and LOGIN_ERROR_FLAG=0
+        <if test="@sqlt.Ognl@isNotEmpty(userName)">
+            and (USER_NAME like concat('%',#{userName},'%') or LOGIN_NAME like concat('%',#{userName},'%')
+            or PY_CODE like concat('%',#{userName},'%')
+            )
+        </if>
+    </select>
+
+</mapper>
+

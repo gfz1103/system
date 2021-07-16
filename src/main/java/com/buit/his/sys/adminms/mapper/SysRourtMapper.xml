@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 前台发布端口 -->
+<mapper namespace="com.buit.his.sys.adminms.dao.SysRourtDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ROURT_ID as rourtId,module as module,default_Register as defaultRegister,dev_Entry as devEntry,dep_Entry as depEntry,router_Base as routerBase
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_ROURT (
+            ROURT_ID ,
+            module ,
+            default_Register ,
+            dev_Entry ,
+            dep_Entry ,
+            router_Base 
+        ) VALUES (
+            #{rourtId} ,
+            #{module} ,
+            #{defaultRegister} ,
+            #{devEntry} ,
+            #{depEntry} ,
+            #{routerBase} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE SYS_ROURT SET
+            module = #{module} ,
+            default_Register = #{defaultRegister} ,
+            dev_Entry = #{devEntry} ,
+            dep_Entry = #{depEntry} ,
+            router_Base = #{routerBase} 
+        WHERE 
+            ROURT_ID = #{rourtId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_ROURT WHERE
+        ROURT_ID = #{rourtId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_ROURT <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysRourt">
+        SELECT <include refid="columns" />
+            FROM SYS_ROURT 
+            WHERE 
+        ROURT_ID = #{rourtId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(rourtId)"> -->
+<!--                     AND ROURT_ID = #{rourtId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(module)"> -->
+<!--                     AND module = #{module} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(defaultRegister)"> -->
+<!--                     AND default_Register = #{defaultRegister} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(devEntry)"> -->
+<!--                     AND dev_Entry = #{devEntry} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(depEntry)"> -->
+<!--                     AND dep_Entry = #{depEntry} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(routerBase)"> -->
+<!--                     AND router_Base = #{routerBase} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_ROURT 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="SysRourt">
+        SELECT <include refid="columns" />
+        FROM SYS_ROURT 
+        <include refid="where"/>
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

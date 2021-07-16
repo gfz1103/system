@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 消息危急值接收记录 -->
+<mapper namespace="com.buit.his.sys.msg.dao.MessJsjlDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        mess_jsjl_id as messJsjlId,mess_id as messId,ks_id as ksId,user_id as userId,js_time as jsTime,yw_type as ywType
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO MESS_JSJL (
+            mess_jsjl_id ,
+            mess_id ,
+            ks_id ,
+            user_id ,
+            js_time ,
+            yw_type 
+        ) VALUES (
+            #{messJsjlId} ,
+            #{messId} ,
+            #{ksId} ,
+            #{userId} ,
+            #{jsTime} ,
+            #{ywType} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE MESS_JSJL SET
+            mess_id = #{messId} ,
+            ks_id = #{ksId} ,
+            user_id = #{userId} ,
+            js_time = #{jsTime} ,
+            yw_type = #{ywType} 
+        WHERE 
+            mess_jsjl_id = #{messJsjlId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM MESS_JSJL WHERE
+        mess_jsjl_id = #{messJsjlId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM MESS_JSJL <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="MessJsjl">
+        SELECT <include refid="columns" />
+            FROM MESS_JSJL 
+            WHERE 
+        mess_jsjl_id = #{messJsjlId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messJsjlId)"> -->
+<!--                     AND mess_jsjl_id = #{messJsjlId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messId)"> -->
+<!--                     AND mess_id = #{messId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(ksId)"> -->
+<!--                     AND ks_id = #{ksId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(userId)"> -->
+<!--                     AND user_id = #{userId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(jsTime)"> -->
+<!--                     AND js_time = #{jsTime} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(ywType)"> -->
+<!--                     AND yw_type = #{ywType} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM MESS_JSJL 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="MessJsjl">
+        SELECT <include refid="columns" />
+        FROM MESS_JSJL 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

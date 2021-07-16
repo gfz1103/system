@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 疾病治则关联 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.CmoSsxmgxDao">
+
+    <update id="replace">
+        replace into cmo_ssxmgx(fyxh,ssxh)
+        values(#{fyxh},#{ssxh})
+    </update>
+
+    <select id="querySsbmAndSsmcByFyxh" resultType="com.buit.his.sys.centermaintenance.dto.SsbmDto">
+        select a.fyxh,a.ssxh as ssbm,b.ssmc as ssmc
+        from cmo_ssxmgx a
+        inner join dic_ssbm b on a.ssxh =b.id
+        where a.fyxh in (<foreach collection="list" item="l" separator=",">#{l}</foreach>)
+    </select>
+</mapper>
+

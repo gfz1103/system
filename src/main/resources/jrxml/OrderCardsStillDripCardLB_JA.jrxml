@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderCardsStillDripCard" language="groovy" pageWidth="275" pageHeight="182" columnWidth="275" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" whenResourceMissingType="Empty" uuid="468bd773-2695-4453-8681-c4f4fdb3a6f7">
+	<property name="ireport.zoom" value="2.928200000000002"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<field name="BRCH" class="java.lang.String"/>
+	<field name="BRXM" class="java.lang.String"/>
+	<field name="BRNL" class="java.lang.String"/>
+	<field name="PCMC" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="Date" class="java.lang.String"/>
+	<field name="Time" class="java.lang.String"/>
+	<field name="BRXB" class="java.lang.String"/>
+	<field name="PC" class="java.lang.String"/>
+	<detail>
+		<band height="99" splitType="Stretch">
+			<subreport>
+				<reportElement style="myBaseStyleName" x="4" y="3" width="266" height="95" uuid="21324031-c7c7-4799-9414-7e57ab5b486b"/>
+				<dataSourceExpression><![CDATA[$F{PCMC}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OrderCardsStillDripChildren_JA.jasper"]]></subreportExpression>
+			</subreport>
+		</band>
+	</detail>
+</jasperReport>

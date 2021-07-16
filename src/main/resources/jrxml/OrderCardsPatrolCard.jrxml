@@ -1,0 +1,122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderCardsMouthCardZX" language="groovy" pageWidth="419" pageHeight="595" columnWidth="419" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="89e71a9e-fe31-4e70-a11c-abdd5114c88c">
+	<property name="ireport.zoom" value="1.8150000000000004"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="SUBREPORT_DIR" class="java.lang.String" isForPrompting="false">
+		<defaultValueExpression><![CDATA[""]]></defaultValueExpression>
+	</parameter>
+	<parameter name="DAY" class="java.lang.String"/>
+	<parameter name="MONTH" class="java.lang.String"/>
+	<parameter name="YEAR" class="java.lang.String"/>
+	<field name="BRCH" class="java.lang.String"/>
+	<field name="BRXM" class="java.lang.String"/>
+	<field name="BRNL" class="java.lang.String"/>
+	<field name="ZYHM" class="net.sf.jasperreports.engine.JRDataSource"/>
+	<field name="TITILE" class="java.lang.String"/>
+	<field name="BQMC" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="86" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="152" y="41" width="34" height="20" uuid="88cfff58-7787-468c-82ec-ff5bb8435809"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRCH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="236" y="41" width="50" height="20" uuid="135def1a-20ac-4cc4-a28c-6ff1d4595c47"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRXM}]]></textFieldExpression>
+			</textField>
+			<subreport>
+				<reportElement style="myBaseStyleName" x="0" y="61" width="419" height="20" uuid="cb6eb3b7-ca34-4e66-8c93-f00c0e3d8391"/>
+				<dataSourceExpression><![CDATA[$F{ZYHM}]]></dataSourceExpression>
+				<subreportExpression><![CDATA[$P{SUBREPORT_DIR} + "OrderCardsChildrenSYXSKCQ.jasper"]]></subreportExpression>
+			</subreport>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="196" y="41" width="40" height="20" uuid="d1c567bb-eacd-4917-9cbb-b459e8572589"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<text><![CDATA[姓名：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="296" y="41" width="40" height="20" uuid="d1c567bb-eacd-4917-9cbb-b459e8572589"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<text><![CDATA[日期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="387" y="41" width="19" height="20" uuid="63ec0ae5-d682-4f6c-bfa1-838bac58049f"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DAY}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="364" y="41" width="13" height="20" uuid="0482ddf2-0575-44c2-bfde-8deb170c9854"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{MONTH}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="336" y="41" width="18" height="20" uuid="baccb851-1add-4f8d-92ba-c4dc43062db9"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{YEAR}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="354" y="41" width="10" height="16" uuid="3a58bb49-083c-4ab1-995b-026967de8996"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="377" y="41" width="10" height="16" uuid="91080c84-6916-4ba3-aa04-6fcff192317f"/>
+				<textElement textAlignment="Center" verticalAlignment="Bottom">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<text><![CDATA[.]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="112" y="41" width="40" height="20" uuid="d1c567bb-eacd-4917-9cbb-b459e8572589"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<text><![CDATA[床号：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="12" y="41" width="40" height="20" uuid="d1c567bb-eacd-4917-9cbb-b459e8572589"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="8"/>
+				</textElement>
+				<text><![CDATA[病区：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="52" y="41" width="50" height="20" uuid="88cfff58-7787-468c-82ec-ff5bb8435809"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BQMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="35" y="3" width="358" height="28" uuid="ea82fe6e-9b37-488a-85a0-8486907792e8"/>
+				<textElement textAlignment="Center" markup="none">
+					<font fontName="宋体" size="18" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{TITILE}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+</jasperReport>

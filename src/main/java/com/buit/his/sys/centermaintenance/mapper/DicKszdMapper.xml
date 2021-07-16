@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 科室字典 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicKszdDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID as id,OFFICECODE as officecode,OFFICENAME as officename,ADDRESS as address,ORGANIZCODE as organizcode,PARENTID as parentid,ORGANIZTYPE as organiztype,TELPHONE as telphone,EMAIL as email,PLSX as plsx,PYCODE as pyCode,ACCOUNTOFFICE as accountoffice,OUTPATIENTCLINIC as outpatientclinic,MEDICALLAB as medicallab,HOSPITALDEPT as hospitaldept,HOSPITALAREA as hospitalarea,EMERGENCY as emergency,SURGICAL as surgical,FLUID as fluid,TCM as tcm,INTERNET as internet,RATEDBED as ratedbed,LOGOFF as logoff,YBKS as ybks,XSYBKS as xsybks,KSDZ as ksdz,YLJGID as yljgid,SFSCPT as sfscpt,HSFL as hsfl,BBGB as bbgb,KSFL as ksfl,SYKS as syks,LGBQ as lgbq,LGKS as lgks,ZLKS as zlks,ZSKS as zsks
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_KSZD (
+            ID ,
+            OFFICECODE ,
+            OFFICENAME ,
+            ADDRESS ,
+            ORGANIZCODE ,
+            PARENTID ,
+            ORGANIZTYPE ,
+            TELPHONE ,
+            EMAIL ,
+            PLSX ,
+            PYCODE ,
+            ACCOUNTOFFICE ,
+            OUTPATIENTCLINIC ,
+            MEDICALLAB ,
+            HOSPITALDEPT ,
+            HOSPITALAREA ,
+            EMERGENCY ,
+            SURGICAL ,
+            FLUID ,
+            TCM ,
+            INTERNET ,
+            RATEDBED ,
+            LOGOFF ,
+            YBKS ,
+            XSYBKS ,
+            KSDZ ,
+            YLJGID ,
+            SFSCPT ,
+            HSFL ,
+            BBGB ,
+            KSFL ,
+            SYKS,
+            LGBQ,
+            LGKS,
+            ZLKS,
+            ZSKS
+        ) VALUES (
+            #{id} ,
+            #{officecode} ,
+            #{officename} ,
+            #{address} ,
+            #{organizcode} ,
+            #{parentid} ,
+            #{organiztype} ,
+            #{telphone} ,
+            #{email} ,
+            #{plsx} ,
+            #{pyCode} ,
+            #{accountoffice} ,
+            #{outpatientclinic} ,
+            #{medicallab} ,
+            #{hospitaldept} ,
+            #{hospitalarea} ,
+            #{emergency} ,
+            #{surgical} ,
+            #{fluid} ,
+            #{tcm} ,
+            #{internet} ,
+            #{ratedbed} ,
+            #{logoff} ,
+            #{ybks} ,
+            #{xsybks} ,
+            #{ksdz} ,
+            #{yljgid} ,
+            #{sfscpt} ,
+            #{hsfl} ,
+            #{bbgb} ,
+            #{ksfl} ,
+            #{syks},
+            #{lgbq},
+            #{lgks},
+            #{zlks},
+            #{zsks}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE DIC_KSZD SET
+            OFFICECODE = #{officecode},
+            OFFICENAME = #{officename},
+            ADDRESS = #{address},
+            ORGANIZCODE = #{organizcode},
+            PARENTID = #{parentid},
+            ORGANIZTYPE = #{organiztype},
+            TELPHONE = #{telphone},
+            EMAIL = #{email},
+            PLSX = #{plsx},
+            PYCODE = #{pyCode},
+            ACCOUNTOFFICE = #{accountoffice},
+            OUTPATIENTCLINIC = #{outpatientclinic},
+            MEDICALLAB = #{medicallab},
+            HOSPITALDEPT = #{hospitaldept},
+            HOSPITALAREA = #{hospitalarea},
+            EMERGENCY = #{emergency},
+            SURGICAL = #{surgical},
+            FLUID = #{fluid},
+            TCM = #{tcm} ,
+            INTERNET = #{internet} ,
+            RATEDBED = #{ratedbed},
+            LOGOFF = #{logoff},
+            YBKS = #{ybks},
+            XSYBKS = #{xsybks},
+            KSDZ = #{ksdz},
+            YLJGID = #{yljgid},
+            SFSCPT = #{sfscpt},
+            HSFL = #{hsfl},
+            BBGB = #{bbgb},
+            KSFL = #{ksfl},
+            SYKS = #{syks},
+            LGBQ = #{lgbq},
+            LGKS = #{lgks},
+            ZLKS = #{zlks},
+            ZSKS = #{zsks}
+        WHERE
+        ID = #{id}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_KSZD WHERE
+        ID = #{id}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM DIC_KSZD
+        <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="DicKszd">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_KSZD
+        WHERE
+        ID = #{id}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(id)">
+                AND ID = #{id}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(officecode)">
+                AND OFFICECODE = #{officecode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(officename)">
+                AND OFFICENAME = #{officename}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(address)">
+                AND ADDRESS = #{address}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(organizcode)">
+                AND ORGANIZCODE = #{organizcode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(parentid)">
+                AND PARENTID = #{parentid}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(organiztype)">
+                AND ORGANIZTYPE = #{organiztype}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(telphone)">
+                AND TELPHONE = #{telphone}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(email)">
+                AND EMAIL = #{email}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(plsx)">
+                AND PLSX = #{plsx}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(pyCode)">
+                AND PYCODE = #{pyCode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(accountoffice)">
+                AND ACCOUNTOFFICE = #{accountoffice}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(outpatientclinic)">
+                AND OUTPATIENTCLINIC = #{outpatientclinic}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(medicallab)">
+                AND MEDICALLAB = #{medicallab}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hospitaldept)">
+                AND HOSPITALDEPT = #{hospitaldept}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hospitalarea)">
+                AND HOSPITALAREA = #{hospitalarea}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(emergency)">
+                AND EMERGENCY = #{emergency}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(surgical)">
+                AND SURGICAL = #{surgical}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fluid)">
+                AND FLUID = #{fluid}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ratedbed)">
+                AND RATEDBED = #{ratedbed}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(logoff)">
+                AND LOGOFF = #{logoff}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ybks)">
+                AND YBKS = #{ybks}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(xsybks)">
+                AND XSYBKS = #{xsybks}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ksdz)">
+                AND KSDZ = #{ksdz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yljgid)">
+                AND YLJGID = #{yljgid}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(sfscpt)">
+                AND SFSCPT = #{sfscpt}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hsfl)">
+                AND HSFL = #{hsfl}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bbgb)">
+                AND BBGB = #{bbgb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ksfl)">
+                AND KSFL = #{ksfl}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(syks)">
+                AND SYKS = #{syks}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(tcm)">
+                AND TCM = #{tcm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(internet)">
+                AND INTERNET = #{internet}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zlks)">
+                AND ZLKS = #{zlks}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zsks)">
+                AND ZSKS = #{zsks}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_KSZD
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="DicKszd">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_KSZD
+        <include refid="where"/>
+
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <!-- 获取科室代码和科室名称 -->
+    <select id="getKsInfo" parameterType="Map" resultType="java.util.Map">
+        SELECT
+			c.MZKS AS KSDM,
+			b.OFFICENAME AS KSMC
+		FROM
+			DIC_KSZD b,
+			OP_GHKS c
+		WHERE
+			c.KSDM = #{ksdm}
+			AND c.MZKS = b.ID
+    </select>
+
+    <!-- 获取特定字典文件的Value -->
+    <select id="getVauleByKey" resultType="DicKszd">
+        select
+        <include refid="columns"/>
+        from DIC_KSZD
+        where organizcode = #{jgid}
+        and logoff = '0'
+        and hospitaldept = '1'
+        and id = #{id}
+        and officecode not in (select parentid
+        from DIC_KSZD
+        where organizcode != parentid
+        and logoff = 0
+        and organizcode = #{jgid})
+    </select>
+
+    <!--查询科室集合-->
+    <select id="queryList" resultType="com.buit.his.sys.centermaintenance.response.DicKszdResp">
+        select
+        <include refid="columns"/>
+        from DIC_KSZD
+        where 1=1
+        <if test="@sqlt.Ognl@isNotEmpty(pycode)">
+            and PYCODE like concat(concat('%', #{pycode}), '%')
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(parentid)">
+            and PARENTID = #{parentid}
+        </if>
+    </select>
+    <!--查询住院病人科室字典-->
+    <select id="queryZyBrksDic" resultType="DicKszd">
+        SELECT
+        <include refid="columns"/>
+        FROM
+        DIC_KSZD
+        WHERE
+        ORGANIZCODE = #{hospitalId}
+        AND LOGOFF = '0'
+        AND HOSPITALDEPT = '1'
+        AND (
+        OFFICECODE NOT IN (
+        SELECT
+        PARENTID
+        FROM
+        DIC_KSZD
+        WHERE
+        ORGANIZCODE &lt;&gt; PARENTID
+        AND LOGOFF = 0
+        AND ORGANIZCODE = #{hospitalId}
+        ))
+
+
+    </select>
+    <!--停用科室-->
+    <update id="stopDept">
+        update DIC_KSZD set logoff = 1
+        where id = #{id}
+    </update>
+    
+    <!-- 获取科室名称 -->
+    <select id="getOfficeName" resultType="DicKszd">
+        select
+        <include refid="columns"/>
+        from DIC_KSZD
+        where organizcode = #{jgid}
+        and logoff = '0'
+        and hospitaldept = '1'
+        and id in (${id})
+        and officecode not in (select parentid
+        from DIC_KSZD
+        where organizcode != parentid
+        and logoff = 0
+        and organizcode = #{jgid})
+    </select>
+
+    <!-- 获取医保科室代码-->
+    <select id="getYbksdm" parameterType="Map" resultType="java.util.Map">
+        SELECT
+			 b.ybks
+		FROM
+		 op_ghks a,
+		 dic_kszd b
+		WHERE
+		logoff = 0 AND
+			 a.mzks=b.id
+			AND  a.ksdm=#{ksdm}
+    </select>
+
+    <!-- 获取医保科室代码-->
+    <select id="getYbksdmzy" parameterType="Map" resultType="java.util.Map">
+        SELECT
+			 ybks
+		FROM
+		 dic_kszd
+		WHERE
+		logoff = 0 AND
+		id = #{brks} limit 1
+    </select>
+    <select id="getByKsdm" resultType="com.buit.his.sys.centermaintenance.response.DicKszdResp">
+        SELECT <include refid="columns" />
+        FROM dic_kszd
+        WHERE ORGANIZCODE = #{jgid} AND LOGOFF = 0 AND ID = #{brks}
+    </select>
+
+
+</mapper>
+

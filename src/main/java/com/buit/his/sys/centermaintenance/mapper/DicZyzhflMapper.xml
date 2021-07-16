@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 中医证候分类 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicZyzhflDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        id,parent_id as parentId,zhfl as zhfl,flbm as flbm,fldm as fldm,flmc as flmc,pydm as pydm,wbdm as wbdm,zxbz as zxbz,bzxx as bzxx
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_ZYZHFL (
+            zhfl ,
+            flbm ,
+            fldm ,
+            flmc ,
+            pydm ,
+            wbdm ,
+            zxbz ,
+            bzxx 
+        ) VALUES (
+            #{zhfl} ,
+            #{flbm} ,
+            #{fldm} ,
+            #{flmc} ,
+            #{pydm} ,
+            #{wbdm} ,
+            #{zxbz} ,
+            #{bzxx} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE DIC_ZYZHFL SET
+            zhfl = #{zhfl} ,
+            flbm = #{flbm} ,
+            fldm = #{fldm} ,
+            flmc = #{flmc} ,
+            pydm = #{pydm} ,
+            wbdm = #{wbdm} ,
+            zxbz = #{zxbz} ,
+            bzxx = #{bzxx} 
+        WHERE 
+-->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_ZYZHFL WHERE
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM DIC_ZYZHFL <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DicZyzhfl">
+        SELECT <include refid="columns" />
+            FROM DIC_ZYZHFL 
+            WHERE 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(zhfl)"> -->
+<!--                     AND zhfl = #{zhfl} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(flbm)"> -->
+<!--                     AND flbm = #{flbm} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(fldm)"> -->
+<!--                     AND fldm = #{fldm} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(flmc)"> -->
+<!--                     AND flmc = #{flmc} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(pydm)"> -->
+<!--                     AND pydm = #{pydm} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(wbdm)"> -->
+<!--                     AND wbdm = #{wbdm} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(zxbz)"> -->
+<!--                     AND zxbz = #{zxbz} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(bzxx)"> -->
+<!--                     AND bzxx = #{bzxx} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_ZYZHFL 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DicZyzhfl">
+        SELECT <include refid="columns" />
+        FROM DIC_ZYZHFL 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+
+    <select id="queryList" resultType="com.buit.his.sys.centermaintenance.response.DicZyzhflResp">
+        SELECT <include refid="columns" />
+        FROM DIC_ZYZHFL
+    </select>
+</mapper>
+

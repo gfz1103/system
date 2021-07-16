@@ -1,0 +1,223 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicZyjbDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        JBBS as jbbs,ZYFL as zyfl,JBDM as jbdm,JBMC as jbmc,PYDM as pydm,WBDM as wbdm,QTDM as qtdm,XBXZ as xbxz,YXZY as yxzy,YXHZ as yxhz,YXWY as yxwy,YXSW as yxsw,YXQT as yxqt,KZFS as kzfs,ZXBZ as zxbz,BZXX as bzxx
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_ZYJB (
+            JBBS ,
+            ZYFL ,
+            JBDM ,
+            JBMC ,
+            PYDM ,
+            WBDM ,
+            QTDM ,
+            XBXZ ,
+            YXZY ,
+            YXHZ ,
+            YXWY ,
+            YXSW ,
+            YXQT ,
+            KZFS ,
+            ZXBZ ,
+            BZXX
+        ) VALUES (
+            #{jbbs} ,
+            #{zyfl} ,
+            #{jbdm} ,
+            #{jbmc} ,
+            #{pydm} ,
+            #{wbdm} ,
+            #{qtdm} ,
+            #{xbxz} ,
+            #{yxzy} ,
+            #{yxhz} ,
+            #{yxwy} ,
+            #{yxsw} ,
+            #{yxqt} ,
+            #{kzfs} ,
+            #{zxbz} ,
+            #{bzxx}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE DIC_ZYJB SET
+            JBBS = #{jbbs},
+            ZYFL = #{zyfl},
+            JBDM = #{jbdm},
+            JBMC = #{jbmc},
+            PYDM = #{pydm},
+            WBDM = #{wbdm},
+            QTDM = #{qtdm},
+            XBXZ = #{xbxz},
+            YXZY = #{yxzy},
+            YXHZ = #{yxhz},
+            YXWY = #{yxwy},
+            YXSW = #{yxsw},
+            YXQT = #{yxqt},
+            KZFS = #{kzfs},
+            ZXBZ = #{zxbz},
+            BZXX = #{bzxx}
+        WHERE
+            JBBS = #{jbbs}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_ZYJB WHERE
+        JBBS = #{jbbs}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM DIC_ZYJB
+        <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DicZyjb">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_ZYJB
+        WHERE
+        JBBS = #{jbbs}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(jbbs)">
+                 AND JBBS = #{jbbs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zyfl)">
+                 AND ZYFL = #{zyfl}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbdm)">
+                 AND JBDM = #{jbdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbmc)">
+                 AND JBMC = #{jbmc}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(pydm)">
+                 AND PYDM = #{pydm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(wbdm)">
+                 AND WBDM = #{wbdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(qtdm)">
+                 AND QTDM = #{qtdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(xbxz)">
+                 AND XBXZ = #{xbxz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxzy)">
+                 AND YXZY = #{yxzy}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxhz)">
+                 AND YXHZ = #{yxhz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxwy)">
+                 AND YXWY = #{yxwy}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxsw)">
+                 AND YXSW = #{yxsw}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxqt)">
+                 AND YXQT = #{yxqt}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(kzfs)">
+                 AND KZFS = #{kzfs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zxbz)">
+                 AND ZXBZ = #{zxbz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bzxx)">
+                 AND BZXX = #{bzxx}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="Integer">
+        SELECT count(*) FROM DIC_ZYJB
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DicZyjb">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_ZYJB
+        <include refid="where"/>
+
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <select id="findZyjb" resultType="com.buit.his.sys.centermaintenance.response.DicZyjbResp">
+        SELECT
+        zyjb.ZYFL AS zyfl,
+        zyjbfl.FLMC AS flmc,
+        zyjb.JBBS AS jbxh,
+        zyjb.JBBS AS jbbs,
+        zyjb.JBDM AS jbdm,
+        zyjb.JBDM AS icdCode,
+        zyjb.JBMC AS jbmc,
+        zyjb.PYDM AS pydm,
+        zyjb.WBDM AS wbdm
+        FROM
+        DIC_ZYJB zyjb
+        LEFT JOIN dic_zyjbfl zyjbfl ON zyjb.ZYFL = zyjbfl.ZYFL
+        where 1=1
+        <if test="@sqlt.Ognl@isNotEmpty(pydm)">
+            AND zyjb.PYDM like CONCAT(CONCAT('%',UPPER(#{pydm})),'%')
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(notIn)">
+            <foreach collection="notIn" item="item" separator="," open=" and JBBS NOT in( " close=" ) ">
+                #{item}
+            </foreach>
+        </if>
+    </select>
+
+    <select id="queryList" resultType="com.buit.his.sys.centermaintenance.response.DicZyjbResp">
+        select
+            a.JBBS as JBBS,
+            a.ZYFL as ZYFL,
+            a.JBDM as JBDM,
+            a.JBMC as JBMC,
+            a.PYDM as PYDM,
+            a.WBDM as WBDM,
+            a.QTDM as QTDM,
+            a.XBXZ as XBXZ,
+            a.YXZY as YXZY,
+            a.YXHZ as YXHZ,
+            a.YXWY as YXWY,
+            a.YXSW as YXSW,
+            a.YXQT as YXQT,
+            a.KZFS as KZFS,
+            a.ZXBZ as ZXBZ,
+            a.BZXX as BZXX,
+            b.flmc
+        from DIC_ZYJB a, dic_zyjbfl b
+        where b.ZYFL = a.ZYFL and b.zyfl like '${zyfl}%'
+        <if test="@sqlt.Ognl@isNotEmpty(pydm)">
+            AND a.PYDM like '%${pydm}%'
+        </if>
+        ORDER BY LENGTH(JBMC)
+
+    </select>
+
+    <select id="findZyjbbm" resultType="com.buit.his.sys.centermaintenance.response.DicZyjbResp">
+        SELECT
+        jbbs ,
+        jbdm ,
+        jbmc ,
+        pydm ,
+        wbdm
+        FROM
+        DIC_ZYJB
+    </select>
+
+</mapper>
+

@@ -1,0 +1,606 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" language="groovy" printOrder="Horizontal" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="498b6554-f0fd-4594-ad39-673a8c6f4441">
+	<property name="ireport.zoom" value="1.1289478601075547"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="Table Dataset 1" uuid="a0287e9d-99cd-40e5-ad1e-0c86918d132a"/>
+	<parameter name="datefrom" class="java.lang.String"/>
+	<parameter name="dateto" class="java.lang.String"/>
+	<parameter name="title" class="java.lang.String"/>
+	<parameter name="sum1" class="java.lang.String"/>
+	<parameter name="sum2" class="java.lang.String"/>
+	<parameter name="sum3" class="java.lang.String"/>
+	<parameter name="sum4" class="java.lang.String"/>
+	<parameter name="sum5" class="java.lang.String"/>
+	<parameter name="sum6" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select distinct a3.brxz as BRXZ,
+                a3.xzmc as XZMC,
+                nvl(a3.ghrc,0) as GHRC,
+                nvl(a3.ghfy,0) as GHYF,
+                nvl(a1.zfje,0) as ZFJE,
+                nvl(a1.ypfy,0) as YPFY,
+                nvl(a2.ghrs,0) as GHRS
+
+  from ((SELECT BRXZ, SUM(YPFY + YLFY) AS ZFJE, SUM(YPFY + YP) AS YPFY
+           FROM (SELECT MS_MZXX.BRXZ AS BRXZ,
+
+                        nvl(SUM(MS_CF02.YPSL * MS_CF02.YPDJ * MS_CF02.CFTS),
+                            0.00) AS YPFY,
+                        0 as YLFY,
+                        0 AS YP
+                   FROM MS_CF01, MS_CF02, MS_MZXX
+                  WHERE (MS_CF02.CFSB = MS_CF01.CFSB)
+                    AND (MS_MZXX.FPHM = MS_CF01.FPHM)
+                    AND (MS_MZXX.BRID = MS_CF01.BRID)
+                    AND (MS_MZXX.SFRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    AND (MS_MZXX.SFRQ <=
+                        to_date('2015-07-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_CF01.YSDM = '051294')
+                  GROUP BY MS_MZXX.BRXZ
+
+                 UNION ALL
+
+                 SELECT MS_MZXX.BRXZ AS BRXZ,
+                        nvl(SUM(MS_CF02.YPSL * MS_CF02.YPDJ * MS_CF02.CFTS),
+                            0.00) * -1 AS YPFY,
+                        0 AS YLFY,
+                        0 AS YP
+                   FROM MS_CF01, MS_CF02, MS_MZXX, MS_ZFFP
+
+                  WHERE (MS_CF02.CFSB = MS_CF01.CFSB)
+                    AND (MS_MZXX.FPHM = MS_CF01.FPHM)
+                    AND (MS_MZXX.BRID = MS_CF01.BRID)
+                    AND (MS_MZXX.FPHM = MS_ZFFP.FPHM)
+                    AND (MS_ZFFP.ZFRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    AND (MS_ZFFP.ZFRQ <=
+                        to_date('2015-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_CF01.YSDM = '051294')
+                  GROUP BY MS_MZXX.BRXZ
+
+                 UNION ALL
+
+                 SELECT MS_MZXX.BRXZ AS BRXZ,
+                        0 AS YPFY,
+                        nvl(SUM(MS_YJ02.YLDJ * MS_YJ02.YLSL), '0.00') as YLFY,
+                        0 AS YP
+                   FROM MS_MZXX, MS_YJ01, MS_YJ02
+                  WHERE (MS_YJ01.FPHM = MS_MZXX.FPHM)
+                    AND (MS_YJ02.YJXH = MS_YJ01.YJXH)
+                    AND (MS_MZXX.BRID = MS_YJ01.BRID)
+                    AND (MS_MZXX.SFRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    AND (MS_MZXX.SFRQ <=
+                        to_date('2015-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_YJ01.YSDM = '051294')
+
+                  GROUP BY MS_MZXX.BRXZ
+
+                 UNION ALL
+
+                 SELECT MS_MZXX.BRXZ AS BRXZ,
+                        0 AS YPFY,
+                        nvl(SUM(MS_YJ02.YLDJ * MS_YJ02.YLSL), '0.00') * -1 as YLFY,
+                        0 AS YP
+                   FROM MS_MZXX, MS_YJ01, MS_YJ02, MS_ZFFP
+                  WHERE (MS_YJ01.FPHM = MS_MZXX.FPHM)
+                    AND (MS_YJ02.YJXH = MS_YJ01.YJXH)
+                    AND (MS_MZXX.BRID = MS_YJ01.BRID)
+                    AND (MS_ZFFP.FPHM = MS_MZXX.FPHM)
+                    AND (MS_ZFFP.ZFRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    AND (MS_ZFFP.ZFRQ <=
+                        to_date('2015-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_YJ01.YSDM = '051294')
+                  GROUP BY MS_MZXX.BRXZ
+
+                 union all
+
+                 SELECT MS_MZXX.BRXZ AS BRXZ,
+                        0 AS YPFY,
+                        0 as YLFY,
+                        nvl(SUM(MS_YJ02.YLDJ * MS_YJ02.YLSL), '0.00') AS YP
+                   FROM MS_MZXX, MS_YJ01, MS_YJ02
+                  WHERE (MS_YJ01.FPHM = MS_MZXX.FPHM)
+                    AND (MS_YJ02.YJXH = MS_YJ01.YJXH)
+                    AND (MS_MZXX.BRID = MS_YJ01.BRID)
+                    AND (MS_MZXX.SFRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    AND (MS_MZXX.SFRQ <=
+                        to_date('2015-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and ms_yj02.fygb = 4
+                    and (MS_YJ01.YSDM = '051294')
+                  GROUP BY MS_MZXX.BRXZ
+
+                 UNION ALL
+
+                 SELECT MS_MZXX.BRXZ AS BRXZ,
+                        0 AS YPFY,
+                        0 as YLFY,
+                        nvl(SUM(MS_YJ02.YLDJ * MS_YJ02.YLSL), '0.00') * -1 AS YP
+
+                   FROM MS_MZXX, MS_YJ01, MS_YJ02, MS_ZFFP
+                  WHERE (MS_YJ01.FPHM = MS_MZXX.FPHM)
+                    AND (MS_YJ02.YJXH = MS_YJ01.YJXH)
+                    AND (MS_MZXX.BRID = MS_YJ01.BRID)
+                    AND (MS_ZFFP.FPHM = MS_MZXX.FPHM)
+                    AND (MS_ZFFP.ZFRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    AND (MS_ZFFP.ZFRQ <=
+                        to_date('2015-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and ms_yj02.fygb = 4
+                    and (MS_YJ01.YSDM = '051294')
+                  GROUP BY MS_MZXX.BRXZ) cc
+
+          GROUP BY BRXZ
+          ORDER BY BRXZ) a1 FULL JOIN
+
+        (SELECT BRXZ, BRID, SUM(GHRS) AS GHRS
+           FROM (SELECT DISTINCT MS_GHMX.BRID AS BRID,
+                                 MS_GHMX.BRXZ AS BRXZ,
+                                 1            AS GHRS
+                   FROM MS_GHMX
+                  WHERE MS_GHMX.GHSJ >=
+                        to_date('2013-07-01 00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+                    and MS_GHMX.GHSJ <=
+                        to_date('2015-07-31 00:00:00', 'yyyy-mm-dd hh24:mi:ss')
+                    and MS_GHMX.JZYS = '051294'
+                  Group by MS_GHMX.BRID, MS_GHMX.BRXZ
+
+                 UNION ALL
+
+                 SELECT DISTINCT MS_GHMX.BRID AS BRID,
+                                 MS_GHMX.BRXZ AS BRXZ,
+                                 -1           AS GHRS
+                   FROM MS_GHMX, MS_THMX
+                  WHERE MS_THMX.THRQ >=
+                        to_date('2013-05-07 13:23:44', 'yyyy-mm-dd hh24:mi:ss')
+                    and MS_THMX.THRQ <=
+                        to_date('2015-05-07 13:23:44', 'yyyy-mm-dd hh24:mi:ss')
+                    and MS_GHMX.SBXH = MS_THMX.SBXH
+                    and MS_GHMX.JZYS = '051294'
+                  Group by MS_GHMX.BRID, MS_GHMX.BRXZ) BB
+          GROUP BY BRXZ, BRID) a2 on a1.brxz = a2.brxz
+
+        full join
+        (SELECT BRXZ, XZMC, SUM(GHRC) as ghrc, sum(ghfy) as ghfy
+           FROM (SELECT MS_GHMX.BRXZ AS BRXZ,
+                        GY_BRXZ.XZMC AS XZMC,
+                        YS_MZ_JZLS.ysdm as JZYS,
+                        COUNT(*) AS GHRC,
+                        sum(MS_GHMX.GHJE + MS_GHMX.ZLJE + MS_GHMX.ZJFY +
+                            MS_GHMX.BLJE) AS GHFY
+                   FROM MS_GHMX, GY_BRXZ, YS_MZ_JZLS
+                  WHERE (MS_GHMX.BRXZ = GY_BRXZ.BRXZ)
+                    and (YS_MZ_JZLS.ghxh = MS_GHMX.sbxh)
+                    and (MS_GHMX.GHSJ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_GHMX.GHSJ <=
+                        to_date('2015-07-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (YS_MZ_JZLS.ysdm = '051294')
+                  Group by MS_GHMX.BRXZ, GY_BRXZ.XZMC, YS_MZ_JZLS.ysdm
+
+                 UNION ALL
+                 SELECT MS_GHMX.BRXZ AS BRXZ,
+                        GY_BRXZ.XZMC AS XZMC,
+                        YS_MZ_JZLS.ysdm as JZYS,
+                        -COUNT(*) AS GHRC,
+                        -sum(MS_GHMX.GHJE + MS_GHMX.ZLJE + MS_GHMX.ZJFY +
+                             MS_GHMX.BLJE) AS GHFY
+                   FROM MS_GHMX, GY_BRXZ, MS_THMX, YS_MZ_JZLS
+                  WHERE (MS_GHMX.BRXZ = GY_BRXZ.BRXZ)
+                    and (YS_MZ_JZLS.ghxh = MS_GHMX.sbxh)
+                    and (MS_THMX.THRQ >=
+                        to_date('2013-05-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_THMX.THRQ <=
+                        to_date('2013-07-07 13:23:44',
+                                 'yyyy-mm-dd hh24:mi:ss'))
+                    and (MS_GHMX.SBXH = MS_THMX.SBXH)
+                    and (YS_MZ_JZLS.ysdm = '051294')
+                  Group by MS_GHMX.BRXZ, GY_BRXZ.XZMC, YS_MZ_JZLS.ysdm) BB
+          GROUP BY BRXZ, XZMC) a3 on a1.BRXZ = a3.BRXZ)]]>
+	</queryString>
+	<field name="BRXZ" class="java.math.BigDecimal"/>
+	<field name="XZMC" class="java.lang.String"/>
+	<field name="GHRC" class="java.math.BigDecimal"/>
+	<field name="GHYF" class="java.math.BigDecimal"/>
+	<field name="ZFJE" class="java.math.BigDecimal"/>
+	<field name="YPFY" class="java.math.BigDecimal"/>
+	<field name="GHRS" class="java.math.BigDecimal"/>
+	<variable name="sum1" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{GHRC}]]></variableExpression>
+	</variable>
+	<variable name="sum2" class="java.math.BigDecimal" resetType="Column">
+		<variableExpression><![CDATA[]]></variableExpression>
+	</variable>
+	<variable name="sum3" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[($F{GHRC})==0?0:($F{YPFY})/($F{GHRC})]]></variableExpression>
+	</variable>
+	<variable name="sum4" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[($F{ZFJE})==0?0:($F{YPFY})/($F{ZFJE})]]></variableExpression>
+	</variable>
+	<variable name="sum5" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[$F{GHRS}]]></variableExpression>
+	</variable>
+	<variable name="sum6" class="java.math.BigDecimal" resetType="Column" calculation="Sum">
+		<variableExpression><![CDATA[($F{GHRS})==0?0:($F{GHRC})/($F{GHRS})]]></variableExpression>
+	</variable>
+	<columnHeader>
+		<band height="80">
+			<textField>
+				<reportElement style="myBaseStyleName" x="149" y="0" width="492" height="30" uuid="f627be1b-f051-441b-826c-d4af4954fab7"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="16" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="256" y="30" width="71" height="20" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[统计日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="398" y="30" width="14" height="20" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[到]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="328" y="30" width="69" height="20" uuid="5f45304e-f55f-4f8a-86df-63381a528b6a"/>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{datefrom}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="413" y="30" width="77" height="20" uuid="7816075d-b5a6-4a55-856e-aa300e0a7831"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateto}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="41" y="55" width="108" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[性质名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="149" y="55" width="97" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[门诊人次	]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="343" y="55" width="96" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[每门诊人次药费]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="246" y="55" width="97" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[每门诊人次费用]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="439" y="55" width="124" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[每门诊人次药占比(%)]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="563" y="55" width="62" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[门诊人数]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="625" y="55" width="62" height="25" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[复诊率(%)]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="41" y="0" width="108" height="21" uuid="20e1b978-921b-4a2f-869d-3c9d809ff130"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{XZMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="149" y="0" width="97" height="21" uuid="0877fc19-13d7-4d67-8062-67758cdd0092"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GHRC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="246" y="0" width="97" height="21" uuid="1a4137a9-6791-4dcb-9fe5-6a05f8d1e8df"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{GHRC})==0?0:($F{ZFJE})/($F{GHRC})]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="myBaseStyleName" x="439" y="0" width="124" height="21" uuid="691b2b00-dd5e-4356-8517-b81ab5d4a027"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{ZFJE})==0?0:($F{YPFY})/($F{ZFJE})*100]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="563" y="0" width="62" height="21" uuid="95ab225c-bf41-45a9-8cfe-915bbd4abcb5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GHRS}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="625" y="0" width="62" height="21" uuid="1064bc15-d55a-4cd1-a796-2d8230702c36"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{GHRS})==0?0:($F{GHRC})/($F{GHRS})*100]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="343" y="0" width="96" height="21" uuid="11072ac7-3e83-43e4-b56e-8ae5593a5a85"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{GHRC})==0?0:($F{YPFY})/($F{GHRC})]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="51" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="41" y="0" width="108" height="21" uuid="0e366fe4-e3be-4490-938d-d31420eb0cd9"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12" isBold="false"/>
+				</textElement>
+				<text><![CDATA[合计]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="149" y="0" width="97" height="21" uuid="c03cbcd5-a8bc-477f-8d45-e6f73af988e5"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sum1}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="246" y="0" width="97" height="21" uuid="bf3c4cf7-d1ce-4183-8f72-c3d6462d1bbd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sum2}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="343" y="0" width="96" height="21" uuid="9984dad5-83ad-445b-8d2d-738915be61ef"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sum3}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00">
+				<reportElement style="myBaseStyleName" x="439" y="0" width="124" height="21" uuid="27cc22aa-4049-4c22-9b37-5043b74e5842"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sum4}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="563" y="0" width="62" height="21" uuid="c3aa3aae-81f9-437c-9ca6-c7ffb9e1cde4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sum5}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00">
+				<reportElement style="myBaseStyleName" x="625" y="0" width="62" height="21" uuid="d4fdb891-7e3b-4928-b873-c8dccc8fa59d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{sum6}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,864 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="AnestheticRecord" language="groovy" pageWidth="420" pageHeight="1120" whenNoDataType="AllSectionsNoDetail" columnWidth="420" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="60bf2991-0c3f-4612-8b53-47ee0dc36c6c">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="BRKS" class="java.lang.String"/>
+	<parameter name="JZKH" class="java.lang.String"/>
+	<parameter name="AGE" class="java.lang.String"/>
+	<parameter name="LXDZ" class="java.lang.String"/>
+	<parameter name="BRXM" class="java.lang.String"/>
+	<parameter name="LXDH" class="java.lang.String"/>
+	<parameter name="BRXB" class="java.lang.String"/>
+	<parameter name="ZYHM" class="java.lang.String"/>
+	<summary>
+		<band height="1100">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="1050" width="258" height="23" uuid="58c9e00b-91e9-450e-acd3-1543daa58c07"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[上海市浦东新区北艾路1195号]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="339" y="49" width="66" height="15" uuid="a09a2f09-d725-4048-82b6-16ef76e58089"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRKS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="63" y="49" width="90" height="15" uuid="fa2d2d69-5d0f-45d9-8425-03b5f27d5706"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{JZKH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="294" y="32" width="45" height="14" uuid="4df2b610-158e-4661-a0dc-a7b27df8c947"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[年龄：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="340" y="32" width="49" height="14" uuid="552bb3c2-3236-48a7-b049-1c1aa277e24a"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{AGE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="980" width="258" height="36" uuid="d7ae759e-20d4-41d9-89c1-61d7c1cefe56"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[请保存好预约单和收费单据，一个月内可前来重新预约。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="294" y="49" width="45" height="15" uuid="76c16a36-203e-4a13-8e27-1341e25b9934"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[科室：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="153" y="32" width="38" height="14" uuid="5b72537e-3fff-4e7c-af0c-0f9755db143f"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[性别：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="1050" width="67" height="23" uuid="16c46278-ddf5-45d5-8da4-d0144441a223"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[地址地点]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="17" y="32" width="46" height="14" uuid="99126366-3547-4c7f-b5b2-b491ed6e1b0d"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[姓名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="198" y="68" width="198" height="15" uuid="817588f2-3579-4a36-8d79-da1159b95f68"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LXDZ}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="916" width="258" height="26" uuid="8ebe460a-c127-4b95-a6fd-0883c5e02056"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（1）一般不舒服请看门诊。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="780" width="258" height="32" uuid="8da9f313-fd3f-4111-8616-47e92e293fb8"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（2）请尊重所有病人的隐私，不要从门缝里张望，不站在过道上。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="413" width="325" height="35" uuid="c1eb4c1d-9ab2-4ca9-a238-0b6a868adc35"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[3.费用。（视检查情况，另外收取手术/材料等费用），且部分为自费）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="153" y="49" width="63" height="15" uuid="c217b60a-16f6-4df7-80c3-ee51fff493c0"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[住院号码：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="812" width="258" height="36" uuid="6ed6d565-eace-44de-89fc-e5b1f913cbf9"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[一般检查后15分钟内出内镜彩图报告，请在苏醒室等候叫名字。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="882" width="258" height="34" uuid="e981120d-e69f-42c9-b04b-f5b874f224f9"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（2）等电话通知，凭彩图报告，内镜服务台取。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="17" y="68" width="46" height="15" uuid="726fd9c1-9d04-46de-8375-4c2c3e770e4d"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[电话：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="1016" width="67" height="34" uuid="372bb6f3-c960-41bd-84c2-0889ed7f663d"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[不做退费]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="1073" width="67" height="17" uuid="68c17305-eeb6-4d92-bfd5-9e74dd0249b2"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[电话咨询]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="980" width="67" height="36" uuid="11828cec-aa45-409d-88a9-0e6f041bab6b"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[重新预约]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="980" width="62" height="70" uuid="49d13ee5-354a-4ff3-9fe9-ed41ab95e3eb"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★
+不做了]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="350" width="325" height="38" uuid="ed636581-e443-4263-adbd-1e91e0bf84a4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[1.请随身携带：医保卡（就诊磁卡）、病史、既往报告（内镜、CT、彩超等）。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="17" y="49" width="46" height="15" uuid="6c0b9079-b6e7-4467-8044-4eda541a2c8c"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[卡号：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="350" width="62" height="98" uuid="71ada7fe-dd32-4c1f-969d-3cd837db3e76"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★★
+一定带好]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="746" width="258" height="34" uuid="dca9f60c-914f-4dc5-a325-7a33ff997808"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（1）家属在指定区域等候，保管病人物品，非请勿入。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="17" y="5" width="388" height="23" uuid="ed89aa6e-68f1-43f1-a45b-e385a134d18b"/>
+				<box leftPadding="2"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="18" isBold="true"/>
+				</textElement>
+				<text><![CDATA[上海天佑医院肠镜检查前注意事项]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="942" width="258" height="38" uuid="863243b0-2496-4894-8d22-5eed75533ec2"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（2）呕血、黑便、严重腹痛腹胀、高热等请看急诊。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="848" width="67" height="68" uuid="350bb76e-d079-47c2-852e-4153006b77e3"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[2.取病理报告]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="1073" width="258" height="17" uuid="2702d7bf-31f0-4061-803c-0e71594cfaef"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[68580333-8516]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="1050" width="62" height="40" uuid="81dd2ff7-5156-45ef-8ac7-2293be0c74aa"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[联系我们]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Transparent" x="64" y="32" width="58" height="14" forecolor="#000000" backcolor="#FFFFFF" uuid="b44693f4-d696-428b-9fca-964f10d9cd7a"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="812" width="67" height="36" uuid="08e16810-e3a8-4b84-bee0-ecc0c6c46601"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[1.取报告]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="153" y="68" width="44" height="15" uuid="e57db1d6-518c-4d83-b510-9f640b01d1b9"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[住址：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="746" width="62" height="66" uuid="9d6cdad1-f041-4eb7-9084-ba8fb71d2568"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★
+检查中]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="63" y="68" width="63" height="15" uuid="49e3449f-00d2-4a3b-9965-d5ef4efda23d"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{LXDH}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="916" width="67" height="64" uuid="c7c247ca-0c99-4586-96a1-5127f1e090bf"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[3.术后不适]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="812" width="62" height="168" uuid="605d7475-6238-43c1-bb45-61e93980ff77"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★
+检查后]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="1016" width="258" height="34" uuid="4076d9ef-481a-4e03-ba85-4043f20d870e"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[请保存好预约单和收费单据，六个月内可前来办理退费。]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="194" y="32" width="58" height="14" uuid="7da26366-c9f5-408b-94ad-caf6e12234ca"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="848" width="258" height="34" uuid="0e578658-895a-4376-8dbb-5fd1cd58d044"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（1）一部分病人会有第二张报告，即病理报告。]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="216" y="49" width="78" height="15" uuid="74854a90-2e52-4778-add8-f61f5c2adb72"/>
+				<box leftPadding="2"/>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ZYHM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="388" width="325" height="25" uuid="58092405-5ce0-4b9b-8344-64bad6b62601"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[2.签署知情同意书。（检查前须理解并签好字）。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="746" width="67" height="66" uuid="93d1e33e-f216-4e16-9f21-05816ea5bd0c"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[家属做什么？]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="613" width="258" height="38" uuid="e1c5f0e3-d6b9-459b-883f-a0d13f96a1b5"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（2）检查当日内镜服务台登记同时办理无痛手续。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="448" width="258" height="36" uuid="830bf42f-41d5-412a-b7d7-a93bb22b33fd"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★经麻醉师评估病人全身情况通过后即可。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="587" width="67" height="159" uuid="60234dea-02c1-4e27-90a6-ec5f5c0af73f"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[3.怎么做？]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="552" width="258" height="35" uuid="b14088c1-8060-4c71-8e49-99ad8faee6fd"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（3）检查后几分钟清醒，逐步恢复到之前的状态（存在个体差异）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="484" width="258" height="34" uuid="c29d992f-c5a4-4ae9-9d45-e3861889d045"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（1）由专职麻醉师，静脉注射短小麻醉剂，让病人在睡眠状态下进行。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="484" width="67" height="103" uuid="f5f8d5a4-79f3-4962-97c5-a4f7cc291b53"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[2.取病理报告]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="587" width="258" height="26" uuid="ed1f83a5-662a-47e6-9c28-f29c9fb0a074"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（1）检查前6个小时绝对不能吃任何东西和水。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="448" width="62" height="298" uuid="e08d6e82-e828-40e3-9a5e-f3f32dbf6ee9"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★
+无痛]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="518" width="258" height="34" uuid="bb22d67c-8a07-4a0a-a6dc-38b2dcd2ae1a"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（2）约30秒就可进入睡眠状态。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="448" width="67" height="36" uuid="c845cdd0-681c-4728-867a-1e2de4c10837"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[1.做无痛？]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="651" width="258" height="36" uuid="7798edef-5c37-4492-849c-3cd581d98fd0"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（3）必须请家属陪同并签署相关知情同意书。（家属应具备一定文化程度）]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="687" width="258" height="36" uuid="c4e3aabc-f488-46af-bfe9-b5491178ef3f"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（4）麻醉费用另外收取（自费项目不属医保范围）。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="147" y="723" width="258" height="23" uuid="84cec79a-9292-4723-a68f-c25ce0a9c2ea"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[（5）受检者当日不能自行驾车、高空作业等。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="146" y="144" width="259" height="50" uuid="ff52c470-c438-4e1c-a334-bbbf412c9301"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★至检查前排便<4次或末次非清水样便,为保证检查质量与病人安全,请重新就诊预约检查时间。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="183" y="255" width="47" height="18" uuid="7f530ddd-db05-45a4-b188-34a6550f717e"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[和爽]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="183" y="273" width="47" height="28" uuid="3f4f61fe-6624-4538-acc1-e41fee9092dd"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[舒泰清]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="230" y="255" width="175" height="18" uuid="1b2f3b9e-0f97-436a-a555-053a5a0b1247"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[请将每袋冲于1000ml的水中服用]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="146" y="88" width="259" height="56" uuid="f2dbe93b-aaa7-4312-bc66-754e48b6caa8"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★低纤维饮食2~3天,前一天进流质。预约检查时间前6~8小时开始口服泻药,2个小时内喝完,之后可适当饮水并运动,但是检查前4小时不能吃东西和水。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="146" y="301" width="259" height="49" uuid="00dc50e8-b889-4da1-9326-8e04bf0fd81a"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★请带好HBsAg(乙肝表面抗原)、ALT(谷丙转氨酶)、心电图、血常规、血K+及HIV的化验报告(半年内有效)。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="301" width="66" height="49" uuid="5b826f35-e7c1-4d4b-8f40-162168900224"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[2.来之时]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="230" y="273" width="175" height="28" uuid="2dc3b096-d1fb-42aa-b840-4d9aae9e535f"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[请将每盒A+B冲于750ml的水中服用]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="230" y="226" width="175" height="29" uuid="af82f2c6-436c-4032-8be4-2bfa1df8ccde"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[将甘露醇和葡萄糖生理盐水混合后服用]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="146" y="194" width="259" height="32" uuid="182d7df4-6351-4bda-a61e-1f352ebee5c4"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★需活检者：若服用抗凝血药物，请在医生指导下停药7天。]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="146" y="226" width="37" height="75" uuid="15e9d528-5bff-4fd8-9e2d-3d8006ac7b51"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[泻药]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="18" y="88" width="62" height="262" uuid="4805f4de-a89d-42cf-bf8c-27a254252745"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[★★
+必须准备]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="80" y="88" width="66" height="213" uuid="9cacf07d-eea7-402a-9d43-eca8a721f60b"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[1.来之前]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="183" y="226" width="47" height="29" uuid="63dc1584-9db3-4698-80e8-08abc59fb5be"/>
+				<box leftPadding="2">
+					<topPen lineWidth="0.5"/>
+					<leftPen lineWidth="0.5"/>
+					<bottomPen lineWidth="0.5"/>
+					<rightPen lineWidth="0.5"/>
+				</box>
+				<textElement verticalAlignment="Middle" rotation="None">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[甘露醇]]></text>
+			</staticText>
+		</band>
+	</summary>
+</jasperReport>

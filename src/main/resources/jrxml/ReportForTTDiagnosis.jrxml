@@ -1,0 +1,761 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report" language="groovy" pageWidth="650" pageHeight="650" orientation="Landscape" columnWidth="610" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isIgnorePagination="true" uuid="498b6554-f0fd-4594-ad39-673a8c6f4441">
+	<property name="ireport.zoom" value="1.2100000000000442"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="table">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1">
+		<box>
+			<pen lineWidth="1.0" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TH" mode="Opaque" backcolor="#F0F8FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_CH" mode="Opaque" backcolor="#BFE1FF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="table 1_TD" mode="Opaque" backcolor="#FFFFFF">
+		<box>
+			<pen lineWidth="0.5" lineColor="#000000"/>
+		</box>
+	</style>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="Table Dataset 1" uuid="a0287e9d-99cd-40e5-ad1e-0c86918d132a"/>
+	<parameter name="title" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT '1' as zzdh ,'1' as zzrq,'1' as ZZYY,'1' as xm ,'1' as xb, '1' as csny,'1' as cbzd ,'1' as zcks, '1' as jzys ,'1' as sh,'1' as shrq,'1' as BSZY,'1' as ZZMD,'1' as SCBZ, '1' as type ,'1' as bh FROM dual]]>
+	</queryString>
+	<field name="ZZDH" class="java.lang.String"/>
+	<field name="ZZRQ" class="java.lang.String"/>
+	<field name="ZZYY" class="java.lang.String"/>
+	<field name="XM" class="java.lang.String"/>
+	<field name="XB" class="java.lang.String"/>
+	<field name="CSNY" class="java.lang.String"/>
+	<field name="CBZD" class="java.lang.String"/>
+	<field name="ZCKS" class="java.lang.String"/>
+	<field name="JZYS" class="java.lang.String"/>
+	<field name="SH" class="java.lang.String"/>
+	<field name="SHRQ" class="java.lang.String"/>
+	<field name="BSZY" class="java.lang.String"/>
+	<field name="ZZMD" class="java.lang.String"/>
+	<field name="SCBZ" class="java.lang.String"/>
+	<field name="TYPE" class="java.lang.String"/>
+	<field name="BH" class="java.lang.String"/>
+	<variable name="sum" class="java.lang.String"/>
+	<variable name="variable1" class="java.lang.Integer"/>
+	<detail>
+		<band height="610">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="13" y="12" width="100" height="20" uuid="c2672181-3322-4573-8e72-c752f62f2239"/>
+				<textElement>
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[第一联]]></text>
+			</staticText>
+			<line>
+				<reportElement style="myBaseStyleName" x="306" y="44" width="1" height="475" uuid="027ad2d8-b8e3-4b63-a163-dba8695a0089"/>
+				<graphicElement>
+					<pen lineStyle="Dashed"/>
+				</graphicElement>
+			</line>
+			<elementGroup/>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="322" y="12" width="100" height="20" uuid="c2672181-3322-4573-8e72-c752f62f2239"/>
+				<textElement>
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[第二联]]></text>
+			</staticText>
+			<frame>
+				<reportElement style="myBaseStyleName" x="15" y="41" width="277" height="491" uuid="e8d4f8bc-707a-4fec-86b5-118a7aafe6f6"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="30" y="12" width="43" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[上海市（]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="164" y="11" width="64" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[）定向转诊单]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="73" y="12" width="91" height="15" uuid="ca923b53-9dcc-49ec-8050-12a62aed70c2"/>
+					<textElement textAlignment="Center" markup="none">
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="59" y="32" width="54" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Right">
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[（正联）]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="113" y="32" width="43" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NO.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="74" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[老人医疗证]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="92" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[少儿医疗证]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="110" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[合作医疗卡]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="129" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[居民健康卡]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="119" y="105" width="34" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[编号：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="154" width="32" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[姓名：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="126" y="154" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[出生年月：]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="175" width="272" height="1" uuid="cfb254dd-e23b-47bc-8d90-4bb3d8d44e5d"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="17" y="183" width="70" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[病史摘要：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="255" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[初步诊断：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="287" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[转诊目的：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="318" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[转诊医院：]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="350" width="272" height="1" uuid="cfb254dd-e23b-47bc-8d90-4bb3d8d44e5d"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="20" y="357" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[经治医师：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="153" y="356" width="32" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[审核：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="405" width="70" height="52" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="1.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[医疗机构
+转诊专用章
+（盖章处）
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="140" y="405" width="70" height="52" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="1.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[约定服务
+转诊专用章
+（盖章处）
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="468" width="70" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="false"/>
+					</textElement>
+					<text><![CDATA[有效期七天]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="140" y="468" width="88" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="false"/>
+					</textElement>
+					<text><![CDATA[上海市卫生局监制]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="156" y="32" width="72" height="15" uuid="61b00766-6202-437a-9650-9fbe72d4daa0"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZZDH}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="83" y="154" width="32" height="15" uuid="d454f902-a7a9-4385-ad1f-12dbabfb6032"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[性别：]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="49" y="154" width="34" height="15" uuid="f108982d-5be5-4f41-b721-7eee0cc536d3"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{XM}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="115" y="154" width="11" height="15" uuid="3e148bf8-a406-4c18-a76e-9bfb7b59090c"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{XB}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="17" y="200" width="211" height="52" uuid="76d90e2e-efcf-4dc7-9f30-9bddbb75a97d"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA["         "+$F{BSZY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="254" width="158" height="30" uuid="50e489df-bad3-4d19-aee0-2404a117132e"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CBZD}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="286" width="158" height="30" uuid="7412b531-fa42-4915-8a40-2da389cddaba"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZZMD}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="319" width="158" height="30" uuid="4b844332-f252-470f-8ce5-c464629c370b"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZZYY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="73" y="356" width="67" height="15" uuid="d31cf481-eb53-4074-8ada-0d51a9736620"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JZYS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="185" y="356" width="43" height="15" uuid="ef56681e-b3c3-4a2a-9da4-9b3968e82441"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SH}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="156" y="375" width="57" height="15" uuid="7775dd17-f76c-4a49-8767-f007841cb096"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SHRQ}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="179" y="155" width="49" height="15" uuid="cd7ce7be-91a4-4546-975a-7e77319d93df"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CSNY}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="56" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="40" y="56" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[社保医保卡]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="74" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="92" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="110" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="129" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "5" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="153" y="105" width="75" height="15" uuid="7cf2fcd0-c0e4-489d-915e-9457cbba7727"/>
+					<textFieldExpression><![CDATA[$F{BH}]]></textFieldExpression>
+				</textField>
+			</frame>
+			<frame>
+				<reportElement style="myBaseStyleName" x="322" y="41" width="277" height="491" uuid="e8d4f8bc-707a-4fec-86b5-118a7aafe6f6"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<staticText>
+					<reportElement x="30" y="12" width="43" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[上海市（]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="164" y="11" width="64" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[）定向转诊单]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="73" y="12" width="91" height="15" uuid="c29d1116-e975-4d4c-8000-83e2bcae3678"/>
+					<textElement textAlignment="Center" markup="none">
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$P{title}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="59" y="32" width="54" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Right">
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[（结算联）]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="113" y="32" width="43" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[NO.]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="74" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[老人医疗证]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="92" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[少儿医疗证]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="110" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[合作医疗卡]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="40" y="129" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[居民健康卡]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="119" y="105" width="34" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[编号：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="154" width="32" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[姓名：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="126" y="154" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement textAlignment="Center">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[出生年月：]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="175" width="272" height="1" uuid="cfb254dd-e23b-47bc-8d90-4bb3d8d44e5d"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="17" y="183" width="70" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[病史摘要：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="255" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[初步诊断：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="287" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[转诊目的：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="318" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[转诊医院：]]></text>
+				</staticText>
+				<line>
+					<reportElement x="2" y="350" width="272" height="1" uuid="cfb254dd-e23b-47bc-8d90-4bb3d8d44e5d"/>
+					<graphicElement>
+						<pen lineStyle="Dashed"/>
+					</graphicElement>
+				</line>
+				<staticText>
+					<reportElement x="20" y="357" width="53" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[经治医师：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="153" y="356" width="32" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[审核：]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="30" y="405" width="70" height="52" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="1.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[医疗机构
+转诊专用章
+（盖章处）
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="140" y="405" width="70" height="52" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<box>
+						<topPen lineWidth="1.0" lineStyle="Dashed"/>
+						<leftPen lineWidth="1.0" lineStyle="Dashed"/>
+						<bottomPen lineWidth="1.0" lineStyle="Dashed"/>
+						<rightPen lineWidth="1.0" lineStyle="Dashed"/>
+					</box>
+					<textElement textAlignment="Center" verticalAlignment="Middle">
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[约定服务
+转诊专用章
+（盖章处）
+]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="17" y="468" width="70" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="false"/>
+					</textElement>
+					<text><![CDATA[有效期七天]]></text>
+				</staticText>
+				<staticText>
+					<reportElement x="140" y="468" width="88" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="false"/>
+					</textElement>
+					<text><![CDATA[上海市卫生局监制]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="156" y="32" width="72" height="15" uuid="61b00766-6202-437a-9650-9fbe72d4daa0"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZZDH}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement x="83" y="154" width="32" height="15" uuid="d454f902-a7a9-4385-ad1f-12dbabfb6032"/>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[性别：]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="49" y="154" width="34" height="15" uuid="f108982d-5be5-4f41-b721-7eee0cc536d3"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{XM}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="115" y="154" width="11" height="15" uuid="3e148bf8-a406-4c18-a76e-9bfb7b59090c"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{XB}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="17" y="200" width="211" height="52" uuid="76d90e2e-efcf-4dc7-9f30-9bddbb75a97d"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA["         "+$F{BSZY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="254" width="158" height="30" uuid="50e489df-bad3-4d19-aee0-2404a117132e"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CBZD}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="286" width="158" height="30" uuid="7412b531-fa42-4915-8a40-2da389cddaba"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZZMD}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="70" y="319" width="158" height="30" uuid="4b844332-f252-470f-8ce5-c464629c370b"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{ZZYY}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="73" y="356" width="67" height="15" uuid="d31cf481-eb53-4074-8ada-0d51a9736620"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{JZYS}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="185" y="356" width="43" height="15" uuid="ef56681e-b3c3-4a2a-9da4-9b3968e82441"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SH}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="156" y="375" width="57" height="15" uuid="7775dd17-f76c-4a49-8767-f007841cb096"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{SHRQ}]]></textFieldExpression>
+				</textField>
+				<textField>
+					<reportElement x="179" y="155" width="49" height="15" uuid="cd7ce7be-91a4-4546-975a-7e77319d93df"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<textFieldExpression><![CDATA[$F{CSNY}]]></textFieldExpression>
+				</textField>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="56" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "1" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="40" y="56" width="52" height="15" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede"/>
+					<textElement>
+						<font fontName="华文楷体"/>
+					</textElement>
+					<text><![CDATA[社保医保卡]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="74" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "2" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="92" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "3" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="110" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "4" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<staticText>
+					<reportElement mode="Transparent" x="26" y="129" width="14" height="15" forecolor="#FF0000" uuid="6f22a310-4478-4c7d-a99d-786573ff2ede">
+						<printWhenExpression><![CDATA[$F{TYPE}.equals( "5" )]]></printWhenExpression>
+					</reportElement>
+					<textElement>
+						<font fontName="华文楷体" isBold="true"/>
+					</textElement>
+					<text><![CDATA[√]]></text>
+				</staticText>
+				<textField>
+					<reportElement x="153" y="105" width="75" height="15" uuid="7cf2fcd0-c0e4-489d-915e-9457cbba7727"/>
+					<textFieldExpression><![CDATA[$F{BH}]]></textFieldExpression>
+				</textField>
+			</frame>
+		</band>
+	</detail>
+</jasperReport>

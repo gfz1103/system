@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="0cd17bee-4a70-412d-921f-f6de78e16cde">
+	<property name="ireport.zoom" value="2.143588810000002"/>
+	<property name="ireport.x" value="33"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<queryString>
+		<![CDATA[select * from base_user]]>
+	</queryString>
+	<field name="ID" class="java.lang.String"/>
+	<field name="NAME" class="java.lang.String"/>
+	<field name="PASSWORD" class="java.lang.String"/>
+	<field name="STATUS" class="java.lang.String"/>
+	<field name="CREATEDT" class="java.sql.Timestamp"/>
+	<field name="PAGECOUNT" class="java.math.BigDecimal"/>
+	<field name="MEDICALROTES" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<pageHeader>
+		<band height="60" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="313" y="0" width="163" height="20" uuid="c1f035a9-e2f4-4298-854e-7408a9bb0e75"/>
+				<textElement>
+					<font fontName="宋体" size="14"/>
+				</textElement>
+				<text><![CDATA[古美社区卫生服务中心]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="349" y="20" width="100" height="20" uuid="849add5d-f1fc-4e6b-addb-b63b087e95f2"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[门诊操作员工作量统计表]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="299" y="40" width="37" height="20" uuid="f0db4eeb-ef74-4e40-9fc4-47b933e7a595"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="336" y="40" width="48" height="20" uuid="deec7781-3811-447b-8b3b-22271a43b1c7"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="384" y="40" width="17" height="20" uuid="f758d818-0983-4ccc-a72a-e5a43e42931a"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[至]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="401" y="40" width="48" height="20" uuid="eda1858f-c942-4775-aa54-6c9c70372fa2"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="41" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="40" height="20" uuid="fd3dd944-c2b6-49f0-9c8c-e7fb039f166d"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[工号]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="40" y="0" width="40" height="20" uuid="876db511-64c5-4dc2-aae2-19f0ba5888e9"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[姓名]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="20" width="40" height="20" uuid="a4a95e6f-1cfa-449c-b58f-7d21b513807c"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{ID}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="40" y="20" width="40" height="20" uuid="e1c0adee-a77e-4dc0-b90a-82a596398f99"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="125" splitType="Stretch"/>
+	</detail>
+	<columnFooter>
+		<band height="45" splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

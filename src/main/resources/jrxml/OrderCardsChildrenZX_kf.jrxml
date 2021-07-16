@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="OrderCardsChildrenZX" language="groovy" pageWidth="595" pageHeight="842" columnWidth="595" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="4ad7628b-0a75-4566-82f0-d8ada91559db">
+	<property name="ireport.zoom" value="1.5"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<field name="YZMC" class="java.lang.String"/>
+	<field name="YCJL" class="java.lang.String"/>
+	<field name="PCMC" class="java.lang.String"/>
+	<field name="YZZXSJ" class="java.lang.String"/>
+	<field name="BZXX" class="java.lang.String"/>
+	<field name="JLDW" class="java.lang.String"/>
+	<field name="ZH" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="250" y="0" width="39" height="20" uuid="30b7bb1b-7769-4f67-be06-ba393be7213c"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{PCMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="173" height="20" uuid="0742825f-cc5d-4b42-94ae-bfa30c5176b8"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YZMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="178" y="0" width="47" height="20" uuid="f7e9b8ce-ed13-420b-b4d3-2dc32bce9776"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YCJL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="225" y="0" width="25" height="20" uuid="6e39c314-63bf-4eff-a5f7-83d393f4b97b"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JLDW}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="329" y="0" width="51" height="20" uuid="3c8caadd-5a3f-4155-96af-4f27e8237a71"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BZXX}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="8">
+			<line>
+				<reportElement style="myBaseStyleName" x="0" y="6" width="372" height="1" uuid="c7d217b1-7290-4c1b-acc1-3e004672b1fe"/>
+			</line>
+		</band>
+	</columnFooter>
+</jasperReport>

@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->
+<mapper namespace="com.buit.his.dic.dao.DicYljsDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        JSXH as jsxh,JSMC as jsmc,JSLX as jslx,JSSM as jssm,JSJB as jsjb
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_YLJS (
+            JSXH ,
+            JSMC ,
+            JSLX ,
+            JSSM ,
+            JSJB 
+        ) VALUES (
+            #{jsxh} ,
+            #{jsmc} ,
+            #{jslx} ,
+            #{jssm} ,
+            #{jsjb} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE DIC_YLJS SET
+            JSMC = #{jsmc} ,
+            JSLX = #{jslx} ,
+            JSSM = #{jssm} ,
+            JSJB = #{jsjb} 
+        WHERE 
+            JSXH = #{jsxh} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_YLJS WHERE
+        JSXH = #{jsxh} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM DIC_YLJS <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="DicYljs">
+        SELECT <include refid="columns" />
+            FROM DIC_YLJS 
+            WHERE 
+        JSXH = #{jsxh} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(jsxh)"> -->
+<!--                     AND JSXH = #{jsxh} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(jsmc)"> -->
+<!--                     AND JSMC = #{jsmc} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(jslx)"> -->
+<!--                     AND JSLX = #{jslx} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(jssm)"> -->
+<!--                     AND JSSM = #{jssm} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(jsjb)"> -->
+<!--                     AND JSJB = #{jsjb} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_YLJS 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="DicYljs">
+        SELECT <include refid="columns" />
+        FROM DIC_YLJS 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

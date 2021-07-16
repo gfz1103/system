@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 系统用户授权科室 -->
+<mapper namespace="com.buit.his.user.dao.SysUserDeptDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        USERDEPT_ID as userdeptId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,USER_ID as userId,DEPT_ID as deptId,DEFAULT_FLAG as defaultFlag
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_USER_DEPT (
+            USERDEPT_ID ,
+            DATA_VERSION ,
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_ID ,
+            USER_ID ,
+            DEPT_ID ,
+            DEFAULT_FLAG 
+        ) VALUES (
+            #{userdeptId} ,
+            #{dataVersion} ,
+            #{gmtCreate} ,
+            #{gmtModify} ,
+            #{hospitalId} ,
+            #{userId} ,
+            #{deptId} ,
+            #{defaultFlag} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE SYS_USER_DEPT SET
+            DATA_VERSION = #{dataVersion} ,
+            GMT_CREATE = #{gmtCreate} ,
+            GMT_MODIFY = #{gmtModify} ,
+            HOSPITAL_ID = #{hospitalId} ,
+            USER_ID = #{userId} ,
+            DEPT_ID = #{deptId} ,
+            DEFAULT_FLAG = #{defaultFlag} 
+        WHERE 
+            USERDEPT_ID = #{userdeptId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_USER_DEPT WHERE
+        USERDEPT_ID = #{userdeptId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_USER_DEPT <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysUserDept">
+        SELECT <include refid="columns" />
+            FROM SYS_USER_DEPT 
+            WHERE 
+        USERDEPT_ID = #{userdeptId} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(userdeptId)"> -->
+<!--                     AND USERDEPT_ID = #{userdeptId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(dataVersion)"> -->
+<!--                     AND DATA_VERSION = #{dataVersion} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(hospitalId)"> -->
+<!--                     AND HOSPITAL_ID = #{hospitalId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(userId)"> -->
+<!--                     AND USER_ID = #{userId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(deptId)"> -->
+<!--                     AND DEPT_ID = #{deptId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(defaultFlag)"> -->
+<!--                     AND DEFAULT_FLAG = #{defaultFlag} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_USER_DEPT 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="SysUserDept">
+        SELECT <include refid="columns" />
+        FROM SYS_USER_DEPT 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+</mapper>
+

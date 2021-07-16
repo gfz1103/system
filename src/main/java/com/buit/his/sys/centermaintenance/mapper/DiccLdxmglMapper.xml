@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 项目关联 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DiccLdxmglDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        JLXH as jlxh,XMXH as xmxh,JGID as jgid,SYLB as sylb,GLXH as glxh,KSDM as ksdm,FYSL as fysl
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DICC_LDXMGL (
+            JLXH ,
+            XMXH ,
+            JGID ,
+            SYLB ,
+            GLXH ,
+            KSDM ,
+            FYSL 
+        ) VALUES (
+            #{jlxh} ,
+            #{xmxh} ,
+            #{jgid} ,
+            #{sylb} ,
+            #{glxh} ,
+            #{ksdm} ,
+            #{fysl} 
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE DICC_LDXMGL
+            <set>
+                <if test="@sqlt.Ognl@isNotEmpty(xmxh)">
+                    XMXH = #{xmxh},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(sylb)">
+                    SYLB = #{sylb},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(glxh)">
+                    GLXH = #{glxh},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(ksdm)">
+                    KSDM = #{ksdm},
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(fysl)">
+                    FYSL = #{fysl},
+                </if>
+            </set>
+        WHERE
+            JLXH = #{jlxh}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DICC_LDXMGL WHERE
+        JLXH = #{jlxh} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM DICC_LDXMGL <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DiccLdxmgl">
+        SELECT <include refid="columns" />
+            FROM DICC_LDXMGL 
+            WHERE 
+        JLXH = #{jlxh} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+            <if test="@sqlt.Ognl@isNotEmpty(jlxh)">
+                 AND JLXH = #{jlxh}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(xmxh)">
+                 AND XMXH = #{xmxh}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jgid)">
+                 AND JGID = #{jgid}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(sylb)">
+                 AND SYLB = #{sylb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(glxh)">
+                 AND GLXH = #{glxh}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ksdm)">
+                 AND KSDM = #{ksdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fysl)">
+                 AND FYSL = #{fysl}
+            </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DICC_LDXMGL 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DiccLdxmgl">
+        SELECT <include refid="columns" />
+        FROM DICC_LDXMGL 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    
+    <!-- 查询项目关联信息 -->
+    <select id="queryProjectAssociationInfo" resultType="com.buit.his.sys.centermaintenance.response.DiccLdxmglResp">
+		        select a.XMXH as XMXH,
+		       a.SYLB as SYLB,
+		       a.GLXH as YPXH,
+		       b.FYMC as YZMC,
+		       a.FYSL as FYSL,
+		       c.FYDJ as YPDJ,
+		       b.XMLX as XMLX,
+		       b.FYDW as FYDW,
+		       c.FYKS as FYKS,
+		       b.FYGB as FYGB
+		  from DICC_LDXMGL a, FEE_YLSFXM b, FEE_YLSFXMDJ c
+		 where a.GLXH = b.FYXH
+		   and a.GLXH = c.FYXH
+		   and c.JGID = #{JGID}
+		   and a.XMXH = #{XMXH}
+		   AND (a.KSDM = 0 OR KSDM = #{KSDM})
+		   and a.JGID = #{JGID}
+		   and c.ZFPB = 0
+		   and b.ZFPB = 0
+		   and ${SYLB} = 1
+    </select>
+
+    <!--中心维护-查询项目关联列表-->
+    <select id="queryXmglList" resultType="com.buit.his.sys.centermaintenance.response.DiccLdxmglResp">
+        select
+            a.JLXH as jlxh,
+            a.XMXH as xmxh,
+            a.GLXH as glxh,
+            b.FYMC as fymc,
+            b.FYDW as fydw,
+            a.JGID as jgid,
+            a.SYLB as sylb,
+            a.KSDM as ksdm,
+            a.FYSL as fysl
+        from
+            DICC_LDXMGL a,
+            FEE_YLSFXM b
+        where
+            b.FYXH = a.GLXH
+            and a.XMXH = #{xmxh}
+            and a.JGID = #{jgid}
+            <if test="@sqlt.Ognl@isNotEmpty(pydm)">
+                and pydm like '%${pydm}%'
+            </if>
+        order by a.KSDM asc
+    </select>
+</mapper>
+

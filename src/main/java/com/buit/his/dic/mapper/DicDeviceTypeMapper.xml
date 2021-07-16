@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.buit.his.dic.dao.DicDeviceTypeDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        TYPE_ID as typeId, TYPE_NAME as typeName, MODEL as model, MANUFACTURER_NAME as manufacturerName, MANUFACTURER_TEL as manufacturerTel, MANUFACTURER_ADDRESS as manufacturerAddress, DRIVER_LOCATION as driverLocation, HTTP_PORT as httpPort, HTTPS_PORT as httpsPort
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_DEVICE_TYPE (
+            TYPE_NAME, MODEL, MANUFACTURER_NAME, MANUFACTURER_TEL, MANUFACTURER_ADDRESS, DRIVER_LOCATION, HTTP_PORT, HTTPS_PORT
+        ) VALUES (
+            #{typeName} ,
+            #{model} ,
+            #{manufacturerName} ,
+            #{manufacturerTel} ,
+            #{manufacturerAddress} ,
+            #{driverLocation} ,
+            #{httpPort} ,
+            #{httpsPort}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE SYS_DEVICE_TYPE SET
+            TYPE_NAME = #{typeName} ,
+            MODEL = #{model} ,
+            MANUFACTURER_NAME = #{manufacturerName} ,
+            MANUFACTURER_TEL = #{manufacturerTel} ,
+            MANUFACTURER_ADDRESS = #{manufacturerAddress} ,
+            DRIVER_LOCATION = #{driverLocation} ,
+            HTTP_PORT = #{httpPort} ,
+            HTTPS_PORT = #{httpsPort}
+        WHERE
+            TYPE_ID = #{typeId}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_DEVICE_TYPE WHERE
+        TYPE_ID = #{id}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM SYS_DEVICE_TYPE
+        <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.dic.model.DicDeviceType">
+        SELECT
+        <include refid="columns"/>
+        FROM SYS_DEVICE_TYPE
+        WHERE
+        TYPE_ID = #{id}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(typeId)">
+                AND TYPE_ID = #{typeId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(typeName)">
+                AND TYPE_NAME LIKE CONCAT('%', #{typeName}, '%')
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(model)">
+                AND MODEL = #{model}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(manufacturerName)">
+                AND MANUFACTURER_NAME = #{manufacturerName}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(manufacturerTel)">
+                AND MANUFACTURER_TEL = #{manufacturerTel}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(manufacturerAddress)">
+                AND MANUFACTURER_ADDRESS = #{manufacturerAddress}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(driverLocation)">
+                AND DRIVER_LOCATION = #{driverLocation}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(httpPort)">
+                AND HTTP_PORT = #{httpPort}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(httpsPort)">
+                AND HTTPS_PORT = #{httpsPort}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_DEVICE_TYPE
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.dic.model.DicDeviceType">
+        SELECT
+        <include refid="columns"/>
+        FROM SYS_DEVICE_TYPE
+        <include refid="where"/>
+
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+</mapper>
+

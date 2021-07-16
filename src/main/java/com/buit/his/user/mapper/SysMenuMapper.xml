@@ -1,0 +1,298 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 系统菜单表 -->
+<mapper namespace="com.buit.his.user.dao.SysMenuDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        MENU_ID as menuId,DATA_VERSION as dataVersion,FATHER_ROUTE_NAME as fatherRouteName ,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,MENU_CODE as menuCode,MENU_NAME as menuName,MENU_NAME1 as menuName1,MENU_NAME2 as menuName2,MENU_NAME3 as menuName3,MENU_NAME4 as menuName4,PARENT_MENU_ID as parentMenuId,MODEL_ID as modelId,BASIC_MENU_FLAG as basicMenuFlag,MODEL_TYPE_FLAG as modelTypeFlag,MENU_SORT as menuSort,MENU_ICON as menuIcon,DISPLAY_FLAG as displayFlag,PY_CODE as pyCode,WB_CODE as wbCode,MENU_LEVEL as menuLevel,SYS_TYPE as sysType,MENU_URL as menuUrl,MENU_STYLE as menuStyle,ACTION_TYPE as actionType,ROUTE_NAME as routeName,REPORT_ID as reportId,SYSTEM_NAME as systemName
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO SYS_MENU (
+            MENU_ID ,
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_ID ,
+            MENU_CODE ,
+            MENU_NAME ,
+            MENU_NAME1 ,
+            MENU_NAME2 ,
+            MENU_NAME3 ,
+            MENU_NAME4 ,
+            PARENT_MENU_ID ,
+            MODEL_ID ,
+            BASIC_MENU_FLAG ,
+            MODEL_TYPE_FLAG ,
+            MENU_SORT ,
+            MENU_ICON ,
+            PY_CODE ,
+            WB_CODE ,
+            MENU_LEVEL ,
+            SYS_TYPE ,
+            MENU_URL ,
+            MENU_STYLE ,
+            ACTION_TYPE ,
+            ROUTE_NAME ,
+            REPORT_ID,FATHER_ROUTE_NAME  ,SYSTEM_NAME 
+        ) VALUES (
+            #{menuId} ,
+            #{gmtCreate} ,
+            #{gmtModify} ,
+            #{hospitalId} ,
+            #{menuCode} ,
+            #{menuName} ,
+            #{menuName1} ,
+            #{menuName2} ,
+            #{menuName3} ,
+            #{menuName4} ,
+            #{parentMenuId} ,
+            #{modelId} ,
+            #{basicMenuFlag} ,
+            #{modelTypeFlag} ,
+            #{menuSort} ,
+            #{menuIcon} ,
+            #{pyCode} ,
+            #{wbCode} ,
+            #{menuLevel} ,
+            #{sysType} ,
+            #{menuUrl} ,
+            #{menuStyle} ,
+            #{actionType} ,
+            #{routeName} ,
+            #{reportId},#{fatherRouteName},#{systemName} 
+        )
+    </insert>
+    
+    <update id="update" >  
+        UPDATE SYS_MENU SET           
+            GMT_MODIFY = #{gmtModify} ,
+            MENU_NAME = #{menuName} ,
+            MENU_NAME1 = #{menuName1} ,
+            MENU_NAME2 = #{menuName2} ,
+            MENU_NAME3 = #{menuName3} ,
+            MENU_NAME4 = #{menuName4} ,
+            FATHER_ROUTE_NAME=#{fatherRouteName},
+            MODEL_ID = #{modelId} ,
+            BASIC_MENU_FLAG = #{basicMenuFlag} ,
+            MODEL_TYPE_FLAG = #{modelTypeFlag} ,
+            MENU_SORT = #{menuSort} ,
+            MENU_ICON = #{menuIcon} ,
+            PY_CODE = #{pyCode} ,
+            WB_CODE = #{wbCode} ,
+            MENU_LEVEL = #{menuLevel} ,
+            SYS_TYPE = #{sysType} ,
+            MENU_URL = #{menuUrl} ,
+            MENU_STYLE = #{menuStyle} ,
+            ACTION_TYPE = #{actionType} ,
+            ROUTE_NAME = #{routeName} ,
+            REPORT_ID = #{reportId},SYSTEM_NAME=#{systemName}   
+        WHERE 
+            MENU_ID = #{menuId} 
+                      
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM SYS_MENU WHERE
+        MENU_ID = #{menuId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM SYS_MENU <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="SysMenu">
+        SELECT <include refid="columns" />
+            FROM SYS_MENU 
+            WHERE 
+        MENU_ID = #{menuId} 
+    </select>
+    <sql id="where">
+        <where>                          
+        	<if test="@sqlt.Ognl@isNotEmpty(menuId)">
+                 AND MENU_ID = #{menuId}
+            </if>   
+            <if test="@sqlt.Ognl@isNotEmpty(extMenuId)">
+                 AND MENU_ID != #{extMenuId}
+            </if> 
+	        <if test="@sqlt.Ognl@isNotEmpty(parentMenuId)">
+            	AND PARENT_MENU_ID = #{parentMenuId}
+            </if>
+	        <if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+	        	AND HOSPITAL_ID = #{hospitalId}
+	        </if>               
+               <if test="@sqlt.Ognl@isNotEmpty(systemName)">
+                    AND SYSTEM_NAME= #{systemName}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtCreate)"> -->
+<!--                     AND GMT_CREATE = #{gmtCreate} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(gmtModify)"> -->
+<!--                     AND GMT_MODIFY = #{gmtModify} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(hospitalId)"> -->
+<!--                     AND HOSPITAL_ID = #{hospitalId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuCode)"> -->
+<!--                     AND MENU_CODE = #{menuCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuName)"> -->
+<!--                     AND MENU_NAME = #{menuName} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(modelId)"> -->
+<!--                     AND MODEL_ID = #{modelId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(basicMenuFlag)"> -->
+<!--                     AND BASIC_MENU_FLAG = #{basicMenuFlag} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(modelTypeFlag)">
+                    AND MODEL_TYPE_FLAG = #{modelTypeFlag}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuSort)"> -->
+<!--                     AND MENU_SORT = #{menuSort} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuIcon)"> -->
+<!--                     AND MENU_ICON = #{menuIcon} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(displayFlag)"> -->
+<!--                     AND DISPLAY_FLAG = #{displayFlag} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(pyCode)"> -->
+<!--                     AND PY_CODE = #{pyCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(wbCode)"> -->
+<!--                     AND WB_CODE = #{wbCode} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuLevel)"> -->
+<!--                     AND MENU_LEVEL = #{menuLevel} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(sysType)"> -->
+<!--                     AND SYS_TYPE = #{sysType} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuUrl)"> -->
+<!--                     AND MENU_URL = #{menuUrl} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(menuStyle)"> -->
+<!--                     AND MENU_STYLE = #{menuStyle} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(actionType)"> -->
+<!--                     AND ACTION_TYPE = #{actionType} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(routeName)">
+                    AND ROUTE_NAME = #{routeName}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(reportId)"> -->
+<!--                     AND REPORT_ID = #{reportId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(modelRemark)"> -->
+<!--                     AND MODEL_REMARK = #{modelRemark} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(modelFunName)"> -->
+<!--                     AND MODEL_FUN_NAME = #{modelFunName} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM SYS_MENU 
+        <include refid="where"/>    
+    </select>
+
+<!--     <select id="checkRouteName" resultType="Integer"> -->
+<!--         SELECT count(*) FROM SYS_MENU -->
+<!--         where PARENT_MENU_ID = #{parentMenuId}  -->
+<!--         <if test="@sqlt.Ognl@isNotEmpty(routeName)"> -->
+<!--             AND ROUTE_NAME = #{routeName} -->
+<!--         </if> -->
+<!--         <if test="@sqlt.Ognl@isNotEmpty(menuId)"> -->
+<!--             AND MENU_ID != #{menuId} -->
+<!--         </if> -->
+<!--     </select> -->
+
+    <select id="findByEntity" resultType="SysMenu">
+        SELECT <include refid="columns" />
+        FROM SYS_MENU 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <update id="updateDisplayFlag" >  
+        UPDATE SYS_MENU SET           
+            DISPLAY_FLAG = #{displayFlag}
+        WHERE 
+            MENU_ID = #{menuId} 
+                      
+    </update>
+    
+    <select id="getMenuListByGroupId"   resultType="SysMenu">
+		SELECT 
+			sm.MENU_ID as menuId,
+			sm.DATA_VERSION as dataVersion,
+			sm.GMT_CREATE as gmtCreate,
+			sm.GMT_MODIFY as gmtModify,
+			sm.HOSPITAL_ID as hospitalId,
+			sm.MENU_CODE as menuCode,
+			sm.MENU_NAME as menuName,
+			sm.MENU_NAME1 as menuName1,
+			sm.MENU_NAME2 as menuName2,
+			sm.MENU_NAME3 as menuName3,
+			sm.MENU_NAME4 as menuName4,
+			sm.PARENT_MENU_ID as parentMenuId,
+			sm.MODEL_ID as modelId,
+			sm.BASIC_MENU_FLAG as basicMenuFlag,
+			sm.MODEL_TYPE_FLAG as modelTypeFlag,
+			sm.MENU_SORT as menuSort,
+			sm.MENU_ICON as menuIcon,
+			sm.DISPLAY_FLAG as displayFlag,
+			sm.PY_CODE as pyCode,
+			sm.WB_CODE as wbCode,
+			sm.MENU_LEVEL as menuLevel,
+			sm.SYS_TYPE as sysType,
+			sm.MENU_URL as menuUrl,
+			sm.MENU_STYLE as menuStyle,
+			sm.ACTION_TYPE as actionType,
+			sm.ROUTE_NAME as routeName,
+			sm.REPORT_ID as reportId,
+			sm.SYSTEM_NAME as systemName  
+		FROM SYS_MENU sm
+		LEFT JOIN SYS_GROUP_MENU sgm ON sm.MENU_ID = sgm.MENU_ID
+		WHERE (sm.MODEL_TYPE_FLAG = '1' or sm.MODEL_TYPE_FLAG = '2' or sm.MODEL_TYPE_FLAG = '4') AND sm.PARENT_MENU_ID = #{parentMenuId} 
+		AND sm.DISPLAY_FLAG = 0
+		AND sgm.GROUP_ID = #{groupId}
+		ORDER BY MENU_SORT
+		
+</select>
+
+
+	<select id="getMaxSort" resultType="long">
+        SELECT MAX(MENU_SORT) FROM sys_menu
+    </select>
+    <select id="getAllMenu" resultType="String">
+        SELECT m.ROUTE_NAME FROM sys_menu m WHERE
+			EXISTS(SELECT g.GROUPMENU_ID FROM sys_group_menu g WHERE g.MENU_ID =m.MENU_ID AND g.GROUP_ID=#{groupId} )
+			AND m.MODEL_TYPE_FLAG='3'
+    </select>
+    <select id="getAllSystem" resultType="String">
+        SELECT SYSTEM_NAME FROM sys_menu WHERE SYSTEM_NAME IS NOT NULL  GROUP BY SYSTEM_NAME
+    </select>
+
+    <select id="queryUrlByRoute" resultType="String">
+        SELECT menu_url menuUrl FROM sys_menu
+        WHERE route_name = #{routeName}
+    </select>
+
+    <update id="updateSonParentId" >  
+        UPDATE SYS_MENU SET 
+        	PARENT_MENU_ID = #{parentMenuId}
+        WHERE
+        	MODEL_TYPE_FLAG = #{modelTypeFlag} and
+        	FATHER_ROUTE_NAME = #{menuUrl}
+    </update>
+    
+    
+    
+</mapper>
+

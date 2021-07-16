@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="处方笺" language="groovy" pageWidth="148" pageHeight="105" columnWidth="148" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" isFloatColumnFooter="true" uuid="cd79d05a-d8b0-4f7d-bc43-01718a219db2">
+	<property name="ireport.zoom" value="1.7715610000000022"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="dataset1" uuid="c3fe67b9-068e-4eea-a5d6-9c3c9dfabc78"/>
+	<field name="YPSL" class="java.lang.String"/>
+	<field name="YPMC" class="java.lang.String"/>
+	<field name="YFGG" class="java.lang.String"/>
+	<field name="YPYF" class="java.lang.String"/>
+	<field name="JZRQ" class="java.lang.String"/>
+	<field name="BRXM" class="java.lang.String"/>
+	<variable name="index" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[new Integer("1")]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="93">
+			<textField>
+				<reportElement style="myBaseStyleName" x="114" y="61" width="31" height="16" uuid="1941bd1e-92c8-4482-b9e2-61cb72b48d79"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YPSL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="30" y="41" width="115" height="20" uuid="922db500-5afe-4f29-a663-658ce606d7fd"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YPMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="30" y="61" width="54" height="16" uuid="87cb220c-7c6e-45b0-820d-75cc4fdaa591"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YFGG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="30" y="77" width="115" height="16" uuid="fddfd652-c4a0-461d-ad14-863ae9d3586b"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="false" isItalic="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{YPYF}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="61" width="30" height="16" uuid="01e483de-3263-4ced-8060-08df236e5f10"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[规格:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="30" y="1" width="80" height="20" uuid="d8e3e13f-4455-4444-af3a-651dd8b78dc4"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JZRQ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="30" y="21" width="80" height="20" uuid="3ade61de-a55b-4367-8e22-41ee95833959"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{BRXM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="21" width="30" height="20" uuid="d7d612b6-5fcf-4cbb-bc9e-7d576d16cb0a"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[姓名:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="1" width="30" height="20" uuid="319d2bf7-7443-46ab-b5b8-0f0f8b0ba590"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[日期:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="41" width="30" height="20" uuid="0b5b8727-424b-4fba-aee8-4e46c51afe7d"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[药名:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="77" width="30" height="16" uuid="05c661a5-c4e7-43a6-8860-2a50e227c8bd"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[用法:]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="84" y="61" width="30" height="16" uuid="48f58403-35dd-4a83-9544-f74d4cf6ca50"/>
+				<textElement verticalAlignment="Top">
+					<font fontName="宋体" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[总量:]]></text>
+			</staticText>
+		</band>
+	</detail>
+</jasperReport>

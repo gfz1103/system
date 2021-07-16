@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="report1" language="groovy" pageWidth="782" pageHeight="650" orientation="Landscape" columnWidth="742" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" isFloatColumnFooter="true" uuid="18ee4cfd-ebe1-411d-ab0e-08ad488a2a01">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="adt_end" class="java.lang.String"/>
+	<parameter name="adt_start" class="java.lang.String"/>
+	<parameter name="jgid" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[SELECT ygdm,
+	    YSDM,
+	    ygxm,
+	    sum(zjje) as zjje,
+	    sum(kssje) as kssje,
+	    0 as rc,
+	    sum(cfs) as cfs,
+	    sum(zcfs) as zcfs
+FROM (
+	SELECT 	ygdm,
+	         YSDM,
+	         ygxm,
+	         sum(a.cfts*ypsl*ypdj) as zjje,
+	         sum(CASE WHEN TSYP = 9 or KSBZ = 1 then a.cfts*ypsl*ypdj END) as kssje,
+	         0 as rc,
+	         0 as cfs,
+	         COUNT(DISTINCT A.cfsb) as zcfs
+	FROM ms_cf01 a,ms_cf02 b,gy_ygdm c,yk_typk d,ms_mzxx g
+	WHERE a.cfsb = b.cfsb AND a.ysdm = c.ygdm AND
+	      b.ypxh = d.ypxh AND a.zfpb = 0 AND g.fphm = a.fphm
+-- 	     AND fyrq >= :adt_begin AND fyrq < :adt_end
+				and a.fybz ='1' AND b.ZFYP = 0
+	GROUP BY ygdm,YSDM,ygxm
+
+	UNION ALL
+	SELECT 	ygdm,
+	         YSDM,
+	         ygxm,
+	         0,
+	         0 as kssje,
+	         0 as rc,
+	         COUNT(DISTINCT A.cfsb) as cfs,
+	         0 as zcfs
+	FROM ms_cf01 a,ms_cf02 b,gy_ygdm c,yk_typk d,ms_mzxx g
+	WHERE a.cfsb = b.cfsb AND a.ysdm = c.ygdm AND
+	      b.ypxh = d.ypxh AND a.zfpb = 0 AND g.fphm = a.fphm
+-- 	      AND fyrq >= :adt_begin AND fyrq < :adt_end
+				AND (D.KSBZ = 1 or d.TSYP = 9) and a.fybz ='1' AND b.ZFYP = 0
+	GROUP BY ygdm,YSDM,ygxm ) BB
+	GROUP BY ygdm,YSDM,ygxm]]>
+	</queryString>
+	<field name="XZMC" class="java.lang.String"/>
+	<field name="ZFJE" class="java.math.BigDecimal"/>
+	<field name="GHRC" class="java.math.BigDecimal"/>
+	<field name="YPFY" class="java.math.BigDecimal"/>
+	<variable name="HERC" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{GHRC}]]></variableExpression>
+	</variable>
+	<variable name="HJFY" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{ZFJE}]]></variableExpression>
+	</variable>
+	<variable name="HJYF" class="java.math.BigDecimal" calculation="Sum">
+		<variableExpression><![CDATA[$F{YPFY}]]></variableExpression>
+	</variable>
+	<title>
+		<band height="47">
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="10" width="742" height="37" uuid="5a42c353-993d-47b1-a129-5a8238bac9f0"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="26"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{jgid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<columnHeader>
+		<band height="50" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="315" y="0" width="22" height="20" uuid="82d7fe4f-7639-48d1-8e94-c67aa0d944a9"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[----]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="337" y="0" width="167" height="20" uuid="3b30df66-fd81-4ba5-9cb6-aecfd62702e7"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{adt_end}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="148" y="0" width="167" height="20" uuid="cac1a49b-49bc-46fc-b57b-332ec396b5c7"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Right" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{adt_start}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="75" y="0" width="73" height="20" uuid="82d7fe4f-7639-48d1-8e94-c67aa0d944a9"/>
+				<box>
+					<bottomPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[统计日期：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="420" y="20" width="160" height="30" uuid="5aa52bbd-f4af-4a22-a3a9-6c987e7e2e2c"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[每门诊人次药费]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="580" y="20" width="160" height="30" uuid="8b15e169-242f-48b3-9313-83d4b8919f02"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[每门诊人次比例]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="260" y="20" width="160" height="30" uuid="07a9668e-a742-46bc-899a-82a6c923925e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[每门诊人次费用]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="100" y="20" width="160" height="30" uuid="81c98455-c397-4166-aad5-143b8f80f2a7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[门诊人次]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="20" width="100" height="30" uuid="81c98455-c397-4166-aad5-143b8f80f2a7"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[病人性质]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="21" splitType="Stretch">
+			<textField pattern="###0.00" isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="260" y="0" width="160" height="21" uuid="a6df4706-24a9-4d2c-be26-b46b41f396e7"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{GHRC}.doubleValue() != 0)?(new Double($F{ZFJE}.doubleValue()/$F{GHRC}.doubleValue())):(new Double("0"))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="100" height="21" uuid="bd04eddd-ebbe-4bbb-83d8-d3287fc8675f"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12" isBold="false" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{XZMC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="#,##0.00 %" isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="580" y="0" width="160" height="21" uuid="9271231d-e4d5-4d86-a9c5-aac0691a6cdc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{ZFJE}.doubleValue() != 0)?(new Double($F{YPFY}.doubleValue()/$F{ZFJE}.doubleValue())):(new Double("0"))]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="100" y="0" width="160" height="21" uuid="56ef7004-7898-4add-8922-b4399c00ff30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{GHRC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="420" y="0" width="160" height="21" uuid="ac63e110-b996-4189-a370-320b453645c2"/>
+				<box>
+					<topPen lineWidth="1.0" lineStyle="Solid"/>
+					<leftPen lineWidth="1.0" lineStyle="Solid"/>
+					<bottomPen lineWidth="1.0" lineStyle="Solid"/>
+					<rightPen lineWidth="1.0" lineStyle="Solid"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($F{GHRC}.doubleValue() != 0)?(new Double($F{YPFY}.doubleValue()/$F{GHRC}.doubleValue())):(new Double("0"))]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<summary>
+		<band height="31">
+			<textField pattern="###0.00" isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="420" y="0" width="160" height="31" uuid="ac63e110-b996-4189-a370-320b453645c2"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{HERC}.doubleValue() != 0)?(new Double($V{HJYF}.doubleValue()/$V{HERC}.doubleValue())):(new Double("0"))]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="100" height="31" uuid="81c98455-c397-4166-aad5-143b8f80f2a7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<text><![CDATA[合计：]]></text>
+			</staticText>
+			<textField pattern="#,##0.00 %" isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="580" y="0" width="160" height="31" uuid="9271231d-e4d5-4d86-a9c5-aac0691a6cdc"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{HJFY}.doubleValue() != 0)?(new Double($V{HJYF}.doubleValue()/$V{HJFY}.doubleValue())):(new Double("0"))]]></textFieldExpression>
+			</textField>
+			<textField isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="100" y="0" width="160" height="31" uuid="56ef7004-7898-4add-8922-b4399c00ff30"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$V{HERC}]]></textFieldExpression>
+			</textField>
+			<textField pattern="###0.00" isBlankWhenNull="false">
+				<reportElement style="myBaseStyleName" x="260" y="0" width="160" height="31" uuid="a6df4706-24a9-4d2c-be26-b46b41f396e7"/>
+				<box>
+					<pen lineWidth="1.0"/>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[($V{HERC}.doubleValue() != 0)?(new Double($V{HJFY}.doubleValue()/$V{HERC}.doubleValue())):(new Double("0"))]]></textFieldExpression>
+			</textField>
+		</band>
+	</summary>
+</jasperReport>

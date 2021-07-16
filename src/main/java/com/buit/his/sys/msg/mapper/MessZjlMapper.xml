@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 消息推送-主记录 -->
+<mapper namespace="com.buit.his.sys.msg.dao.MessZjlDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        mess_id as messId,mess_title as messTitle,mess_content as messContent,c_time as ctime,c_user_id as cuserId,c_user_Name as cuserName,call_interval as callInterval,mess_type as messType,call_id as callId,is_finish as isFinish,next_time as nextTime,MESS_TIME_OUT as messTimeOut,ser_type as serType
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO MESS_ZJL (
+            mess_id ,
+            mess_title ,
+            mess_content ,
+            c_time ,
+            c_user_id ,
+            c_user_Name ,
+            call_interval ,
+            mess_type ,
+            call_id ,
+            is_finish ,
+            next_time ,
+            MESS_TIME_OUT ,
+            ser_type 
+        ) VALUES (
+            #{messId} ,
+            #{messTitle} ,
+            #{messContent} ,
+            #{ctime} ,
+            #{cuserId} ,
+            #{cuserName} ,
+            #{callInterval} ,
+            #{messType} ,
+            #{callId} ,
+            #{isFinish} ,
+            #{nextTime} ,
+            #{messTimeOut} ,
+            #{serType} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE MESS_ZJL SET
+            mess_title = #{messTitle} ,
+            mess_content = #{messContent} ,
+            c_time = #{ctime} ,
+            c_user_id = #{cuserId} ,
+            c_user_Name = #{cuserName} ,
+            call_interval = #{callInterval} ,
+            mess_type = #{messType} ,
+            call_id = #{callId} ,
+            is_finish = #{isFinish} ,
+            next_time = #{nextTime} ,
+            MESS_TIME_OUT = #{messTimeOut} ,
+            ser_type = #{serType} 
+        WHERE 
+            mess_id = #{messId} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM MESS_ZJL WHERE
+        mess_id = #{messId} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM MESS_ZJL <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="MessZjl">
+        SELECT <include refid="columns" />
+            FROM MESS_ZJL 
+            WHERE 
+        mess_id = #{messId} 
+    </select>
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messId)"> -->
+<!--                     AND mess_id = #{messId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messTitle)"> -->
+<!--                     AND mess_title = #{messTitle} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messContent)"> -->
+<!--                     AND mess_content = #{messContent} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(ctime)"> -->
+<!--                     AND c_time = #{ctime} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(cuserId)"> -->
+<!--                     AND c_user_id = #{cuserId} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(cuserName)"> -->
+<!--                     AND c_user_Name = #{cuserName} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(callInterval)"> -->
+<!--                     AND call_interval = #{callInterval} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messType)"> -->
+<!--                     AND mess_type = #{messType} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(callId)">
+                    AND call_id = #{callId}
+               </if>
+<!--                <if test="@sqlt.Ognl@isNotEmpty(isFinish)"> -->
+<!--                     AND is_finish = #{isFinish} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(nextTime)"> -->
+<!--                     AND next_time = #{nextTime} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(messTimeOut)"> -->
+<!--                     AND MESS_TIME_OUT = #{messTimeOut} -->
+<!--                </if> -->
+               <if test="@sqlt.Ognl@isNotEmpty(serType)">
+                    AND ser_type = #{serType}
+               </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM MESS_ZJL 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="MessZjl">
+        SELECT <include refid="columns" />
+        FROM MESS_ZJL 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    
+    <select id="messList" resultType="com.buit.his.sys.msg.response.MessZjlResp">
+       SELECT zjl.mess_id as messId,
+       zjl.mess_title as messTitle,
+       zjl.mess_content as messContent,
+       zjl.c_time as ctime,
+       zjl.c_user_id as cuserId,
+       zjl.c_user_Name as cuserName,
+       zjl.call_interval as callInterval,
+       zjl.mess_type as messType,
+       zjl.call_id as callId,
+       zjl.is_finish as isFinish,
+       zjl.next_time as nextTime,
+       zjl.MESS_TIME_OUT as messTimeOut,
+       zjl.ser_type as serType,
+       jsjl.yw_type as ywType
+ 	   FROM mess_zjl zjl left join mess_jsjl jsjl
+ 	   on zjl.mess_id = jsjl.mess_id
+       WHERE zjl.is_finish=1 
+       AND EXISTS (SELECT mess_id FROM mess_jsr jsr WHERE  jsr.mess_id=zjl.mess_id AND (jsr.user_ID=#{userId} 
+       <if test="@sqlt.Ognl@isNotEmpty(deptId)">
+           OR jsr.ks_ID=#{deptId} 
+       </if>
+       )) AND NOT EXISTS (SELECT mess_id FROM mess_cljl cljl WHERE cljl.mess_id=zjl.mess_id AND 
+       (user_ID=#{userId} or (zjl.ser_type = 1 and cljl.ks_ID = #{deptId})
+      	or (zjl.ser_type = 1 and cljl.yw_type = 2)))
+    </select>
+    
+    <update id="updateFinish" >
+    	UPDATE mess_zjl  SET is_finish=2 WHERE  #{value} >MESS_TIME_OUT
+    </update>
+    
+    <update id="updateFinishByCallId" >
+    	update mess_zjl  set is_finish = 2 where call_id = #{callId} and ser_type = #{serType}   
+    </update>
+    
+</mapper>
+

@@ -1,0 +1,312 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 公用_疾病编码库 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicJbbmDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        JBXH as jbxh,DMLB as dmlb,JBMC as jbmc,JBLB as jblb,PYDM as pydm,ICD_CODE as icdCode,ICD9 as icd9,ICD10 as icd10,QTXM as qtxm,FJBM as fjbm,XBXZ as xbxz,YXZY as yxzy,YXHZ as yxhz,YXWY as yxwy,YXSW as yxsw,YXQT as yxqt,KZFS as kzfs,JBPB as jbpb,BZXX as bzxx,JBBGK as jbbgk,WBDM as wbdm,JXDM as jxdm,QTDM as qtdm,BHDM as bhdm,YBBM_YH as ybbmYh,YBBM as ybbm,MZSY as mzsy,JBDL as jbdl,JBLX as jblx,ZFBZ as zfbz,LBDM as lbdm,ICDBF as icdbf,CDMZZD as cdmzzd
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_JBBM (
+            JBXH ,
+            DMLB ,
+            JBMC ,
+            JBLB ,
+            PYDM ,
+            ICD_CODE,
+            ICD9 ,
+            ICD10 ,
+            QTXM ,
+            FJBM ,
+            XBXZ ,
+            YXZY ,
+            YXHZ ,
+            YXWY ,
+            YXSW ,
+            YXQT ,
+            KZFS ,
+            JBPB ,
+            BZXX ,
+            JBBGK ,
+            WBDM ,
+            JXDM ,
+            QTDM ,
+            BHDM ,
+            YBBM_YH ,
+            YBBM ,
+            MZSY ,
+            JBDL ,
+            JBLX ,
+            ZFBZ ,
+            LBDM ,
+            ICDBF ,
+            CDMZZD
+        ) VALUES (
+            #{jbxh} ,
+            #{dmlb} ,
+            #{jbmc} ,
+            #{jblb} ,
+            #{pydm} ,
+            #{icdCode},
+            #{icd9} ,
+            #{icd10} ,
+            #{qtxm} ,
+            #{fjbm} ,
+            #{xbxz} ,
+            #{yxzy} ,
+            #{yxhz} ,
+            #{yxwy} ,
+            #{yxsw} ,
+            #{yxqt} ,
+            #{kzfs} ,
+            #{jbpb} ,
+            #{bzxx} ,
+            #{jbbgk} ,
+            #{wbdm} ,
+            #{jxdm} ,
+            #{qtdm} ,
+            #{bhdm} ,
+            #{ybbmYh} ,
+            #{ybbm} ,
+            #{mzsy} ,
+            #{jbdl} ,
+            #{jblx} ,
+            #{zfbz} ,
+            #{lbdm} ,
+            #{icdbf} ,
+            #{cdmzzd}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE DIC_JBBM SET
+            DMLB = #{dmlb},
+            JBMC = #{jbmc},
+            JBLB = #{jblb},
+            PYDM = #{pydm},
+            ICD_CODE = #{icdCode},
+            ICD9 = #{icd9},
+            ICD10 = #{icd10},
+            QTXM = #{qtxm},
+            FJBM = #{fjbm},
+            XBXZ = #{xbxz},
+            YXZY = #{yxzy},
+            YXHZ = #{yxhz},
+            YXWY = #{yxwy},
+            YXSW = #{yxsw},
+            YXQT = #{yxqt},
+            KZFS = #{kzfs},
+            JBPB = #{jbpb},
+            BZXX = #{bzxx},
+            JBBGK = #{jbbgk},
+            WBDM = #{wbdm},
+            JXDM = #{jxdm},
+            QTDM = #{qtdm},
+            BHDM = #{bhdm},
+            YBBM_YH = #{ybbmYh},
+            YBBM = #{ybbm},
+            MZSY = #{mzsy},
+            JBDL = #{jbdl},
+            JBLX = #{jblx},
+            ZFBZ = #{zfbz},
+            LBDM = #{lbdm},
+            ICDBF = #{icdbf},
+            CDMZZD = #{cdmzzd}
+        WHERE
+        JBXH = #{jbxh}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_JBBM WHERE
+        JBXH = #{jbxh}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM DIC_JBBM
+        <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DicJbbm">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_JBBM
+        WHERE
+        JBXH = #{jbxh}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(jbxh)">
+                AND JBXH = #{jbxh}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(dmlb)">
+                AND DMLB = #{dmlb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbmc)">
+                AND JBMC = #{jbmc}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jblb)">
+                AND JBLB = #{jblb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(pydm)">
+                AND (PYDM like CONCAT(CONCAT('%',UPPER(#{pydm})),'%') or JBMC like CONCAT(CONCAT('%',#{pydm}),'%'))
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(icdCode)">
+                AND ICD_CODE = #{icdCode}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(icd9)">
+                AND ICD9 = #{icd9}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(icd10)">
+                AND ICD10 = #{icd10}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(qtxm)">
+                AND QTXM = #{qtxm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fjbm)">
+                AND FJBM = #{fjbm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(xbxz)">
+                AND XBXZ = #{xbxz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxzy)">
+                AND YXZY = #{yxzy}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxhz)">
+                AND YXHZ = #{yxhz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxwy)">
+                AND YXWY = #{yxwy}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxsw)">
+                AND YXSW = #{yxsw}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yxqt)">
+                AND YXQT = #{yxqt}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(kzfs)">
+                AND KZFS = #{kzfs}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbpb)">
+                AND JBPB = #{jbpb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bzxx)">
+                AND BZXX = #{bzxx}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbbgk)">
+                AND JBBGK = #{jbbgk}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(wbdm)">
+                AND WBDM = #{wbdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jxdm)">
+                AND JXDM = #{jxdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(qtdm)">
+                AND QTDM = #{qtdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bhdm)">
+                AND BHDM = #{bhdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ybbmYh)">
+                AND YBBM_YH = #{ybbmYh}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(ybbm)">
+                AND YBBM = #{ybbm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(mzsy)">
+                AND MZSY = #{mzsy}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jbdl)">
+                AND JBDL = #{jbdl}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(jblx)">
+                AND JBLX = #{jblx}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zfbz)">
+                AND ZFBZ = #{zfbz}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(lbdm)">
+                AND LBDM = #{lbdm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(icdbf)">
+                AND ICDBF = #{icdbf}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(cdmzzd)">
+                AND CDMZZD = #{cdmzzd}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(notIn)">
+                <foreach collection="notIn" item="item" separator="," open=" and JBXH NOT in( " close=" ) ">
+                    #{item}
+                </foreach>
+            </if>
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="Integer">
+        SELECT count(*) FROM DIC_JBBM
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DicJbbm">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_JBBM
+        <include refid="where"/>
+
+        ORDER BY LENGTH(JBMC)
+    </select>
+    <!--     业务sql      -->
+
+    <!-- 获取疾病编码 -->
+    <select id="getJbbmInfo" resultType="java.util.HashMap">
+		select JBPB as JBPB, JBBGK as JBBGK from DIC_JBBM where JBXH in (${jbxh})
+	</select>
+
+    <!-- 获取疾病编码 -->
+    <select id="getZd" resultType="java.util.HashMap">
+		select distinct icd10 as zdno,jbmc as zdmc  from DIC_JBBM
+		where JBXH = #{zdxh} limit 1
+	</select>
+
+    <select id="getBrzd" resultType="java.util.HashMap">
+	select b.JBMC as JBMC,
+	    b.ICD10 as ICD10
+	  from
+	    im_ryzd a,
+	    dic_jbbm b
+	  where
+	    a.zdxh = b.jbxh and
+	    a.zyh = #{zyh}
+	</select>
+
+    <!-- 收费获取疾病编码 -->
+    <select id="getZdBysf" resultType="java.util.HashMap">
+		select distinct a.icd10 as zdno,a.jbmc as zdmc  from DIC_JBBM a,OP_BRZD b
+		where a.JBXH = b.zdxh and b.jzlsh= #{jzlsh}
+	</select>
+
+    <update id="replace">
+        replace into dic_jbbm(jbxh,dmlb,jbmc,pydm,icd_code,ssdj)
+        values(#{jbxh},#{dmlb},#{jbmc},#{pydm},#{icdCode},#{ssdj})
+    </update>
+
+    <select id="query" resultType="com.buit.his.sys.centermaintenance.response.OperationCodeResp">
+        select jbxh,dmlb,jbmc,pydm,icd_code as icdCode,ssdj,zfbz
+        from dic_jbbm
+        where dmlb=9
+            <if test="@sqlt.Ognl@isNotEmpty(pydm)"> and (pydm like concat('%',#{pydm},'%') or jbmc like concat('%',#{pydm},'%'))</if>
+
+    </select>
+
+    <update id="enable">
+        update dic_jbbm set zfbz=1-zfbz where jbxh=#{jbxh}
+    </update>
+
+    <update id="updateZfbz">
+        update dic_jbbm set zfbz=#{zfbz} where jbxh=#{jbxh}
+    </update>
+</mapper>
+

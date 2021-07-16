@@ -1,0 +1,585 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="DepartmentCollectList" language="groovy" pageWidth="842" pageHeight="595" orientation="Landscape" columnWidth="802" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="2453664e-5917-4b2e-9992-93cb3cb5deb8">
+	<property name="ireport.zoom" value="2.0"/>
+	<property name="ireport.x" value="684"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<parameter name="lbmc" class="java.lang.String"/>
+	<parameter name="no" class="java.lang.String"/>
+	<parameter name="dateFrom" class="java.lang.String"/>
+	<parameter name="dateTo" class="java.lang.String"/>
+	<parameter name="ksmc" class="java.lang.String"/>
+	<parameter name="flr" class="java.lang.String"/>
+	<queryString>
+		<![CDATA[select c.wzxh as WZXH,
+       c.wzmc as WZMC,
+       c.wzgg as WZGG,
+       c.wzdw as WZDW,
+       c.cjxh as CJXH,
+       c.sl   as SL,
+       c.je   as JE,
+       d.CJMC as CJMC
+  from (SELECT distinct A.wzxh as WZXH,
+                        B.wzmc as WZMC,
+                        B.wzgg as WZGG,
+                        b.wzdw as WZDW,
+                        A.cjxh as CJXH,
+                        sum(A.sl) as SL,
+                        sum(A.CKJE) as JE
+          from (select distinct wl_zcmx.wzxh wzxh,
+                                wl_zcmx.cjxh cjxh,
+                                sum(wl_zcmx.wzsl) sl,
+                                sum(wl_zcmx.wzje) ckje
+                  from wl_zcmx, wl_ck01
+                 where wl_zcmx.kfxh = 24
+                   and (wl_zcmx.DJLX = 'CK' Or wl_zcmx.DJLX = 'BK' or
+                       wl_zcmx.DJLX = 'SL')
+                   and wl_zcmx.ywlb = -1
+                   and WL_ZCMX.FSRQ >=
+                       to_date('2014-11-01 00:00:00', 'yyyy-mm-dd HH24:mi:ss')
+                   and WL_ZCMX.FSRQ <=
+                       to_date('2014-12-01 23:00:00', 'yyyy-mm-dd HH24:mi:ss')
+                   and wl_ck01.Djlx <> 3
+                   and wl_zcmx.djxh = wl_ck01.djxh
+                   and (wl_ck01.jgfs <> 2 or wl_ck01.jgfs is null)
+                   and (WL_CK01.KSDM IN (50,
+                                         91,
+                                         52,
+                                         53,
+                                         54,
+                                         55,
+                                         56,
+                                         57,
+                                         58,
+                                         59,
+                                         60,
+                                         61,
+                                         62,
+                                         63,
+                                         64,
+                                         65,
+                                         66,
+                                         67,
+                                         68,
+                                         69,
+                                         70,
+                                         71,
+                                         72,
+                                         73,
+                                         74,
+                                         75,
+                                         76,
+                                         77,
+                                         78,
+                                         79,
+                                         80,
+                                         81,
+                                         82,
+                                         83,
+                                         84,
+                                         85,
+                                         86,
+                                         87,
+                                         88,
+                                         89,
+                                         90,
+                                         51) OR
+                       0 IN (50,
+                              91,
+                              52,
+                              53,
+                              54,
+                              55,
+                              56,
+                              57,
+                              58,
+                              59,
+                              60,
+                              61,
+                              62,
+                              63,
+                              64,
+                              65,
+                              66,
+                              67,
+                              68,
+                              69,
+                              70,
+                              71,
+                              72,
+                              73,
+                              74,
+                              75,
+                              76,
+                              77,
+                              78,
+                              79,
+                              80,
+                              81,
+                              82,
+                              83,
+                              84,
+                              85,
+                              86,
+                              87,
+                              88,
+                              89,
+                              90,
+                              51))
+                 group by wl_zcmx.wzxh, wl_zcmx.cjxh
+                union all
+                select distinct wl_zcmx.wzxh wzxh,
+                                wl_zcmx.cjxh cjxh,
+                                sum(wl_zcmx.wzsl) sl,
+                                sum(wl_zcmx.wzje) ckje
+                  from wl_zcmx, wl_ck01
+                 where wl_zcmx.kfxh = 24
+                   and (wl_zcmx.DJLX = 'CK' Or wl_zcmx.DJLX = 'BK' or
+                       wl_zcmx.DJLX = 'SL')
+                   and wl_zcmx.ywlb = 1
+                   and WL_ZCMX.FSRQ >=
+                       to_date('2014-11-01 00:00:00', 'yyyy-mm-dd HH24:mi:ss')
+                   and WL_ZCMX.FSRQ <=
+                       to_date('2014-12-01 23:00:00', 'yyyy-mm-dd HH24:mi:ss')
+                   and wl_ck01.Djlx <> 3
+                   and wl_zcmx.djxh = wl_ck01.djxh
+                   and (wl_ck01.jgfs <> 2 or wl_ck01.jgfs is null)
+                   and (WL_CK01.KSDM IN (50,
+                                         91,
+                                         52,
+                                         53,
+                                         54,
+                                         55,
+                                         56,
+                                         57,
+                                         58,
+                                         59,
+                                         60,
+                                         61,
+                                         62,
+                                         63,
+                                         64,
+                                         65,
+                                         66,
+                                         67,
+                                         68,
+                                         69,
+                                         70,
+                                         71,
+                                         72,
+                                         73,
+                                         74,
+                                         75,
+                                         76,
+                                         77,
+                                         78,
+                                         79,
+                                         80,
+                                         81,
+                                         82,
+                                         83,
+                                         84,
+                                         85,
+                                         86,
+                                         87,
+                                         88,
+                                         89,
+                                         90,
+                                         51) OR
+                       0 IN (50,
+                              91,
+                              52,
+                              53,
+                              54,
+                              55,
+                              56,
+                              57,
+                              58,
+                              59,
+                              60,
+                              61,
+                              62,
+                              63,
+                              64,
+                              65,
+                              66,
+                              67,
+                              68,
+                              69,
+                              70,
+                              71,
+                              72,
+                              73,
+                              74,
+                              75,
+                              76,
+                              77,
+                              78,
+                              79,
+                              80,
+                              81,
+                              82,
+                              83,
+                              84,
+                              85,
+                              86,
+                              87,
+                              88,
+                              89,
+                              90,
+                              51))
+                 group by wl_zcmx.wzxh, wl_zcmx.cjxh) A,
+               wl_wzzd B
+         where a.wzxh = b.wzxh
+         Group by A.wzxh, A.cjxh, B.wzmc, B.wzgg, b.wzdw) c,
+       wl_sccj d
+ where c.CJXH = D.CJXH]]>
+	</queryString>
+	<field name="WZXH" class="java.math.BigDecimal"/>
+	<field name="WZMC" class="java.lang.String"/>
+	<field name="WZGG" class="java.lang.String"/>
+	<field name="WZDW" class="java.lang.String"/>
+	<field name="CJXH" class="java.math.BigDecimal"/>
+	<field name="SL" class="java.math.BigDecimal"/>
+	<field name="JE" class="java.math.BigDecimal"/>
+	<field name="CJMC" class="java.lang.String"/>
+	<field name="num" class="java.lang.String"/>
+	<field name="WZSL" class="java.lang.String"/>
+	<field name="WZJE" class="java.lang.String"/>
+	<field name="WZDJ" class="java.lang.String"/>
+	<background>
+		<band splitType="Stretch"/>
+	</background>
+	<title>
+		<band height="79" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="347" y="43" width="87" height="20" uuid="d85642ad-5d83-4e54-8aa6-c002be42fe1c"/>
+				<textElement>
+					<font fontName="宋体" size="14"/>
+				</textElement>
+				<text><![CDATA[科室领用汇总]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="509" y="43" width="37" height="20" uuid="d85642ad-5d83-4e54-8aa6-c002be42fe1c"/>
+				<textElement>
+					<font fontName="宋体" size="14"/>
+				</textElement>
+				<text><![CDATA[NO：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="546" y="43" width="99" height="20" uuid="97a3a773-d646-4a92-be1e-23ad227fa3ac"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{no}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="26" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="78" y="0" width="55" height="15" uuid="276be501-5ef3-49db-8c44-7be250c95a7c"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[物资类别：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="133" y="0" width="56" height="15" uuid="8674ec84-84f3-48b5-8c35-1c377448a840"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{lbmc}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="189" y="0" width="63" height="15" uuid="db1998dd-1102-4c5e-9f8e-53523cda1e43"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[起始日期:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="252" y="0" width="106" height="15" uuid="97a3a773-d646-4a92-be1e-23ad227fa3ac"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateFrom}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="527" y="0" width="55" height="15" uuid="cb37f2e5-433a-44e1-b05f-d2e954c7d1b8"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[领用科室：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="358" y="0" width="63" height="15" uuid="db1998dd-1102-4c5e-9f8e-53523cda1e43"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[终止日期：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="421" y="0" width="106" height="15" uuid="97a3a773-d646-4a92-be1e-23ad227fa3ac"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{dateTo}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="582" y="0" width="56" height="15" uuid="8674ec84-84f3-48b5-8c35-1c377448a840"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ksmc}]]></textFieldExpression>
+			</textField>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="19" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="145" y="0" width="107" height="19" uuid="50b404f8-6086-4968-a2e1-47a2c6e72334"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[物资名称]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="252" y="0" width="60" height="19" uuid="f61156c8-e9ab-46d0-aea9-963a822432d8"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[物资规格]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="312" y="0" width="61" height="19" uuid="69449d8d-a933-44b6-b154-489a4b9b71dd"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[物资单位]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="373" y="0" width="70" height="19" uuid="7e292307-864f-4981-87d0-0078f6ada95b"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[生产厂家]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="509" y="0" width="68" height="19" uuid="5fca5687-e7e0-45e7-b065-876b9c0187c4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[数量]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="577" y="0" width="68" height="19" uuid="f3088f96-8664-4d97-a5fb-58d77e9906cb"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[金额]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="443" y="0" width="66" height="19" uuid="5fca5687-e7e0-45e7-b065-876b9c0187c4"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[单价]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="78" y="0" width="67" height="19" uuid="49d6c904-550b-4375-8214-29fb31018e1e"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[序号]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="20" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="78" y="0" width="67" height="20" uuid="3bac87fd-fafe-48d5-954d-cc15e611bb00"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{num}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="252" y="0" width="60" height="20" uuid="299250e1-e7b2-4e4f-b3fa-0666d38a04ae"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WZGG}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="509" y="0" width="68" height="20" uuid="fc8a2d39-5c2c-4daa-9195-8565f3d9b99d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WZSL}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="577" y="0" width="68" height="20" uuid="fa07fd96-3c0f-442d-9e2b-54891f30b298"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WZJE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="373" y="0" width="70" height="20" uuid="5959a99b-91f7-41ef-99db-0c6805fe2101"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{CJMC}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="443" y="0" width="66" height="20" uuid="fc8a2d39-5c2c-4daa-9195-8565f3d9b99d"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WZDJ}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="312" y="0" width="61" height="20" uuid="ed81d39a-ed82-42f7-b5ce-6c3ab4eb6e76"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WZDW}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="145" y="0" width="107" height="20" uuid="16fd867e-595a-476c-bb87-28b89bac36d1"/>
+				<box>
+					<topPen lineWidth="1.0"/>
+					<leftPen lineWidth="1.0"/>
+					<bottomPen lineWidth="1.0"/>
+					<rightPen lineWidth="1.0"/>
+				</box>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{WZMC}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="20" splitType="Stretch">
+			<staticText>
+				<reportElement style="myBaseStyleName" x="78" y="0" width="34" height="20" uuid="7c56ac3b-30e4-411e-b5df-4ed8e1fc10ec"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[发料:]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" x="112" y="0" width="46" height="20" uuid="8674ec84-84f3-48b5-8c35-1c377448a840"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{flr}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="252" y="0" width="34" height="20" uuid="7c56ac3b-30e4-411e-b5df-4ed8e1fc10ec"/>
+				<textElement>
+					<font fontName="宋体"/>
+				</textElement>
+				<text><![CDATA[领料:]]></text>
+			</staticText>
+		</band>
+	</columnFooter>
+	<pageFooter>
+		<band height="54" splitType="Stretch"/>
+	</pageFooter>
+	<summary>
+		<band height="42" splitType="Stretch"/>
+	</summary>
+</jasperReport>

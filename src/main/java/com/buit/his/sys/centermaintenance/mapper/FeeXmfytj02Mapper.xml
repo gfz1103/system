@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!--  -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.FeeXmfytj02Dao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        SBXH as sbxh,JGID as jgid,TJDH as tjdh,FYXH as fyxh,YJG as yjg,XJG as xjg
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO FEE_XMFYTJ02 (
+            SBXH ,
+            JGID ,
+            TJDH ,
+            FYXH ,
+            YJG ,
+            XJG 
+        ) VALUES (
+            #{sbxh} ,
+            #{jgid} ,
+            #{tjdh} ,
+            #{fyxh} ,
+            #{yjg} ,
+            #{xjg} 
+        )
+    </insert>
+    
+    <update id="update" ><!--  
+        UPDATE FEE_XMFYTJ02 SET
+            JGID = #{jgid} ,
+            TJDH = #{tjdh} ,
+            FYXH = #{fyxh} ,
+            YJG = #{yjg} ,
+            XJG = #{xjg} 
+        WHERE 
+            SBXH = #{sbxh} 
+            -->            
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM FEE_XMFYTJ02 WHERE
+        SBXH = #{sbxh} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM FEE_XMFYTJ02 <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="FeeXmfytj02">
+        SELECT <include refid="columns" />
+            FROM FEE_XMFYTJ02 
+            WHERE 
+        SBXH = #{sbxh} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+<!--                <if test="@sqlt.Ognl@isNotEmpty(sbxh)"> -->
+<!--                     AND SBXH = #{sbxh} -->
+<!--                </if> -->
+                <if test="@sqlt.Ognl@isNotEmpty(jgid)">
+                    AND JGID = #{jgid} 
+                </if> 
+                <if test="@sqlt.Ognl@isNotEmpty(tjdh)"> 
+                     AND TJDH = #{tjdh} 
+                </if> 
+<!--                <if test="@sqlt.Ognl@isNotEmpty(fyxh)"> -->
+<!--                     AND FYXH = #{fyxh} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(yjg)"> -->
+<!--                     AND YJG = #{yjg} -->
+<!--                </if> -->
+<!--                <if test="@sqlt.Ognl@isNotEmpty(xjg)"> -->
+<!--                     AND XJG = #{xjg} -->
+<!--                </if> -->
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM FEE_XMFYTJ02 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="FeeXmfytj02">
+        SELECT <include refid="columns" />
+        FROM FEE_XMFYTJ02 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    
+    <!-- 查询调价项目 -->
+    <select id="queryGyFytjYlsf" resultType="com.buit.his.sys.centermaintenance.response.FeeXmfytj02Resp">
+        select a.*, b.fymc as fymc, b.fydw, b.bzjg, b.fygb
+		  from FEE_XMFYTJ02 a
+		  left join FEE_YLSFXM b
+		    on a.fyxh = b.fyxh
+		 where a.TJDH = #{tjdh}
+		   and a.JGID = #{jgid}
+    </select>
+</mapper>
+

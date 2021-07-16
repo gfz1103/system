@@ -1,0 +1,159 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 医技类型维护 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.DicYjlxDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        ID as id,NAME as name,PID as pid,SORT as sort,ZXBZ as zxbz,JCLX as jclx
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_YJLX (
+            ID ,
+            NAME ,
+            PID ,
+            SORT ,
+            ZXBZ ,
+            JCLX 
+        ) VALUES (
+            #{id} ,
+            #{name} ,
+            #{pid} ,
+            #{sort} ,
+            #{zxbz} ,
+            #{jclx} 
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE DIC_YJLX SET
+            NAME = #{name} ,
+            PID = #{pid} ,
+            SORT = #{sort} ,
+            ZXBZ = #{zxbz} ,
+            JCLX = #{jclx} 
+        WHERE 
+            ID = #{id} 
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM DIC_YJLX WHERE
+        ID = #{id} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM DIC_YJLX <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.DicYjlx">
+        SELECT <include refid="columns" />
+            FROM DIC_YJLX 
+            WHERE 
+        ID = #{id} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+            <if test="@sqlt.Ognl@isNotEmpty(id)">
+                 AND ID = #{id}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(name)">
+                 AND NAME = #{name}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(pid)">
+                 AND PID = #{pid}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(sort)">
+                 AND SORT = #{sort}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(zxbz)">
+                 AND ZXBZ = #{zxbz}
+            </if>
+                <if test="@sqlt.Ognl@isNotEmpty(jclx)">
+                     AND JCLX = #{jclx}
+                </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_YJLX 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.DicYjlx">
+        SELECT <include refid="columns" />
+        FROM DIC_YJLX 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <select id="loadDicData" resultType="com.buit.his.sys.centermaintenance.response.DicYjlxResp">
+        SELECT
+            a.ID AS id,
+            a.NAME AS name,
+            a.PID AS pid,(
+            SELECT
+                count( id )
+            FROM
+                DIC_YJLX
+            WHERE
+                pid = a.id
+                AND zxbz = '0'
+            ) AS chileNum,
+            a.SORT AS sort,
+            a.JCLX AS jclx
+        FROM
+            DIC_YJLX a
+        WHERE
+            a.ZXBZ = '0'
+            <if test="pid != 0">
+                 AND PID = #{pid}
+            </if>
+            <if test="pid == 0">
+                AND PID = 0
+            </if>
+        order by sort ASC
+    </select>
+    <!-- 中心维护查询医技类型树集合 -->
+    <select id="getTree" resultType="com.buit.his.sys.centermaintenance.response.DicYjlxResp">
+        SELECT <include refid="columns" />
+        from DIC_YJLX
+        where zxbz = 0
+    </select>
+    <!--注销-->
+    <update id="logout">
+        update DIC_YJLX set zxbz = 1
+        where id = #{id}
+    </update>
+    
+    <!-- 查询医技树 -->
+<!--     <select id="queryDicYjlxById" resultType="com.buit.cis.im.dctwork.response.DicYjlxZlxmResp"> -->
+<!--         SELECT -->
+<!--             a.ID AS ID, -->
+<!--             a.NAME AS LABEL, -->
+<!--             a.PID AS PID, -->
+<!--             a.SORT AS SORT -->
+<!--         FROM -->
+<!--             DIC_YJLX a -->
+<!--         WHERE -->
+<!--             a.ZXBZ = '0' and a.ID = #{id} -->
+<!--         order by sort ASC -->
+<!--     </select> -->
+    <select id="queryDicYjlxById" resultType="DicYjlxZlxmResp">
+        SELECT
+            a.ID AS ID,
+            a.NAME AS LABEL,
+            a.PID AS PID,
+            a.SORT AS SORT
+        FROM
+            DIC_YJLX a
+        WHERE
+            a.ZXBZ = '0' and a.ID = #{id}
+        order by sort ASC
+    </select>
+</mapper>
+

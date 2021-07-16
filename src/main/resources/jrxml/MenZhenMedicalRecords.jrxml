@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="MenZhenMedicalRecords" language="groovy" pageWidth="566" pageHeight="708" orientation="Landscape" columnWidth="546" leftMargin="0" rightMargin="20" topMargin="42" bottomMargin="0" isFloatColumnFooter="true" uuid="bca01437-6d03-4cb5-b050-32f2265c37fd">
+	<property name="ireport.zoom" value="1.1000000000000005"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<field name="LB" class="java.lang.String"/>
+	<field name="XM" class="java.lang.String"/>
+	<field name="JZSJ" class="java.lang.String"/>
+	<variable name="index" class="java.lang.Integer" resetType="Column" calculation="Count">
+		<variableExpression><![CDATA[new Integer("1")]]></variableExpression>
+	</variable>
+	<detail>
+		<band height="24" splitType="Stretch">
+			<textField>
+				<reportElement style="myBaseStyleName" x="101" y="0" width="49" height="24" uuid="298df09d-4e2b-4cce-9383-886f33e89f9b"/>
+				<textElement markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{LB}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" stretchType="RelativeToBandHeight" x="150" y="0" width="282" height="24" uuid="bde9d8a3-d47e-4e76-ba5f-0953b3854c46"/>
+				<textElement markup="none">
+					<font fontName="宋体"/>
+					<paragraph lineSpacing="Single"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{XM}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement style="myBaseStyleName" x="0" y="0" width="101" height="24" uuid="5d75758a-7051-499b-a986-4b50215616cd"/>
+				<textElement markup="none">
+					<font fontName="宋体"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{JZSJ}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band splitType="Stretch"/>
+	</columnFooter>
+	<pageFooter>
+		<band splitType="Stretch"/>
+	</pageFooter>
+	<lastPageFooter>
+		<band splitType="Stretch"/>
+	</lastPageFooter>
+	<summary>
+		<band splitType="Stretch"/>
+	</summary>
+	<noData>
+		<band splitType="Stretch"/>
+	</noData>
+</jasperReport>

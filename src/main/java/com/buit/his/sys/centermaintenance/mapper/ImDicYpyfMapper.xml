@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 住院_药品用法 -->
+<mapper namespace="com.buit.his.sys.centermaintenance.dao.ImDicYpyfDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        YPYF as ypyf,PYDM as pydm,XMMC as xmmc,XMLB as xmlb,FYXH as fyxh,YZPX as yzpx,KPDY as kpdy,BZBM as bzbm,fyfs as fyfs
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO IM_DIC_YPYF (
+            YPYF ,
+            PYDM ,
+            XMMC ,
+            XMLB ,
+            FYXH ,
+            YZPX ,
+            KPDY ,
+            BZBM ,
+            fyfs
+        ) VALUES (
+            #{ypyf} ,
+            #{pydm} ,
+            #{xmmc} ,
+            #{xmlb} ,
+            #{fyxh} ,
+            #{yzpx} ,
+            #{kpdy} ,
+            #{bzbm} ,
+            #{fyfs}
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE IM_DIC_YPYF SET
+            PYDM = #{pydm},
+            XMMC = #{xmmc},
+            XMLB = #{xmlb},
+            FYXH = #{fyxh},
+            YZPX = #{yzpx},
+            KPDY = #{kpdy},
+            BZBM = #{bzbm},
+            fyfs = #{fyfs}
+        WHERE
+            YPYF = #{ypyf} 
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM IM_DIC_YPYF WHERE
+        YPYF = #{ypyf} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM IM_DIC_YPYF <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="com.buit.his.sys.centermaintenance.model.ImDicYpyf">
+        SELECT <include refid="columns" />
+            FROM IM_DIC_YPYF 
+            WHERE 
+        YPYF = #{ypyf} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+            <if test="@sqlt.Ognl@isNotEmpty(ypyf)">
+                 AND YPYF = #{ypyf}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(pydm)">
+                 AND PYDM like '%${pydm}%'
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(xmmc)">
+                 AND XMMC = #{xmmc}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(xmlb)">
+                 AND XMLB = #{xmlb}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fyxh)">
+                 AND FYXH = #{fyxh}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(yzpx)">
+                 AND YZPX = #{yzpx}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(kpdy)">
+                 AND KPDY = #{kpdy}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(bzbm)">
+                 AND BZBM = #{bzbm}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(fyfs)">
+                 AND fyfs = #{fyfs}
+            </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM IM_DIC_YPYF 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="com.buit.his.sys.centermaintenance.model.ImDicYpyf">
+        SELECT <include refid="columns" />
+        FROM IM_DIC_YPYF 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <select id="queryUncheckedList" resultType="com.buit.his.sys.centermaintenance.model.ImDicYpyf">
+        SELECT <include refid="columns" />
+        FROM IM_DIC_YPYF
+        where ypyf not in (select gytj from jp_yfgytj where jgid=#{jgid} and yfsb=#{yfsb})
+        <if test="value!=null and value!=''">
+            and (pydm like concat('%',#{value},'%') or xmmc like concat('%',#{value},'%'))
+        </if>
+    </select>
+    
+    <!-- 根据用法查询药品附加项目 -->
+    <select id="loadYpAppendAdvice" resultType="com.buit.his.sys.centermaintenance.response.ImDicYpyfAppendResp">
+       select  1 as sylb,
+		       a.fyxh as ypxh,
+		       b.fymc as yzmc,
+		       1 as fysl,
+		       c.fydj as ypdj,
+		       b.xmlx as xmlx,
+		       b.fydw as fydw,
+		       c.fyks as fyks,
+		       b.fygb as fygb
+ 	  from im_dic_ypyf a, fee_ylsfxm b, fee_ylsfxmdj c
+ 	  where a.fyxh = b.fyxh
+	 	and a.fyxh = c.fyxh
+	 	and b.zfpb = 0
+	 	and c.zfpb = 0
+	 	and a.ypyf = #{ypyf}
+    </select>
+</mapper>
+

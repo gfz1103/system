@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="FamilySickBedPatientPlan" language="groovy" pageWidth="700" pageHeight="800" columnWidth="700" leftMargin="0" rightMargin="0" topMargin="0" bottomMargin="0" uuid="dcab8da7-d950-4494-85f0-c5d234b4c7b5">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<style name="myBaseStyleName" isBlankWhenNull="true" fontName="宋体"/>
+	<subDataset name="dataset1" uuid="0fb70007-41ee-4f87-b7f6-414ba1546643"/>
+	<parameter name="jgid" class="java.lang.String"/>
+	<parameter name="BRXB" class="java.lang.String"/>
+	<parameter name="BRXM" class="java.lang.String"/>
+	<parameter name="RYNL" class="java.lang.String"/>
+	<parameter name="ZYHM" class="java.lang.String"/>
+	<title>
+		<band height="55">
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="2" y="0" width="696" height="55" uuid="5e648e1c-cc52-4162-9454-71cb5a34ad96"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="16"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{jgid}]]></textFieldExpression>
+			</textField>
+		</band>
+	</title>
+	<pageHeader>
+		<band height="45">
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="2" y="0" width="698" height="34" uuid="8de1b2c0-eaf4-4700-93da-35d13d43afd2"/>
+				<box>
+					<topPen lineWidth="0.0"/>
+					<leftPen lineWidth="0.0"/>
+					<bottomPen lineWidth="0.0"/>
+					<rightPen lineWidth="0.0"/>
+				</box>
+				<textElement textAlignment="Center" verticalAlignment="Middle" markup="none">
+					<font fontName="宋体" size="16" isBold="true" isItalic="false" isUnderline="false" isStrikeThrough="false" isPdfEmbedded="false"/>
+				</textElement>
+				<text><![CDATA[病危病重通知书]]></text>
+			</staticText>
+		</band>
+	</pageHeader>
+	<columnHeader>
+		<band height="611">
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="219" y="30" width="60" height="40" uuid="e20da077-9bab-4eec-ae39-280a6eaad036"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXB}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="179" y="30" width="40" height="40" uuid="b0ff80b8-d6fd-4779-8a37-164fadcaa9ce"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[性别：]]></text>
+			</staticText>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="39" y="30" width="40" height="40" uuid="813a6393-43ed-43ef-855a-4f0141364b4a"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[姓名：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="79" y="30" width="100" height="40" uuid="9b8557a2-4110-40fa-aab0-89ced2267f82"/>
+				<textElement textAlignment="Left" verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{BRXM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="327" y="30" width="40" height="40" uuid="fe894a5d-ab6e-496d-8239-b48530aad89a"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[年龄：]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="367" y="30" width="60" height="40" uuid="3055b285-3f59-4713-a9b7-6edd4833047b"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RYNL}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="456" y="30" width="66" height="40" uuid="c1f59420-8761-4f76-9a86-95deda9d0329"/>
+				<textElement textAlignment="Center" verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12" isBold="true"/>
+				</textElement>
+				<text><![CDATA[住院号码]]></text>
+			</staticText>
+			<textField>
+				<reportElement style="myBaseStyleName" mode="Opaque" x="532" y="30" width="107" height="40" uuid="12480bc2-bf82-4b8a-8720-94b453ce55eb"/>
+				<textElement verticalAlignment="Top" markup="none">
+					<font fontName="宋体" size="12"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{ZYHM}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement style="myBaseStyleName" x="0" y="70" width="698" height="538" uuid="ebdf2eb5-1912-4a78-8de5-4b0cd127a97e"/>
+				<box>
+					<topPen lineWidth="0.75"/>
+				</box>
+				<textElement>
+					<font fontName="宋体" size="14"/>
+				</textElement>
+				<text><![CDATA[尊敬的患者家属或患者的法定监护人、授权委托人：
+    您好！您的家人_____________ 现在我院_____________ 科住院治疗。
+    目前诊断为____________________________________________________________。
+虽经医护人员积极救治，但目前患者病情严重，并且病情有可能进一步恶化，随时会出现以下一种或多种危及患
+者生命的并发症：
+1、肺性脑病，严重心律失常、心功能衰竭、心肌梗死、高血压危象；
+2、上消化道出血导致出血性休克、脑出血、脑梗塞、脑疝；
+3、感染中毒性休克、过敏性休克、心源性休克；
+4、弥漫性血管内凝血(DIC)；
+5、多器官功能衰竭；
+6、糖尿病酮症、酸中毒、低血糖性昏迷、高渗性昏迷；
+7、其他。
+     上述情况一旦发生会严重威胁患者生命，医护人员将会全力抢救，其中包括气管切开、呼吸机辅助呼吸、电
+除颤、心脏按摩、安装临时起搏器等措施。
+     根据我国法律规定，为抢救患者，医生可以在不征得您同意的情况下依据救治工作的需要对患者先采取抢救
+措施，并使用应急救治所必需的仪器设备和治疗手段，然后履行告知义务， 请您予以理解并积极配合医院的抢救
+治疗。
+
+
+______________________________________________________________________________________
+关于患者目前的病情危重、可能出现的后果以及医护人员对于患者病情危重时进行的救治措施，医护人员已经向
+我详细告知。 我了解了患者病情危重，我________（”同意”或”不同意”）医护人员进行上述有创救治措施，
+我_______（”同意”或”不同意”）使用药物进行救治，对所发生的一切后果我们自行承担责任。
+
+
+    患者授权亲属签名__________与患者关系__________      签名日期__________年_____月_____日
+
+    医生签名：___________                              签名日期__________年_____月_____日]]></text>
+			</staticText>
+		</band>
+	</columnHeader>
+</jasperReport>

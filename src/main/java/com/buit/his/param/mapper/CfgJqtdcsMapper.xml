@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 机器特定参数表 -->
+<mapper namespace="com.buit.his.param.dao.CfgJqtdcsDao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        JGID as jgid,IP as ip,CSM as csm,CSZ as csz,BZ as bz,SFQY as sfqy,SSLB as sslb
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO CFG_JQTDCS (
+            JGID ,
+            IP ,
+            CSM ,
+            CSZ ,
+            BZ ,
+            SFQY ,
+            SSLB 
+        ) VALUES (
+            #{jgid} ,
+            #{ip} ,
+            #{csm} ,
+            #{csz} ,
+            #{bz} ,
+            #{sfqy} ,
+            #{sslb} 
+        )
+    </insert>
+    
+    <update id="update" >
+        UPDATE CFG_JQTDCS SET
+            CSZ = #{csz} ,
+            BZ = #{bz} ,
+            SFQY = #{sfqy} ,
+            SSLB = #{sslb}
+        WHERE
+            JGID = #{jgid}  AND
+                        IP = #{ip}  AND
+                        CSM = #{csm}
+    </update>
+
+    <delete id="deleteById">
+        DELETE FROM CFG_JQTDCS WHERE
+        JGID = #{jgid}  AND 
+        IP = #{ip}  AND 
+        CSM = #{csm} 
+    </delete>
+    
+    <delete id="removeByEntity">
+        DELETE FROM CFG_JQTDCS <include refid="where"/>  
+    </delete>
+    
+    <select id="getById" resultType="CfgJqtdcs">
+        SELECT <include refid="columns" />
+            FROM CFG_JQTDCS 
+            WHERE 
+        JGID = #{jgid}  AND 
+        IP = #{ip}  AND 
+        CSM = #{csm} 
+    </select>
+    
+    <sql id="where">
+        <where>                          
+                <if test="@sqlt.Ognl@isNotEmpty(jgid)">
+                     AND JGID = #{jgid}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(ip)">
+                     AND IP = #{ip}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(csm)">
+                     AND CSM  like CONCAT(CONCAT('%',#{csm}),'%')
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(csz)">
+                     AND CSZ = #{csz}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(bz)">
+                     AND BZ = #{bz}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(sfqy)">
+                     AND SFQY = #{sfqy}
+                </if>
+                <if test="@sqlt.Ognl@isNotEmpty(sslb)">
+                     AND SSLB like CONCAT(CONCAT('%',#{sslb}),'%')
+                </if>
+        </where>
+    </sql>
+        
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM CFG_JQTDCS 
+        <include refid="where"/>    
+    </select>
+    
+    <select id="findByEntity" resultType="CfgJqtdcs">
+        SELECT <include refid="columns" />
+        FROM CFG_JQTDCS 
+        <include refid="where"/>
+        
+        <if test="@sqlt.Ognl@orderIsNotEmpty(sortColumns)">
+            ORDER BY ${sortColumns}
+        </if>
+    </select>
+    <!--     业务sql      -->
+    <select id="getByJgIdAndIpAndCsmc"  resultType="CfgJqtdcs">
+        SELECT <include refid="columns" />
+        FROM CFG_JQTDCS
+        where JGID = #{jgId}  AND
+        IP = #{ip}  AND
+        CSM = #{csmc}
+    </select>
+    <delete id="deleteByJGIdAndIpAndCsmc">
+        delete FROM CFG_JQTDCS
+        where JGID = #{jgId}  AND
+        IP = #{ip}  AND
+        CSM = #{csmc}
+    </delete>
+    
+    <!--  查询获得与这台计算机IP绑定的参数值 -->
+    <select id="getByJgIdAndIpAndCsmcs" parameterType="Map" resultType="java.util.Map">
+		SELECT
+		<include refid="columns" />
+		FROM CFG_JQTDCS
+		where sfqy='1' and JGID = #{jgId} AND
+		IP = #{ip} AND CSM in (#{csmc}) 
+	</select>
+    
+</mapper>
+

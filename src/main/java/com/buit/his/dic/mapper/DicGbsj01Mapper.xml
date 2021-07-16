@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<!-- 标准数据主记录 -->
+<mapper namespace="com.buit.his.dic.dao.DicGbsj01Dao">
+
+    <!-- 用于select查询公用抽取的列 -->
+    <sql id="columns">
+        PRIMARYDATA_ID as primarydataId,DATA_VERSION as dataVersion,GMT_CREATE as gmtCreate,GMT_MODIFY as gmtModify,HOSPITAL_ID as hospitalId,PRIMARY_DATA_CODE as primaryDataCode,PRIMARY_DATA_NAME as primaryDataName,RANGE_CODE as rangeCode,IDENTIFICATION_FLAG as identificationFlag,PY_CODE as pyCode,WB_CODE as wbCode,DATA_VIEW_TYPE as dataViewType,CAN_EXTEND as canExtend
+    </sql>
+
+    <insert id="insert">
+        INSERT INTO DIC_GBSJ01 (
+            GMT_CREATE ,
+            GMT_MODIFY ,
+            HOSPITAL_ID ,
+            PRIMARY_DATA_CODE ,
+            PRIMARY_DATA_NAME ,
+            RANGE_CODE ,
+            IDENTIFICATION_FLAG ,
+            PY_CODE ,
+            WB_CODE ,
+            DATA_VIEW_TYPE ,
+            CAN_EXTEND
+        ) VALUES (
+            #{gmtCreate} ,
+            #{gmtCreate} ,
+            #{hospitalId} ,
+            #{primaryDataCode} ,
+            #{primaryDataName} ,
+            #{rangeCode} ,
+            #{identificationFlag} ,
+            #{pyCode} ,
+            #{wbCode} ,
+            #{dataViewType} ,
+            #{canExtend}
+        )
+    </insert>
+
+    <update id="update">
+        UPDATE DIC_GBSJ01 SET
+        <if test="@sqlt.Ognl@isNotEmpty(primaryDataName)">
+            PRIMARY_DATA_NAME = #{primaryDataName},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(rangeCode)">
+            RANGE_CODE = #{rangeCode},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(pyCode)">
+            py_code = #{pyCode},
+        </if>
+        <if test="@sqlt.Ognl@isNotEmpty(wbCode)">
+            wb_code = #{wbCode},
+        </if>
+        GMT_MODIFY = #{gmtModify}
+        WHERE
+        PRIMARYDATA_ID = #{primarydataId}
+    </update>
+
+    <delete id="deleteById">
+        delete FROM DIC_GBSJ01   where PRIMARYDATA_ID = #{primarydataId}
+    </delete>
+
+    <delete id="removeByEntity">
+        DELETE FROM DIC_GBSJ01
+        <include refid="where"/>
+    </delete>
+
+    <select id="getById" resultType="com.buit.his.dic.model.DicGbsj01">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_GBSJ01
+        WHERE
+        PRIMARYDATA_ID = #{primarydataId}
+    </select>
+
+    <sql id="where">
+        <where>
+            <if test="@sqlt.Ognl@isNotEmpty(condition)">
+                AND ( PRIMARY_DATA_NAME LIKE CONCAT(CONCAT('%',UPPER(#{condition})),'%')
+                or RANGE_CODE LIKE CONCAT(CONCAT('%',UPPER(#{condition})),'%')
+                or PRIMARY_DATA_CODE LIKE CONCAT(CONCAT('%',UPPER(#{condition})),'%')
+                or PY_CODE LIKE CONCAT(CONCAT('%',UPPER(#{condition})),'%')
+                or WB_CODE LIKE CONCAT(CONCAT('%',UPPER(#{condition})),'%')
+                )
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(hospitalId)">
+                AND HOSPITAL_ID = #{hospitalId}
+            </if>
+            <if test="@sqlt.Ognl@isNotEmpty(deleted)">
+                AND deleted = #{deleted}
+            </if>
+        </where>
+    </sql>
+
+    <select id="findByEntityCount" resultType="long">
+        SELECT count(*) FROM DIC_GBSJ01
+        <include refid="where"/>
+    </select>
+
+    <select id="findByEntity" resultType="com.buit.his.dic.model.DicGbsj01">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_GBSJ01
+        <include refid="where"/>
+        ORDER BY PRIMARY_DATA_CODE
+    </select>
+    <select id="findByCode" resultType="com.buit.his.dic.model.DicGbsj01">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_GBSJ01
+        where PRIMARY_DATA_CODE = #{value}
+    </select>
+
+    <!--     业务sql      -->
+
+    <update id="addVersion" >
+        UPDATE DIC_GBSJ01 t set
+        	t.DATA_VERSION = t.DATA_VERSION+1
+        WHERE
+        	t.PRIMARYDATA_ID = #{primarydataId}
+    </update>
+
+    <select id="queryPrimaryData" resultType="com.buit.system.request.DicGbsj01Model">
+        SELECT
+        <include refid="columns"/>
+        FROM DIC_GBSJ01
+        where py_code LIKE '%${pyCode}%'
+    </select>
+
+    <select id="getNextPrimaryDataId" resultType="java.lang.Integer">
+        select max(PRIMARYDATA_ID)+1 from dic_gbsj01
+    </select>
+</mapper>
+
